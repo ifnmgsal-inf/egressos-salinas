@@ -11,7 +11,7 @@ export default function Home() {
         <link rel="icon" href="/if_icon.png" />
       </Head>
 
-      <main >
+      <main className="top-0 h-screen bg-cover bg-[url('/bg_header.jpg')]">
         <NavBar/>    
       </main>
 
