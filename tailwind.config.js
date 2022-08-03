@@ -8,7 +8,17 @@ module.exports = {
     minHeight: {
       '780': '780px',
     },
-    extend: {},
+    fontSize: {
+      '13':'13px',
+    },
+    width: {
+      '100': '100px',
+    },
+    extend: {
+      colors: {
+        'primary': '#237653',
+      },
+    },
   },
   plugins: [],
 }
