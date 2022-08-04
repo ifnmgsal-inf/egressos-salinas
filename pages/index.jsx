@@ -3,6 +3,8 @@ import Image from "next/image";
 import NavBar from "../components/NavBar";
 import History from "../components/history";
 import News from "../components/news";
+import OurGraduates from "../components/ourGraduates";
+import Depositions from "../components/depositions";
 
 export default function Home() {
   return (
@@ -32,6 +34,8 @@ export default function Home() {
         </div>
         <History />
         <News />
+        <OurGraduates />
+        <Depositions />
       </main>
 
       <footer></footer>
