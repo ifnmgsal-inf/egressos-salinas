@@ -19,13 +19,17 @@ module.exports = {
     },
     minHeight: {
       '780': '780px',
+      '270': '270px',
     },
     fontSize: {
       '12':'12px',
       '13':'13px',
       '16': '16px',
       '18': '18px',
+      '38': '38px',
+      '40': '40px',
       '48': '48px',
+      '50': '50px',
     },
     width: {
       '100': '100px',
@@ -35,6 +39,9 @@ module.exports = {
         'primary': '#237653',
         'primary-active': '#249263',
         'disable': '#EEEEEE',
+        'title':'#1B1B1E',
+        'bg-container':'#F5F5F5',
+        'grey-text':'#696969'
       },
     },
   },

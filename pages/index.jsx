@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import NavBar from "../components/NavBar";
 import History from "../components/history";
+import News from "../components/news";
 
 export default function Home() {
   return (
@@ -15,11 +16,8 @@ export default function Home() {
       <main>
         <div className="top-0 h-screen bg-cover bg-[url('/bg_header.jpg')] bg-fixed border-b-4 border-primary">
           <NavBar />
-          <div className="flex flex-col mt-60">
-            <span
-              className="flex font-extra-light text-white text-48 justify-center"
-              style={{ fontWeight: 100 }}
-            >
+          <div className="flex flex-col mt-52">
+            <span className="flex font-extra-light text-white text-48 justify-center">
               Você vai em frente. A gente acompanha.
             </span>
             <div>
@@ -33,6 +31,7 @@ export default function Home() {
           </div>
         </div>
         <History />
+        <News />
       </main>
 
       <footer></footer>
