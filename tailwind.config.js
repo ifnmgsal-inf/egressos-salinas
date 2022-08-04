@@ -18,8 +18,9 @@ module.exports = {
       black: 900,
     },
     minHeight: {
-      '780': '780px',
+      '100': '100px',
       '270': '270px',
+      '780': '780px',
     },
     fontSize: {
       '12':'12px',
