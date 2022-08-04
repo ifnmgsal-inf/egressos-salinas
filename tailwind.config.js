@@ -22,6 +22,15 @@ module.exports = {
       '270': '270px',
       '780': '780px',
     },
+    maxHeight: {
+      '100': '100px',
+      '170': '170px',
+      '270': '270px',
+      '780': '780px',
+    },
+    maxWidth: {
+      '1000':'1000px',
+    },
     fontSize: {
       '12':'12px',
       '13':'13px',
@@ -42,6 +51,7 @@ module.exports = {
         'disable': '#EEEEEE',
         'title':'#1B1B1E',
         'bg-container':'#F5F5F5',
+        'bg-grey':'#D9D9D9',
         'grey-text':'#696969'
       },
     },

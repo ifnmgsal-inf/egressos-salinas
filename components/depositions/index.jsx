@@ -19,6 +19,23 @@ const Depositions = () => {
       <h1 className="text-38 text-title">
         Novos <span className="text-primary">Depoimentos</span>
       </h1>
+      {depositionsList.map(({ image, name, message }) => (
+        <div key={name} className="flex mt-10 odd:flex-row-reverse">
+          <div className="flex flex-col items-center">
+            <span className="inline-block" style={{ width: "150px", height: "150px" }}>
+              <img
+                style={{ borderRadius: "50%", width: "100%", height: "100%", objectFit: "cover" }}
+                src={image}
+                alt=""
+              />
+            </span>
+            <span className="text-13 font-medium">{name}</span>
+          </div>
+          <div className="flex max-h-170 mx-8 p-4 items-center bg-bg-grey rounded-sm drop-shadow-md">
+            {message}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
