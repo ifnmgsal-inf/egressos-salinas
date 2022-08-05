@@ -1,7 +1,11 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { app } from "../../services/firebaseConfig";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { AuthUserContext } from "../../contexts/authUser";
+
+import { useRouter } from "next/router";
+
+import Link from "next/link";
 
 const links = [
   {
@@ -22,20 +26,15 @@ const links = [
   },
 ];
 
-const NavBar = ({ type = "full" }) => {
-  const [users, setUsers] = useState([]);
+const NavBar = ({ type = "full", data = null }) => {
+  const { setUser } = useContext(AuthUserContext);
 
-  const db = getFirestore(app);
-  const usersCollectionRef = collection(db, "users");
+  const router = useRouter();
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
-      //   console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      //   setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getUsers();
-  }, []);
+  const goOut = () => {
+    setUser(null);
+    router.push("/login");
+  };
 
   return (
     <div className="flex justify-between items-center mx-10 pt-1">
@@ -62,12 +61,17 @@ const NavBar = ({ type = "full" }) => {
         </div>
       )}
 
-      {users.length ? (
+      {data ? (
         <div className="flex flex-col text-white text-13 font-light">
           <span>
-            Olá, <span className="text-white font-medium">{users[0].name}</span>
+            Olá, <span className="text-white font-medium">{data.name}</span>
           </span>
-          <span className="flex justify-end font-light hover:font-medium cursor-pointer">Sair</span>
+          <span
+            className="flex justify-end font-light hover:font-medium cursor-pointer"
+            onClick={goOut}
+          >
+            Sair
+          </span>
         </div>
       ) : (
         <div className="space-x-4">

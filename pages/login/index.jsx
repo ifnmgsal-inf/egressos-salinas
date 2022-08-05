@@ -1,12 +1,13 @@
 import { useState, useContext } from "react";
-import Link from "next/link";
 import { AuthUserContext } from "../../contexts/authUser";
+
+import Link from "next/link";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { autenticationUser } = useContext(AuthUserContext);
+  const { autenticationUser, user } = useContext(AuthUserContext);
 
   const onSubmit = () => {
     autenticationUser(email, password);

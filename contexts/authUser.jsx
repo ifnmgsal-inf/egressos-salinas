@@ -11,7 +11,6 @@ export const AuthUserProvider = ({ children }) => {
   const router = useRouter();
 
   async function autenticationUser(email, password) {
-    console.log({ email, password });
     const db = getFirestore(app);
     const userRef = collection(db, "users");
 
@@ -22,9 +21,8 @@ export const AuthUserProvider = ({ children }) => {
     const user = querySnapshot.docs.map((doc) => ({ ...doc.data() }))[0] || null;
     if (user) {
       setUser(user);
-      user.type === "adm" ? router.push("/home-adm") : router.push("/home-user");
+      user.type === "adm" ? router.push("/homeAdm") : router.push("/homeUser");
     }
-    console.log(user);
   }
 
   return (
