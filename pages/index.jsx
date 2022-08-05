@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import ScrollToTop from "react-scroll-to-top";
 
 import NavBar from "../components/NavBar";

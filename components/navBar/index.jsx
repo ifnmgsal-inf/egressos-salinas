@@ -1,42 +1,46 @@
+import Link from "next/link";
 const links = [
   {
     label: "Início",
-    link: "link",
+    link: "/",
   },
   {
     label: "Sobre",
-    link: "link",
+    link: "/sobre",
   },
   {
     label: "Notícias",
-    link: "link",
+    link: "/noticias",
   },
   {
     label: "Nossos egressos",
-    link: "link",
+    link: "/egressos",
   },
 ];
 
 const NavBar = () => {
   return (
     <div className="flex justify-between items-center mx-10">
-      <a>
+      <Link href={"/"}>
         <img className="cursor-pointer" src="/logo_egressos.png" alt="Logo IF" />
-      </a>
-      <div className="flex space-x-4 h-12 mt-8">
+      </Link>
+      <div className="flex space-x-4 h-10 mt-8">
         {links.map(({ label, link }) => (
           <div
             key={link}
             className="flex w-100 justify-center cursor-pointer text-disable text-12 hover:text-white hover:border-b hover:border-b-primary-active"
           >
-            <a>{label}</a>
+            <Link href={link}>{label}</Link>
           </div>
         ))}
       </div>
       <div className="space-x-4">
-        <button className="py-1.5 px-10 text-disable text-12 borde-solid border rounded-sm hover:text-white hover:border-white transition-all">
-          Entrar
-        </button>
+        <Link href={"/login"}>
+          <button className="py-1.5 px-10 text-disable text-12 borde-solid border rounded-sm hover:text-white hover:border-white transition-all">
+            Entrar
+          </button>
+        </Link>
+
         <button className="py-1.5 px-6 text-disable text-12 bg-primary borde-solid border border-primary rounded-sm hover:bg-primary-active hover:text-white transition-all">
           Cadastrar-se
         </button>

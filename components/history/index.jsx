@@ -15,7 +15,7 @@ const History = () => {
         </p>
       </div>
       <div className="flex mt-16 mb-5 items-center justify-between">
-        <div className="basis-1/2 ">
+        <div className="basis-1/2">
           <button className="py-1.5 px-8 text-primary borde-solid border-primary border rounded-sm hover:border-primary-active hover:text-primary-active">
             O que é o Portal Egressos?
           </button>
