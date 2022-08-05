@@ -18,7 +18,7 @@ export default function Home() {
 
       <main>
         <div className="top-0 h-screen bg-cover bg-[url('/bg_header.jpg')] bg-fixed border-b-4 border-primary">
-          <NavBar />
+          <NavBar type={"full"} />
           <div className="flex flex-col mt-52">
             <span className="flex font-extra-light text-white text-48 justify-center">
               Você vai em frente. A gente acompanha.

@@ -18,32 +18,46 @@ const links = [
   },
 ];
 
-const NavBar = () => {
+const NavBar = ({ type = "full" }) => {
   return (
-    <div className="flex justify-between items-center mx-10">
+    <div className="flex justify-between items-center mx-10 pt-1">
       <Link href={"/"}>
-        <img className="cursor-pointer" src="/logo_egressos.png" alt="Logo IF" />
+        <img
+          className="cursor-pointer"
+          src="/logo_egressos.png"
+          alt="Logo IF"
+          height={55}
+          width={200}
+        />
       </Link>
-      <div className="flex space-x-4 h-10 mt-8">
-        {links.map(({ label, link }) => (
-          <div
-            key={link}
-            className="flex w-100 justify-center cursor-pointer text-disable text-12 hover:text-white hover:border-b hover:border-b-primary-active"
-          >
-            <Link href={link}>{label}</Link>
-          </div>
-        ))}
-      </div>
-      <div className="space-x-4">
-        <Link href={"/login"}>
-          <button className="py-1.5 px-10 text-disable text-12 borde-solid border rounded-sm hover:text-white hover:border-white transition-all">
-            Entrar
-          </button>
-        </Link>
 
-        <button className="py-1.5 px-6 text-disable text-12 bg-primary borde-solid border border-primary rounded-sm hover:bg-primary-active hover:text-white transition-all">
-          Cadastrar-se
-        </button>
+      {type === "full" && (
+        <div className="flex space-x-4 h-12 mt-8 pb-2">
+          {links.map(({ label, link }) => (
+            <div
+              key={link}
+              className="flex w-100 justify-center cursor-pointer text-disable text-12 hover:text-white hover:border-b hover:border-b-primary-active"
+            >
+              <Link href={link}>{label}</Link>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="space-x-4">
+        {type === "full" || type === "registration" ? (
+          <Link href={"/login"}>
+            <button className="py-1.5 px-10 text-disable text-12 borde-solid border rounded-sm hover:text-white hover:border-white transition-all">
+              Entrar
+            </button>
+          </Link>
+        ) : null}
+
+        {type === "full" || type === "login" ? (
+          <button className="py-1.5 px-6 text-disable text-12 bg-primary borde-solid border border-primary rounded-sm hover:bg-primary-active hover:text-white transition-all">
+            Cadastrar-se
+          </button>
+        ) : null}
       </div>
     </div>
   );
