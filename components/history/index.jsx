@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { AuthUserContext } from "../../contexts/authUser";
+
 import CountUp from "react-countup";
 
 const History = () => {
+  const { usersNumber } = useContext(AuthUserContext);
   return (
     <div className="mx-10 py-6">
       <div>
@@ -24,7 +28,7 @@ const History = () => {
           <CountUp
             className="text-50 text-primary"
             separator="."
-            end={99999}
+            end={usersNumber}
             enableScrollSpy={true}
             duration={4}
           />

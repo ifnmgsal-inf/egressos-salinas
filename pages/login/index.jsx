@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { autenticationUser, user } = useContext(AuthUserContext);
+  const { autenticationUser } = useContext(AuthUserContext);
 
   const onSubmit = () => {
     autenticationUser(email, password);
@@ -29,6 +29,7 @@ const Login = () => {
               id="email"
               name="email"
               placeholder="Email..."
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -38,6 +39,7 @@ const Login = () => {
               id="password"
               name="password"
               placeholder="Senha"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

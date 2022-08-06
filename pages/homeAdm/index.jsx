@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar";
 
 const HomeAdm = () => {
   const { user } = useContext(AuthUserContext);
+  console.log(user);
   //   const [users, setUsers] = useState([]);
 
   //   const db = getFirestore(app);
