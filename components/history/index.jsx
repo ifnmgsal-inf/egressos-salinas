@@ -20,13 +20,13 @@ const History = () => {
       </div>
       <div className="flex mt-16 mb-5 items-center justify-between">
         <div className="basis-1/2">
-          <button className="py-1.5 px-8 text-primary borde-solid border-primary border rounded-sm hover:border-primary-active hover:text-primary-active">
+          <button className="py-1.5 px-8 text-primary borde-solid border-primary-active border rounded-sm hover:border-primary hover:text-primary">
             O que é o Portal Egressos?
           </button>
         </div>
         <div className="flex basis-1/4 flex-col items-center">
           <CountUp
-            className="text-50 text-primary"
+            className="text-50 text-primary-active"
             separator="."
             end={usersNumber}
             enableScrollSpy={true}

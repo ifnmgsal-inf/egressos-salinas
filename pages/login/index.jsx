@@ -23,7 +23,7 @@ const Login = () => {
 
           <h1>Agora precisamos que você se identifique... </h1>
           <div className="flex flex-col">
-            <label for="email">Email</label>
+            <label>Email</label>
             <input
               type="text"
               id="email"
@@ -33,7 +33,7 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label for="password">Senha</label>
+            <label>Senha</label>
             <input
               type="password"
               id="password"

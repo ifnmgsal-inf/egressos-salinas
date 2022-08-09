@@ -84,7 +84,7 @@ const NavBar = ({ type = "full", data = null }) => {
           ) : null}
 
           {type === "full" || type === "login" ? (
-            <button className="py-1.5 px-6 text-disable text-12 bg-primary borde-solid border border-primary rounded-sm hover:bg-primary-active hover:text-white transition-all">
+            <button className="py-1.5 px-6 text-disable text-12 bg-primary-active borde-solid border border-primary-active rounded-sm hover:bg-primary hover:border-primary hover:text-white transition-all">
               Cadastrar-se
             </button>
           ) : null}

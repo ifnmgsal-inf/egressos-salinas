@@ -17,7 +17,7 @@ const Depositions = () => {
   return (
     <div className="flex flex-col mt-10 mb-4 mx-10">
       <h1 className="text-38 text-title">
-        Novos <span className="text-primary">Depoimentos</span>
+        Novos <span className="text-primary-active">Depoimentos</span>
       </h1>
       {depositionsList.map(({ image, name, message }) => (
         <div key={name} className="flex mt-10 odd:flex-row-reverse">
