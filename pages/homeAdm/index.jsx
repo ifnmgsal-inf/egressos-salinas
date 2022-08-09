@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthUserContext } from "../../contexts/authUser";
 
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/navBar";
 
 const HomeAdm = () => {
   const { user } = useContext(AuthUserContext);

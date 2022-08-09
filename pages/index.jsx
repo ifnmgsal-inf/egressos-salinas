@@ -1,6 +1,6 @@
 import ScrollToTop from "react-scroll-to-top";
 
-import NavBar from "../components/NavBar";
+import NavBar from "../components/navBar";
 import History from "../components/history";
 import News from "../components/news";
 import OurGraduates from "../components/ourGraduates";

@@ -51,15 +51,15 @@ const News = () => {
         {newsList.map(({ image, title, description }) => (
           <figure
             key={title}
-            class="flex flex-col min-h-270 bg-white rounded-sm p-0 drop-shadow-md"
+            className="flex flex-col min-h-270 bg-white rounded-sm p-0 drop-shadow-md"
           >
-            <img class="w-full h-24 rounded-t-sm" src={image} alt="" />
-            <div class="pt-2 md:px-4 text-center md:text-left space-y-4">
+            <img className="w-full h-24 rounded-t-sm" src={image} alt="" />
+            <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
               <blockquote>
-                <p class="text-lg font-medium">{title}</p>
+                <p className="text-lg font-medium">{title}</p>
               </blockquote>
-              <figcaption class="font-medium">
-                <div class="text-13 text-grey-text">{description}</div>
+              <figcaption className="font-medium">
+                <div className="text-13 text-grey-text">{description}</div>
               </figcaption>
             </div>
           </figure>

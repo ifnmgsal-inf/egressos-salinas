@@ -1,6 +1,4 @@
-import { useEffect, useState, useContext } from "react";
-import { app } from "../../services/firebaseConfig";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { useContext } from "react";
 import { AuthUserContext } from "../../contexts/authUser";
 
 import { useRouter } from "next/router";
