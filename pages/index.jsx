@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div id="main">
       <main>
-        <div className="top-0 h-screen bg-cover bg-[url('/bg_header.jpg')] bg-fixed border-b-4 border-primary">
+        <div className="top-0 h-screen bg-cover bg-[url('/bg_header.jpg')] bg-fixed border-b-4 border-primary-active">
           <NavBar type={"full"} />
           <div className="flex flex-col mt-52">
             <span className="flex font-extra-light text-white text-48 justify-center">

@@ -45,7 +45,7 @@ const News = () => {
   return (
     <div className="px-10 py-10 bg-bg-container">
       <h1 className="text-38 text-title">
-        Novas <span className="text-primary">Notícias</span>
+        Novas <span className="text-primary-active">Notícias</span>
       </h1>
       <div className="grid 2xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-8 my-4">
         {newsList.map(({ image, title, description }) => (
