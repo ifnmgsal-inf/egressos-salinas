@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import Head from "next/head";
-import { AuthUserProvider } from "../contexts/authUser";
+import { AuthUserProvider } from "../contexts/authUserContext";
 
 function MyApp({ Component, pageProps }) {
   return (

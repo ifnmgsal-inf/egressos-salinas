@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthUserContext } from "../../contexts/authUser";
+import { AuthUserContext } from "../../contexts/authUserContext";
 
 import CountUp from "react-countup";
 

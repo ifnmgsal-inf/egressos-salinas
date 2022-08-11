@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthUserContext } from "../../contexts/authUser";
+import { AuthUserContext } from "../../contexts/authUserContext";
 
 import { useRouter } from "next/router";
 
@@ -25,11 +25,12 @@ const links = [
 ];
 
 const NavBar = ({ type = "full", data = null }) => {
-  const { setUser } = useContext(AuthUserContext);
+  const { signOutUser, setUser } = useContext(AuthUserContext);
 
   const router = useRouter();
 
   const goOut = () => {
+    signOutUser();
     setUser(null);
     router.push("/login");
   };

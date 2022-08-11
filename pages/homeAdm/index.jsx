@@ -1,24 +1,10 @@
 import { useContext } from "react";
-import { AuthUserContext } from "../../contexts/authUser";
+import { AuthUserContext } from "../../contexts/authUserContext";
 
 import NavBar from "../../components/navBar";
 
 const HomeAdm = () => {
   const { user } = useContext(AuthUserContext);
-  console.log(user);
-  //   const [users, setUsers] = useState([]);
-
-  //   const db = getFirestore(app);
-  //   const usersCollectionRef = collection(db, "users");
-
-  //   useEffect(() => {
-  //     const getUsers = async () => {
-  //       const data = await getDocs(usersCollectionRef);
-  //       //   console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //       //   setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     };
-  //     getUsers();
-  //   }, []);
   if (!user) return;
 
   return (

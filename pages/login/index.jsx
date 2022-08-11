@@ -1,17 +1,17 @@
-import { useState, useContext } from "react";
-import { AuthUserContext } from "../../contexts/authUser";
+import { useContext } from "react";
+import { AuthUserContext } from "../../contexts/authUserContext";
+import { useForm } from "react-hook-form";
 
 import Link from "next/link";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit } = useForm();
 
-  const { autenticationUser } = useContext(AuthUserContext);
+  const { autenticationUser, singIn } = useContext(AuthUserContext);
 
-  const onSubmit = () => {
-    autenticationUser(email, password);
-  };
+  function handleSingIn(data) {
+    singIn(data);
+  }
 
   return (
     <div>
@@ -22,29 +22,27 @@ const Login = () => {
           </Link>
 
           <h1>Agora precisamos que você se identifique... </h1>
-          <div className="flex flex-col">
+          <form className="flex flex-col" onSubmit={handleSubmit(handleSingIn)}>
             <label>Email</label>
             <input
+              {...register("email")}
               type="text"
               id="email"
               name="email"
               placeholder="Email..."
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
             />
             <label>Senha</label>
             <input
+              {...register("password")}
               type="password"
               id="password"
               name="password"
               placeholder="Senha"
               required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
             />
-            <button onClick={onSubmit}>Entrar</button>
-          </div>
+            <button type="submit">Entrar</button>
+          </form>
         </div>
       </div>
     </div>
