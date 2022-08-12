@@ -22,7 +22,7 @@ export function AuthUserProvider({ children }) {
     const { "next-egressos.token": token, "next-egressos.email": email } = parseCookies();
     if (token && email) {
       autenticationUser(email);
-    } else router.push("/login ");
+    } else router.push("/");
   }, []);
 
   useEffect(() => {
