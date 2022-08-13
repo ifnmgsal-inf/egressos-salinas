@@ -1,10 +1,9 @@
-import ScrollToTop from "react-scroll-to-top";
-
 import NavBar from "../components/navBar";
 import History from "../components/history";
 import News from "../components/news";
 import OurGraduates from "../components/ourGraduates";
 import Depositions from "../components/depositions";
+import ScrollTopView from "../components/scrollTopView";
 
 export default function Home() {
   return (
@@ -30,7 +29,7 @@ export default function Home() {
         <News />
         <OurGraduates />
         <Depositions />
-        <ScrollToTop smooth={true} />
+        <ScrollTopView />
       </main>
 
       <footer></footer>

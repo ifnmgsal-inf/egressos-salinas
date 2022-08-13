@@ -38,7 +38,7 @@ const HomeAdm = () => {
           } h-screen transition duration-300 bg-title relative`}
         >
           <LeftOutlined
-            className={`absolute cursor-pointer rounded-full -right-3.5 top-96 p-1 w-7 border-2 border-black hover:border-primary bg-white ${
+            className={`text-title absolute cursor-pointer rounded-full -right-3.5 top-1/2 p-1 w-7 border-2 border-title hover:border-primary bg-white ${
               !openSideBar && "rotate-180"
             }`}
             onClick={() => setOpenSideBar(!openSideBar)}
