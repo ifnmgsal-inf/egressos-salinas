@@ -4,6 +4,7 @@ import News from "../components/news";
 import OurGraduates from "../components/ourGraduates";
 import Depositions from "../components/depositions";
 import ScrollTopView from "../components/scrollTopView";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <OurGraduates />
         <Depositions />
         <ScrollTopView />
+        <Footer />
       </main>
 
       <footer></footer>
