@@ -40,7 +40,7 @@ const Footer = () => {
 
       <div className="flex justify-around">
         <div className="text-12 text-grey-text my-4">
-          Copyright © 2022 Portal Egressos Do IFNMG | Tales Ferreira®
+          Copyright © 2022 Portal Egressos Do IFNMG-Campus Salinas | Tales Ferreira®
         </div>
         <div className="text-12 my-4 space-x-6">
           <FacebookFilled className="text-16 text-grey-text" />
