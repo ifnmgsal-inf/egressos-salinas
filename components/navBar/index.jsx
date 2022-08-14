@@ -20,7 +20,7 @@ const links = [
   },
   {
     label: "Nossos egressos",
-    link: "/egressos",
+    link: "/nossos-egressos",
   },
 ];
 

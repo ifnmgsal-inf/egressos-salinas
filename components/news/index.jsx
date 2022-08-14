@@ -54,12 +54,12 @@ const News = () => {
         <h1 className="text-38 text-title">
           Novas <span className="text-primary-active">Notícias</span>
         </h1>
-        <label class="relative block">
-          <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+        <label className="relative block">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-2">
             <SearchOutlined className="text-20 text-primary-active" />
           </span>
           <input
-            class=" placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-sm py-1 pl-9 pr-3 shadow-sm focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+            className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-sm py-1 pl-9 pr-3 shadow-sm focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
             placeholder="Buscar..."
             type="text"
             name="search"
