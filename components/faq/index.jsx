@@ -37,10 +37,11 @@ const Faq = () => {
             key={index}
             title={question}
             id={index + 1}
-            children={response}
             index={indexState}
             setIndex={setIndexState}
-          />
+          >
+            {response}
+          </Accordion>
         ))}
       </div>
     </div>
