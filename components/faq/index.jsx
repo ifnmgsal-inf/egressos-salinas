@@ -34,6 +34,7 @@ const Faq = () => {
       <div className="mb-32">
         {faqList.map(({ question, response }, index) => (
           <Accordion
+            key={index}
             title={question}
             id={index + 1}
             children={response}
