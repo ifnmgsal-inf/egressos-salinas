@@ -29,7 +29,7 @@ const Login = () => {
             <br /> identifique...{" "}
           </h1>
           <form className="flex flex-col my-6 " onSubmit={handleSubmit(handleSingIn)}>
-            <label>Email</label>
+            <label className="text-14 font-medium">Email</label>
             <input
               className="h-12 border border-grey-text rounded-sm mb-4 focus:outline-primary-active"
               {...register("email")}
@@ -38,7 +38,7 @@ const Login = () => {
               name="email"
               required
             />
-            <label>Senha</label>
+            <label className="text-14 font-medium">Senha</label>
             <input
               className="h-12 border border-grey-text rounded-sm focus:outline-primary-active"
               {...register("password")}
@@ -48,15 +48,17 @@ const Login = () => {
               required
             />
             <button
-              className="bg-primary-active text-18 text-disable h-10 mt-10 rounded-sm shadow hover:bg-primary"
+              className="bg-primary-active text-15 text-disable h-10 mt-10 rounded-sm shadow hover:bg-primary"
               type="submit"
             >
               Entrar
             </button>
-            <a className="flex items-center my-2 text-grey-text font-semibold text-14">
-              <DownloadOutlined className="text-16 text-primary rotate-270 mr-1" />
-              Não tenho cadastro
-            </a>
+            <Link href={"/cadastro"}>
+              <a className="flex items-center my-2 text-grey-text font-semibold text-14 cursor-pointer">
+                <DownloadOutlined className="text-16 text-primary rotate-270 mr-1" />
+                Não tenho cadastro
+              </a>
+            </Link>
           </form>
         </div>
       </div>
