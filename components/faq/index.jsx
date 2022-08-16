@@ -31,7 +31,7 @@ const Faq = () => {
       <h1 className="text-38 text-title mb-6">
         Perguntas <span className="text-primary-active">Frequentes</span>
       </h1>
-      <div className="mb-32">
+      <div className="mb-28">
         {faqList.map(({ question, response }, index) => (
           <Accordion
             key={index}

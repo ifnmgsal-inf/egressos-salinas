@@ -16,11 +16,13 @@ module.exports = {
     },
     minHeight: {
       100: "100px",
+      167: "167px",
       270: "270px",
       780: "780px",
     },
     maxHeight: {
       100: "100px",
+      167: "167px",
       170: "170px",
       270: "270px",
       780: "780px",
@@ -36,6 +38,8 @@ module.exports = {
       16: "16px",
       18: "18px",
       20: "20px",
+      24: "24px",
+      28: "28px",
       38: "38px",
       40: "40px",
       48: "48px",
@@ -43,6 +47,9 @@ module.exports = {
     },
     width: {
       100: "100px",
+    },
+    rotate: {
+      '270': '270deg',
     },
     extend: {
       colors: {
