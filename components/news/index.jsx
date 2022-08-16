@@ -56,7 +56,7 @@ const News = () => {
         </h1>
         <label className="relative block">
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-            <SearchOutlined className="text-20 text-primary-active" />
+            <SearchOutlined className="text-20 text-title" />
           </span>
           <input
             className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-sm py-1 pl-9 pr-3 shadow-sm focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
