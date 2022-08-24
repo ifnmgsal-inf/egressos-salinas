@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
 
 import Link from "next/link";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, PaperClipOutlined, UserOutlined } from "@ant-design/icons";
 
-const Login = () => {
+const Registration = () => {
+  const [image, setImage] = useState(null);
   const { register, handleSubmit } = useForm();
 
   const { singIn } = useContext(AuthUserContext);
@@ -26,7 +27,7 @@ const Login = () => {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen items-center justify-center mt-36">
       <div className="flex flex-col items-center justify-center mt-10">
         <div>
           <Link href={"/"}>
@@ -39,6 +40,36 @@ const Login = () => {
             Agora precisamos de algumas
             <br /> informações...
           </h1>
+          <div className="flex flex-col items-center">
+            <span className="inline-block mt-8" style={{ width: "150px", height: "150px" }}>
+              {image ? (
+                <img
+                  className="shadow-2xl"
+                  style={{ borderRadius: "50%", width: "100%", height: "100%", objectFit: "cover" }}
+                  src={URL.createObjectURL(image)}
+                  alt=""
+                />
+              ) : (
+                <UserOutlined
+                  className="flex items-center justify-center text-white-text text-50 rounded-full"
+                  style={{
+                    borderRadius: "50%",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    backgroundColor: "#D9D9D9",
+                  }}
+                />
+              )}
+            </span>
+            <input
+              {...register("image")}
+              className="file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer file:px-6 file:py-1.5 file:bg-white"
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div>
+
           <form className="flex flex-col my-6 " onSubmit={handleSubmit(handleRegister)}>
             <label className="text-14 font-medium">Nome Completo</label>
             <input
@@ -106,4 +137,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;
