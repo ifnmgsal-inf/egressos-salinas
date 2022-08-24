@@ -48,7 +48,7 @@ const NavBar = ({ type = "full", data = null }) => {
       </Link>
 
       {type === "full" && (
-        <div className="flex space-x-4 h-12 mt-8 pb-2">
+        <div className="flex xl:space-x-4 h-12 mt-8 pb-2">
           {links.map(({ label, link }) => (
             <div
               key={link}
@@ -76,7 +76,7 @@ const NavBar = ({ type = "full", data = null }) => {
         <div className="space-x-4">
           {type === "full" || type === "registration" ? (
             <Link href={"/login"}>
-              <button className="py-1.5 px-10 text-disable text-12 borde-solid border rounded-sm hover:text-white hover:border-white transition-all">
+              <button className="py-1.5 px-10 text-disable text-12 borde-solid border rounded-sm hover:text-white hover:border-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
                 Entrar
               </button>
             </Link>
@@ -84,7 +84,7 @@ const NavBar = ({ type = "full", data = null }) => {
 
           {type === "full" || type === "login" ? (
             <Link href={"/cadastro"}>
-              <button className="py-1.5 px-6 text-disable text-12 bg-primary-active borde-solid border border-primary-active rounded-sm hover:bg-primary hover:border-primary hover:text-white transition-all">
+              <button className="py-1.5 px-6 text-disable text-12 bg-primary-active borde-solid border border-primary-active rounded-sm hover:bg-primary hover:border-primary hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
                 Cadastrar-se
               </button>
             </Link>

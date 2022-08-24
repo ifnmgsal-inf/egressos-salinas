@@ -50,6 +50,7 @@ module.exports = {
     },
     rotate: {
       '270': '270deg',
+      '180': '180deg',
     },
     extend: {
       colors: {

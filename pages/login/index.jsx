@@ -31,7 +31,7 @@ const Login = () => {
           <form className="flex flex-col my-6 " onSubmit={handleSubmit(handleSingIn)}>
             <label className="text-14 font-medium">Email</label>
             <input
-              className="h-12 border border-grey-text rounded-sm mb-4 focus:outline-primary-active"
+              className="h-12 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
               {...register("email")}
               type="text"
               id="email"
@@ -40,7 +40,7 @@ const Login = () => {
             />
             <label className="text-14 font-medium">Senha</label>
             <input
-              className="h-12 border border-grey-text rounded-sm focus:outline-primary-active"
+              className="h-12 border border-grey-text rounded-sm focus:outline-primary-active px-4"
               {...register("password")}
               type="password"
               id="password"

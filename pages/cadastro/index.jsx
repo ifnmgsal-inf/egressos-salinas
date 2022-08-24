@@ -12,10 +12,17 @@ const Login = () => {
 
   function handleRegister(data) {
     console.log(data);
-    if (password === confirmation) {
+
+    // singIn(data);
+  }
+
+  function passwordConfirmation() {
+    const password = document.querySelector("input[name=password]");
+    const confirmation = document.querySelector("input[name=confirmation]");
+
+    if (password.value === confirmation.value) {
       confirmation.setCustomValidity("");
     } else confirmation.setCustomValidity("As senhas não conferem");
-    // singIn(data);
   }
 
   return (
@@ -35,7 +42,7 @@ const Login = () => {
           <form className="flex flex-col my-6 " onSubmit={handleSubmit(handleRegister)}>
             <label className="text-14 font-medium">Nome Completo</label>
             <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active"
+              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
               {...register("name")}
               type="text"
               id="name"
@@ -44,7 +51,7 @@ const Login = () => {
             />
             <label className="text-14 font-medium">CPF</label>
             <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active"
+              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
               {...register("cpf")}
               type="cpf"
               id="cpf"
@@ -53,7 +60,7 @@ const Login = () => {
             />
             <label className="text-14 font-medium">Email</label>
             <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active"
+              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
               {...register("email")}
               type="text"
               id="email"
@@ -62,21 +69,23 @@ const Login = () => {
             />
             <label className="text-14 font-medium">Senha</label>
             <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active"
+              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
               {...register("password")}
               type="password"
               id="password"
               name="password"
               required
+              onChange={passwordConfirmation}
             />
             <label className="text-14 font-medium">Confirmar Senha</label>
             <input
-              className="h-10 border border-grey-text rounded-sm focus:outline-primary-active"
+              className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
               {...register("confirmation")}
               type="password"
               id="confirmation"
               name="confirmation"
               required
+              onChange={passwordConfirmation}
             />
             <button
               className="bg-primary-active text-15 text-disable h-10 mt-10 rounded-sm shadow hover:bg-primary"
