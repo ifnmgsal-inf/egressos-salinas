@@ -1,9 +1,14 @@
 import { createContext, useState, useEffect } from "react";
-import { collection, getFirestore, query, where, getDocs } from "firebase/firestore";
+import { collection, getFirestore, query, where, getDocs, addDoc } from "firebase/firestore";
 import { app } from "../services/firebaseConfig";
 import { useRouter } from "next/router";
 
-import { getAuth, signOut, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signOut,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 
 export const AuthUserContext = createContext({});
@@ -17,6 +22,7 @@ export function AuthUserProvider({ children }) {
 
   const db = getFirestore(app);
   const usersCollectionRef = collection(db, "users");
+  const auth = getAuth();
 
   useEffect(() => {
     const { "next-egressos.token": token, "next-egressos.email": email } = parseCookies();
@@ -34,7 +40,6 @@ export function AuthUserProvider({ children }) {
   }, []);
 
   function singIn({ email, password }) {
-    const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { accessToken, email } = userCredential.user;
@@ -50,6 +55,37 @@ export function AuthUserProvider({ children }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+      });
+  }
+
+  async function registrationIn({ name, email, cpf, password }) {
+    // Add a new document with a generated id.
+    const docRef = await addDoc(collection(db, "users"), {
+      name,
+      email,
+      cpf,
+      password,
+      type: "user",
+    });
+    console.log("Document written with ID: ", docRef.id);
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const { accessToken, email } = userCredential.user;
+
+        setCookie(undefined, "next-egressos.token", accessToken, {
+          maxAge: 60 * 60 * 1, //1 hour
+        });
+        setCookie(undefined, "next-egressos.email", email, {
+          maxAge: 60 * 60 * 1, //1 hour
+        });
+        if (accessToken) autenticationUser(email);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
       });
   }
 
@@ -82,6 +118,7 @@ export function AuthUserProvider({ children }) {
       value={{
         isAuthenticated,
         singIn,
+        registrationIn,
         signOutUser,
         usersNumber,
         user,

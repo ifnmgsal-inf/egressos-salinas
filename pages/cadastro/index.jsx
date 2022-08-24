@@ -3,18 +3,18 @@ import { AuthUserContext } from "../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
 
 import Link from "next/link";
-import { ArrowLeftOutlined, PaperClipOutlined, UserOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, UserOutlined } from "@ant-design/icons";
 
 const Registration = () => {
   const [image, setImage] = useState(null);
   const { register, handleSubmit } = useForm();
 
-  const { singIn } = useContext(AuthUserContext);
+  const { registrationIn } = useContext(AuthUserContext);
 
   function handleRegister(data) {
     console.log(data);
 
-    // singIn(data);
+    registrationIn(data);
   }
 
   function passwordConfirmation() {

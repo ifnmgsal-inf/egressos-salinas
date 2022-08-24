@@ -32,7 +32,7 @@ const NavBar = ({ type = "full", data = null }) => {
   const goOut = () => {
     signOutUser();
     setUser(null);
-    router.push("/login");
+    router.push("/");
   };
 
   return (
