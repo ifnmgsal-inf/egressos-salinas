@@ -30,7 +30,7 @@ const History = () => {
             separator="."
             end={usersNumber}
             enableScrollSpy={true}
-            duration={4}
+            duration={usersNumber < 100 ? 0.7 : 4}
           />
           <span className="text-16 font-medium -mt-4">Egressos</span>
         </div>

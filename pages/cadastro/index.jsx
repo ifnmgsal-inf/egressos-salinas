@@ -41,7 +41,7 @@ const Registration = () => {
             <br /> informações...
           </h1>
           <div className="flex flex-col items-center">
-            <span className="inline-block mt-8" style={{ width: "150px", height: "150px" }}>
+            <span className="inline-block mt-8" style={{ width: "130px", height: "130px" }}>
               {image ? (
                 <img
                   className="shadow-2xl"
