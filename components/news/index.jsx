@@ -1,53 +1,81 @@
-import { SearchOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import Modal from "react-modal";
 
 const newsList = [
   {
     image: "/bg_header.jpg",
-    title: "Título da notícia 1",
-    description: "Uma prévia das informações da notícia 1 aparecerá aqui.",
+    simpleTitle: "Título da notícia 1",
+    simpleDescription: "Uma prévia das informações da notícia 1 aparecerá aqui.",
+    title: "Título completo sobre a notícia 1",
+    description: "Todas as informações completas da notícia 1 aparecerá aqui.",
   },
   {
     image: "/bg_header.jpg",
-    title: "Título da notícia 2",
-    description: "Uma prévia das informações da notícia 2 aparecerá aqui.",
+    simpleTitle: "Título da notícia 2",
+    simpleDescription: "Uma prévia das informações da notícia 2 aparecerá aqui.",
+    title: "Título completo sobre a notícia 2",
+    description: "Todas as informações completas da notícia 2 aparecerá aqui.",
   },
   {
     image: "/bg_header.jpg",
-    title: "Título da notícia 3",
-    description: "Uma prévia das informações da notícia 3 aparecerá aqui.",
+    simpleTitle: "Título da notícia 3",
+    simpleDescription: "Uma prévia das informações da notícia 3 aparecerá aqui.",
+    title: "Título completo sobre a notícia 3",
+    description: "Todas as informações completas da notícia 3 aparecerá aqui.",
   },
   {
     image: "/bg_header.jpg",
-    title: "Título da notícia 4",
-    description: "Uma prévia das informações da notícia 4 aparecerá aqui.",
+    simpleTitle: "Título da notícia 4",
+    simpleDescription: "Uma prévia das informações da notícia 4 aparecerá aqui.",
+    title: "Título completo sobre a notícia 4",
+    description: "Todas as informações completas da notícia 4 aparecerá aqui.",
   },
   {
     image: "/bg_header.jpg",
-    title: "Título da notícia 5",
-    description: "Uma prévia das informações da notícia 5 aparecerá aqui.",
+    simpleTitle: "Título da notícia 5",
+    simpleDescription: "Uma prévia das informações da notícia 5 aparecerá aqui.",
+    title: "Título completo sobre a notícia 5",
+    description: "Todas as informações completas da notícia 5 aparecerá aqui.",
   },
   {
     image: "/bg_header.jpg",
-    title: "Título da notícia 6",
-    description: "Uma prévia das informações da notícia 6 aparecerá aqui.",
+    simpleTitle: "Título da notícia 6",
+    simpleDescription: "Uma prévia das informações da notícia 6 aparecerá aqui.",
+    title: "Título completo sobre a notícia 6",
+    description: "Todas as informações completas da notícia 6 aparecerá aqui.",
   },
   {
     image: "/bg_header.jpg",
-    title: "Título da notícia 7",
-    description: "Uma prévia das informações da notícia 5 aparecerá aqui.",
+    simpleTitle: "Título da notícia 7",
+    simpleDescription: "Uma prévia das informações da notícia 5 aparecerá aqui.",
+    title: "Título completo sobre a notícia 7",
+    description: "Todas as informações completas da notícia 7 aparecerá aqui.",
   },
   {
     image: "/bg_header.jpg",
-    title: "Título da notícia 8",
-    description: "Uma prévia das informações da notícia 6 aparecerá aqui.",
+    simpleTitle: "Título da notícia 8",
+    simpleDescription: "Uma prévia das informações da notícia 6 aparecerá aqui.",
+    title: "Título completo sobre a notícia 8",
+    description: "Todas as informações completas da notícia 8 aparecerá aqui.",
   },
 ];
 
 const News = () => {
   const [search, setSearch] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
   const filterNews = search.length ? newsList.filter(({ title }) => title.includes(search)) : [];
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
   return (
     <div className="px-10 py-10 bg-bg-container">
       <div className="flex justify-between items-center">
@@ -70,38 +98,54 @@ const News = () => {
       </div>
       <div className="grid 2xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-8 my-4">
         {search.length
-          ? filterNews.map(({ image, title, description }) => (
+          ? filterNews.map((news, index) => (
               <figure
-                key={title}
-                className="flex flex-col min-h-270 bg-white rounded-sm p-0 drop-shadow-md"
+                key={index}
+                className="flex flex-col min-h-270 bg-white rounded-sm p-0 drop-shadow-md cursor-pointer"
+                onClick={() => {
+                  setModalData(news);
+                  openModal();
+                }}
               >
-                <img className="w-full h-24 rounded-t-sm" src={image} alt="" />
+                <img className="w-full h-24 rounded-t-sm" src={news.image} alt="" />
                 <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
                   <blockquote>
-                    <p className="text-lg font-medium">{title}</p>
+                    <p className="text-lg font-medium">{news.simpleTitle}</p>
                   </blockquote>
                   <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{description}</div>
+                    <div className="text-13 text-grey-text">{news.simpleDescription}</div>
                   </figcaption>
                 </div>
               </figure>
             ))
-          : newsList.map(({ image, title, description }) => (
+          : newsList.map((news, index) => (
               <figure
-                key={title}
-                className="flex flex-col min-h-270 bg-white rounded-sm p-0 drop-shadow-md"
+                key={index}
+                className="flex flex-col min-h-270 bg-white rounded-sm p-0 drop-shadow-md cursor-pointer"
+                onClick={() => {
+                  setModalData(news);
+                  openModal();
+                }}
               >
-                <img className="w-full h-24 rounded-t-sm" src={image} alt="" />
+                <img className="w-full h-24 rounded-t-sm" src={news.image} alt="" />
                 <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
                   <blockquote>
-                    <p className="text-lg font-medium">{title}</p>
+                    <p className="text-lg font-medium">{news.simpleTitle}</p>
                   </blockquote>
                   <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{description}</div>
+                    <div className="text-13 text-grey-text">{news.simpleDescription}</div>
                   </figcaption>
                 </div>
               </figure>
             ))}
+        <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal">
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-lg font-medium">{modalData?.title}</p>
+            <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
+          </div>
+          <hr />
+          <div className="text-13 text-grey-text mt-4w-100">{modalData?.description}</div>
+        </Modal>
       </div>
     </div>
   );

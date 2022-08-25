@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const OurGraduates = () => {
   return (
     <div className="flex flex-col items-center mt-8 mb-4 mx-10">
@@ -11,9 +13,11 @@ const OurGraduates = () => {
         egressos.
       </p>
 
-      <button className="my-8 py-1.5 px-8 text-primary-active borde-solid border-primary-active border rounded-sm hover:border-primary hover:text-primary">
-        Mais informações
-      </button>
+      <Link href={"/nossos-egressos"}>
+        <button className="my-8 py-1.5 px-8 text-primary-active borde-solid border-primary-active border rounded-sm hover:border-primary hover:text-primary">
+          Mais informações
+        </button>
+      </Link>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 
 import CountUp from "react-countup";
+import Link from "next/link";
 
 const History = () => {
   const { usersNumber } = useContext(AuthUserContext);
@@ -20,9 +21,11 @@ const History = () => {
       </div>
       <div className="flex mt-16 mb-5 items-center justify-between">
         <div className="basis-1/2">
-          <button className="py-1.5 px-8 text-primary borde-solid border-primary-active border rounded-sm hover:border-primary hover:text-primary">
-            O que é o Portal Egressos?
-          </button>
+          <Link href={"/sobre"}>
+            <button className="py-1.5 px-8 text-primary borde-solid border-primary-active border rounded-sm hover:border-primary hover:text-primary">
+              O que é o Portal Egressos?
+            </button>
+          </Link>
         </div>
         <div className="flex basis-1/4 flex-col items-center">
           <CountUp
