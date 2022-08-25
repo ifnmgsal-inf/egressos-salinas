@@ -1,5 +1,7 @@
-import { SearchOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { useState } from "react";
+
+import Modal from "react-modal";
 
 const allNewsList = [
   {
@@ -46,8 +48,20 @@ const allNewsList = [
 
 const AllNews = () => {
   const [search, setSearch] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
   const filterNews = search.length ? allNewsList.filter(({ title }) => title.includes(search)) : [];
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+    setModalData(null);
+  }
+
   return (
     <div className="px-10 py-10">
       <div className="flex justify-between items-center">
@@ -70,32 +84,54 @@ const AllNews = () => {
       </div>
       <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-x-4 gap-y-8 my-8">
         {search.length
-          ? filterNews.map(({ image, title, description }) => (
-              <figure key={title} className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg">
-                <img className="max-h-167  rounded-t-sm" src={image} alt="" />
+          ? filterNews.map((news, index) => (
+              <figure
+                key={index}
+                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg"
+                onClick={() => {
+                  setModalData(news);
+                  openModal();
+                }}
+              >
+                <img className="max-h-167  rounded-t-sm" src={news.image} alt="" />
                 <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
                   <blockquote>
-                    <p className="text-lg font-medium">{title}</p>
+                    <p className="text-lg font-medium">{news.title}</p>
                   </blockquote>
                   <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{description}</div>
+                    <div className="text-13 text-grey-text">{news.description}</div>
                   </figcaption>
                 </div>
               </figure>
             ))
-          : allNewsList.map(({ image, title, description }) => (
-              <figure key={title} className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg">
-                <img className="max-h-167  rounded-t-sm" src={image} alt="" />
+          : allNewsList.map((news, index) => (
+              <figure
+                key={index}
+                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg"
+                onClick={() => {
+                  setModalData(news);
+                  openModal();
+                }}
+              >
+                <img className="max-h-167  rounded-t-sm" src={news.image} alt="" />
                 <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
                   <blockquote>
-                    <p className="text-lg font-medium">{title}</p>
+                    <p className="text-lg font-medium">{news.title}</p>
                   </blockquote>
                   <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{description}</div>
+                    <div className="text-13 text-grey-text">{news.description}</div>
                   </figcaption>
                 </div>
               </figure>
             ))}
+        <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal">
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-lg font-medium">{modalData?.title}</p>
+            <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
+          </div>
+          <hr />
+          <div className="text-13 text-grey-text mt-4w-100">{modalData?.description}</div>
+        </Modal>
       </div>
     </div>
   );

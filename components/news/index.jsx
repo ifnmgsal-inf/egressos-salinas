@@ -66,7 +66,11 @@ const News = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
 
-  const filterNews = search.length ? newsList.filter(({ title }) => title.includes(search)) : [];
+  const filterNews = search.length
+    ? newsList.filter(
+        ({ title, description }) => title.includes(search) || description.includes(search)
+      )
+    : [];
 
   function openModal() {
     setModalIsOpen(true);
@@ -74,6 +78,7 @@ const News = () => {
 
   function closeModal() {
     setModalIsOpen(false);
+    setModalData(null);
   }
 
   return (
