@@ -4,6 +4,7 @@ import { AuthUserContext } from "../../contexts/authUserContext";
 import { useRouter } from "next/router";
 
 import Link from "next/link";
+import { UserOutlined } from "@ant-design/icons";
 
 const links = [
   {
@@ -25,6 +26,7 @@ const links = [
 ];
 
 const NavBar = ({ type = "full", data = null }) => {
+  console.log(data);
   const { signOutUser, setUser } = useContext(AuthUserContext);
 
   const router = useRouter();
@@ -61,15 +63,38 @@ const NavBar = ({ type = "full", data = null }) => {
       )}
 
       {data ? (
-        <div className="flex flex-col text-white text-13 font-light">
-          <span>
-            Olá, <span className="text-white font-medium">{data.name}</span>
-          </span>
-          <span
-            className="flex justify-end font-light hover:font-medium cursor-pointer"
-            onClick={goOut}
-          >
-            Sair
+        <div className="flex items-center">
+          <div className="flex flex-col text-white text-13 font-light">
+            <span>
+              Olá, <span className="text-white font-medium uppercase">{data.name}</span>
+            </span>
+            <span
+              className="flex justify-end font-light hover:font-medium cursor-pointer"
+              onClick={goOut}
+            >
+              Sair
+            </span>
+          </div>
+          <span className="inline-block mx-4" style={{ width: "40px", height: "40px" }}>
+            {data.imageURL ? (
+              <img
+                className="shadow-2xl"
+                style={{ borderRadius: "50%", width: "100%", height: "100%", objectFit: "cover" }}
+                src={data.imageURL}
+                alt=""
+              />
+            ) : (
+              <UserOutlined
+                className="flex items-center justify-center text-white-text text-20 rounded-full"
+                style={{
+                  borderRadius: "50%",
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  backgroundColor: "#D9D9D9",
+                }}
+              />
+            )}
           </span>
         </div>
       ) : (

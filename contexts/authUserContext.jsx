@@ -22,7 +22,7 @@ export function AuthUserProvider({ children }) {
   const [usersNumber, setUsersNumber] = useState(null);
 
   const [progress, setProgress] = useState(0);
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(null);
 
   const isAuthenticated = false;
   const router = useRouter();
@@ -68,7 +68,7 @@ export function AuthUserProvider({ children }) {
   async function registrationIn({ name, email, cpf, password, image }) {
     const file = image[0];
 
-    const storageRef = ref(storage, `images/${file.name}`);
+    const storageRef = ref(storage, `images/${file?.name}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
 
