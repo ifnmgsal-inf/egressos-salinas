@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect } from "react";
+
 import { collection, getFirestore, query, where, getDocs, addDoc } from "firebase/firestore";
-import { app } from "../services/firebaseConfig";
+import { app, storage } from "../services/firebaseConfig";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
 import { useRouter } from "next/router";
 
 import {
@@ -14,10 +17,14 @@ import { setCookie, parseCookies, destroyCookie } from "nookies";
 export const AuthUserContext = createContext({});
 
 export function AuthUserProvider({ children }) {
-  const isAuthenticated = false;
   const [user, setUser] = useState(null);
   const [userGoogle, setUserGoogle] = useState(null);
   const [usersNumber, setUsersNumber] = useState(null);
+
+  const [progress, setProgress] = useState(0);
+  const [imageURL, setImageURL] = useState("");
+
+  const isAuthenticated = false;
   const router = useRouter();
 
   const db = getFirestore(app);
@@ -58,16 +65,38 @@ export function AuthUserProvider({ children }) {
       });
   }
 
-  async function registrationIn({ name, email, cpf, password }) {
-    // Add a new document with a generated id.
+  async function registrationIn({ name, email, cpf, password, image }) {
+    const file = image[0];
+
+    const storageRef = ref(storage, `images/${file.name}`);
+
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setImageURL(url);
+        });
+      }
+    );
+
     const docRef = await addDoc(collection(db, "users"), {
       name,
       email,
       cpf,
       password,
+      imageURL,
       type: "user",
     });
-    console.log("Document written with ID: ", docRef.id);
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {

@@ -87,7 +87,7 @@ const AllNews = () => {
           ? filterNews.map((news, index) => (
               <figure
                 key={index}
-                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg"
+                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
                 onClick={() => {
                   setModalData(news);
                   openModal();
@@ -107,7 +107,7 @@ const AllNews = () => {
           : allNewsList.map((news, index) => (
               <figure
                 key={index}
-                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg"
+                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
                 onClick={() => {
                   setModalData(news);
                   openModal();
