@@ -21,7 +21,7 @@ const menus = [
   { label: "FAQ", icon: <QuestionCircleOutlined />, defaultItem: false, link: "/" },
 ];
 
-const HomeAdm = () => {
+const Dashboard = ({ children }) => {
   const [openSideBar, setOpenSideBar] = useState(true);
   const { user } = useContext(AuthUserContext);
   if (!user) return;
@@ -61,10 +61,10 @@ const HomeAdm = () => {
             ))}
           </ul>
         </div>
-        <div className="flex-1 h-screen">home</div>
+        <div className="flex-1 h-screen">{children}</div>
       </div>
     </>
   );
 };
 
-export default HomeAdm;
+export default Dashboard;

@@ -1,8 +1,13 @@
 import "../styles/globals.css";
 import Head from "next/head";
+import { useRouter } from "next/router";
+
 import { AuthUserProvider } from "../contexts/authUserContext";
+import Dashboard from "./dashboard";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  console.log(router);
   return (
     <>
       <Head>
@@ -11,7 +16,13 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/if_icon.png" />
       </Head>
       <AuthUserProvider>
-        <Component {...pageProps} />
+        {router.asPath === "/dashboard" ? (
+          <Dashboard>
+            <Component {...pageProps} />
+          </Dashboard>
+        ) : (
+          <Component {...pageProps} />
+        )}
       </AuthUserProvider>
     </>
   );

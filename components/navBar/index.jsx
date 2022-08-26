@@ -26,7 +26,6 @@ const links = [
 ];
 
 const NavBar = ({ type = "full", data = null }) => {
-  console.log(data);
   const { signOutUser, setUser } = useContext(AuthUserContext);
 
   const router = useRouter();
