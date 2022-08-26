@@ -3,11 +3,13 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { AuthUserProvider } from "../contexts/authUserContext";
-import Dashboard from "./dashboard";
+
+import NavBar from "../components/navBar";
+import SideBar from "../components/sideBar";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  console.log(router);
+
   return (
     <>
       <Head>
@@ -16,10 +18,18 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/if_icon.png" />
       </Head>
       <AuthUserProvider>
-        {router.asPath === "/dashboard" ? (
-          <Dashboard>
-            <Component {...pageProps} />
-          </Dashboard>
+        {router.asPath.includes("/dashboard") ? (
+          <>
+            <div className="bg-title">
+              <NavBar type="dashboard" />
+            </div>
+            <div className="flex">
+              <SideBar />
+              <div className="flex-1 h-screen">
+                <Component {...pageProps} />
+              </div>
+            </div>
+          </>
         ) : (
           <Component {...pageProps} />
         )}

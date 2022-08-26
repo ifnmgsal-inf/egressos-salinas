@@ -25,8 +25,10 @@ const links = [
   },
 ];
 
-const NavBar = ({ type = "full", data = null }) => {
-  const { signOutUser, setUser } = useContext(AuthUserContext);
+const NavBar = ({ type = "full" }) => {
+  const { signOutUser, setUser, user } = useContext(AuthUserContext);
+
+  const data = type === "dashboard" ? user : null;
 
   const router = useRouter();
 
