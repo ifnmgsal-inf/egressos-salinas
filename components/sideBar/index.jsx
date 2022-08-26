@@ -11,9 +11,9 @@ import {
   SettingOutlined,
   QuestionCircleOutlined,
   DatabaseOutlined,
-  IdcardOutlined,
   SmileOutlined,
   SoundOutlined,
+  SolutionOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -26,7 +26,7 @@ const SideBar = () => {
       ? [
           {
             label: "CURRÍCULO",
-            icon: <IdcardOutlined />,
+            icon: <SolutionOutlined />,
             defaultItem: true,
             link: "/dashboard/curriculo",
           },
@@ -34,7 +34,7 @@ const SideBar = () => {
             label: "DADOS CADASTRAIS",
             icon: <DatabaseOutlined />,
             defaultItem: false,
-            link: "/dashboard/egressos",
+            link: "/dashboard/dados",
           },
           {
             label: "DEPOIMENTO",

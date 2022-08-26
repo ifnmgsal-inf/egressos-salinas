@@ -40,15 +40,19 @@ const NavBar = ({ type = "full" }) => {
 
   return (
     <div className="flex justify-between items-center mx-10 pt-1">
-      <Link href={"/"}>
-        <img
-          className="cursor-pointer"
-          src="/logo_egressos.png"
-          alt="Logo IF"
-          height={55}
-          width={200}
-        />
-      </Link>
+      {type === "dashboard" ? (
+        <img src="/logo_egressos.png" alt="Logo IF" height={55} width={200} />
+      ) : (
+        <Link href={"/"}>
+          <img
+            className="cursor-pointer"
+            src="/logo_egressos.png"
+            alt="Logo IF"
+            height={55}
+            width={200}
+          />
+        </Link>
+      )}
 
       {type === "full" && (
         <div className="flex xl:space-x-4 h-12 mt-8 pb-2">
