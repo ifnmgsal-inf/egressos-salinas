@@ -101,9 +101,8 @@ const SideBar = () => {
       />
       <ul className="pt-8">
         {menus.map(({ label, icon, defaultItem, link }, index) => (
-          <Link href={link}>
+          <Link key={index} href={link}>
             <li
-              key={index}
               className={`flex items-center gap-x-4 cursor-pointer ${
                 !openSideBar ? "ml-4 py-2 mr-4 px-2" : "ml-2 p-2"
               } ${
