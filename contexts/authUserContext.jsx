@@ -138,9 +138,7 @@ export function AuthUserProvider({ children }) {
     const user = querySnapshot.docs.map((doc) => ({ ...doc.data() }))[0] || null;
     if (user) {
       setUser(user);
-      user.type === "adm"
-        ? router.push("/dashboard/cadastros")
-        : router.push("/dashboard/curriculo");
+      user.type === "adm" ? router.push("/dashboard/cadastros") : router.push("/painel/curriculo");
     }
   }
 

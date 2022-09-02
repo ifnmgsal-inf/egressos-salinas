@@ -1,4 +1,4 @@
-const AvaliacaoPage = ({ children }) => {
+const AvaliacaoPage = () => {
   return (
     <>
       <div>AVALIAÇÃO DO EGRESSO</div>

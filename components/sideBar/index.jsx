@@ -21,6 +21,9 @@ const SideBar = () => {
   const [openSideBar, setOpenSideBar] = useState(true);
 
   const { user } = useContext(AuthUserContext);
+
+  if (!user) return;
+
   const menus =
     user?.type === "user"
       ? [
@@ -28,25 +31,25 @@ const SideBar = () => {
             label: "CURRÍCULO",
             icon: <SolutionOutlined />,
             defaultItem: true,
-            link: "/dashboard/curriculo",
+            link: "/painel/curriculo",
           },
           {
             label: "DADOS CADASTRAIS",
             icon: <DatabaseOutlined />,
             defaultItem: false,
-            link: "/dashboard/dados",
+            link: "/painel/dados",
           },
           {
             label: "DEPOIMENTO",
             icon: <SoundOutlined />,
             defaultItem: false,
-            link: "/dashboard/depoimento",
+            link: "/painel/depoimento",
           },
           {
             label: "AVALIAÇÃO",
             icon: <SmileOutlined />,
             defaultItem: false,
-            link: "/dashboard/avaliacao",
+            link: "/painel/avaliacao",
           },
         ]
       : [

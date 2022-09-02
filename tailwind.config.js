@@ -28,7 +28,11 @@ module.exports = {
       780: "780px",
     },
     maxWidth: {
+      1400: "1400px",
       1000: "1000px",
+      700: "700px",
+      600: "600px",
+      500: "500px",
     },
     fontSize: {
       12: "12px",
@@ -49,8 +53,8 @@ module.exports = {
       100: "100px",
     },
     rotate: {
-      '270': '270deg',
-      '180': '180deg',
+      270: "270deg",
+      180: "180deg",
     },
     extend: {
       colors: {
@@ -58,8 +62,8 @@ module.exports = {
         "primary-active": "#249263",
         "primary-green": "#00a884",
         "green-wa": "#63cb77",
-        "disable": "#EEEEEE",
-        "title": "#1B1B1E",
+        disable: "#EEEEEE",
+        title: "#1B1B1E",
         "bg-container": "#F5F5F5",
         "bg-grey": "#D9D9D9",
         "grey-text": "#696969",

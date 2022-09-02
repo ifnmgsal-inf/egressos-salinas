@@ -1,4 +1,4 @@
-const DadosPage = ({ children }) => {
+const DadosPage = () => {
   return (
     <>
       <div>DADOS CADASTRAIS</div>

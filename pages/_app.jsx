@@ -18,14 +18,14 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/if_icon.png" />
       </Head>
       <AuthUserProvider>
-        {router.asPath.includes("/dashboard") ? (
+        {router.asPath.includes("/dashboard") || router.asPath.includes("/painel") ? (
           <>
             <div className="bg-title">
               <NavBar type="dashboard" />
             </div>
             <div className="flex">
               <SideBar />
-              <div className="flex-1 h-screen">
+              <div className="flex-1 h-screen bg-bg-container">
                 <Component {...pageProps} />
               </div>
             </div>

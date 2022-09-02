@@ -27,20 +27,20 @@ const Registration = () => {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center mt-36">
-      <div className="flex flex-col items-center justify-center mt-10">
+    <div className="flex h-screen items-center justify-center">
+      <div className="flex flex-col items-center justify-center ">
         <div>
-          <Link href={"/"}>
-            <a className="flex items-center text-16 font-medium ">
-              <ArrowLeftOutlined className="text-16 mr-2 text-primary-active" /> Voltar
-            </a>
-          </Link>
+          <div className="flex flex-col items-center mt-20">
+            <Link href={"/"}>
+              <a className="flex items-center text-16 font-medium">
+                <ArrowLeftOutlined className="text-16 mr-2 text-primary-active" /> Voltar
+              </a>
+            </Link>
 
-          <h1 className="text-title font-bold text-28 mt-4">
-            Agora precisamos de algumas
-            <br /> informações...
-          </h1>
-          <div className="flex flex-col items-center">
+            <h1 className="text-title font-bold text-28 mt-4">
+              Agora precisamos de algumas
+              <br /> informações...
+            </h1>
             <span className="inline-block mt-8" style={{ width: "130px", height: "130px" }}>
               {image ? (
                 <img
