@@ -83,7 +83,7 @@ const News = () => {
 
   return (
     <div className="px-10 py-10 bg-bg-container">
-      <div className="flex justify-between items-center">
+      <div className="flex md:flex-col justify-between items-center">
         <h1 className="text-38 text-title">
           Novas <span className="text-primary-active">Notícias</span>
         </h1>
