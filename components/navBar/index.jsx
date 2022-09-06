@@ -54,9 +54,17 @@ const NavBar = ({ type = "full" }) => {
 
   return (
     <nav className="w-full">
-      <div className="justify-around mx-auto md:items-center lg:flex">
+      <div
+        className={`${
+          type === "full" ? "justify-around" : "justify-between md:mx-10"
+        } mx-auto md:items-center lg:flex`}
+      >
         <div>
-          <div className="flex items-center justify-between xsm:pt-5 md:pt-5 lg:py-5 lg:block">
+          <div
+            className={`flex items-center justify-between ${
+              type === "full" ? "xsm:pt-5 md:pt-5 lg:py-5" : "py-1"
+            } lg:block`}
+          >
             {type === "dashboard" ? (
               <img src="/logo_egressos.png" alt="Logo IF" height={55} width={200} />
             ) : (
@@ -72,7 +80,7 @@ const NavBar = ({ type = "full" }) => {
             )}
             <div className="lg:hidden">
               <button
-                className="mx-2 p-2 text-gray-700 rounded-md outline-none"
+                className=" pt-2 text-gray-700 rounded-md outline-none"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
@@ -114,46 +122,92 @@ const NavBar = ({ type = "full" }) => {
               navbar ? "block" : "hidden"
             }`}
           >
-            <ul className="items-center justify-center space-y-3 lg:flex lg:space-x-24 lg:space-y-0 lg:mt-10 mx-4 my-4">
-              {links.map(({ label, link }) => (
-                <div
-                  key={link}
-                  className="flex lg:h-10 justify-center cursor-pointer text-disable text-13 hover:text-white hover:border-b hover:border-b-primary"
-                >
-                  <Link href={link}>{label}</Link>
+            {data ? (
+              <div className="flex items-center justify-end">
+                <div className="flex flex-col text-white text-13 font-light">
+                  <span>
+                    Olá, <span className="text-white font-medium uppercase">{data.name}</span>
+                  </span>
+                  <span
+                    className="flex justify-end font-light hover:font-medium cursor-pointer"
+                    onClick={goOut}
+                  >
+                    Sair
+                  </span>
                 </div>
-              ))}
-            </ul>
-            <div className="mt-3 lg:hidden">
-              <div className="flex flex-col space-y-4 mx-10">
-                <Link href={"/login"}>
-                  <button className="inline-block w-full py-1 px-10 text-white borde-solid border rounded-sm hover:text-white hover:border-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
-                    Entrar
-                  </button>
-                </Link>
-                <Link href={"/cadastro"}>
-                  <button className="inline-block w-full py-1 px-6 text-white bg-secundary borde-solid border border-secundary rounded-sm hover:bg-primary hover:border-primary hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
-                    Criar conta
-                  </button>
-                </Link>
+                <span className="inline-block mx-4" style={{ width: "40px", height: "40px" }}>
+                  {data.imageURL ? (
+                    <img
+                      className="shadow-2xl"
+                      style={{
+                        borderRadius: "50%",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                      src={data.imageURL}
+                      alt=""
+                    />
+                  ) : (
+                    <UserOutlined
+                      className="flex items-center justify-center text-white-text text-20 rounded-full"
+                      style={{
+                        borderRadius: "50%",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        backgroundColor: "#D9D9D9",
+                      }}
+                    />
+                  )}
+                </span>
               </div>
-            </div>
+            ) : (
+              <>
+                <ul className="items-center justify-center space-y-3 lg:flex lg:space-x-24 lg:space-y-0 lg:mt-10 mx-4 my-4">
+                  {links.map(({ label, link }) => (
+                    <div
+                      key={link}
+                      className="flex lg:h-10 justify-center cursor-pointer text-disable text-13 hover:text-white hover:border-b hover:border-b-primary"
+                    >
+                      <Link href={link}>{label}</Link>
+                    </div>
+                  ))}
+                </ul>
+                <div className="mt-3 lg:hidden">
+                  <div className="flex flex-col space-y-4 mx-10">
+                    <Link href={"/login"}>
+                      <button className="inline-block w-full py-1 px-10 text-white borde-solid border rounded-sm hover:text-white hover:border-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
+                        Entrar
+                      </button>
+                    </Link>
+                    <Link href={"/cadastro"}>
+                      <button className="inline-block w-full py-1 px-6 text-white bg-secundary borde-solid border border-secundary rounded-sm hover:bg-primary hover:border-primary hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
+                        Criar conta
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
-        <div className="hidden space-x-4 lg:inline-block">
-          <Link href={"/login"}>
-            <button className="py-1.5 px-10 text-white text-12 borde-solid border rounded-sm hover:text-white hover:border-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
-              Entrar
-            </button>
-          </Link>
-          <Link href={"/cadastro"}>
-            <button className="py-1.5 px-6 text-white text-12 bg-primary borde-solid border border-primary rounded-sm hover:bg-primary hover:border-primary hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
-              Criar conta
-            </button>
-          </Link>
-        </div>
+        {type === "full" && (
+          <div className="hidden space-x-4 lg:inline-block">
+            <Link href={"/login"}>
+              <button className="py-1.5 px-10 text-white text-12 borde-solid border rounded-sm hover:text-white hover:border-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
+                Entrar
+              </button>
+            </Link>
+            <Link href={"/cadastro"}>
+              <button className="py-1.5 px-6 text-white text-12 bg-primary borde-solid border border-primary rounded-sm hover:bg-primary hover:border-primary hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
+                Criar conta
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
-      {scrollTop > 50 && (
+      {scrollTop > 50 && type === "full" && (
         <div className="fixed top-0 left-0 right-0 z-40 justify-around mx-auto md:items-center lg:flex bg-black xsm:h-16 sm:h-16 shadow-md">
           <div className="flex items-center justify-between pt-2 lg:py-5 lg:block">
             {type === "dashboard" ? (
