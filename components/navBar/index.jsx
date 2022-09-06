@@ -208,7 +208,7 @@ const NavBar = ({ type = "full" }) => {
         )}
       </div>
       {scrollTop > 50 && type === "full" && (
-        <div className="fixed top-0 left-0 right-0 z-40 justify-around mx-auto md:items-center lg:flex bg-black xsm:h-16 sm:h-16 shadow-md">
+        <div className="fixed top-0 left-0 right-0 z-40 justify-around mx-auto md:items-center lg:flex bg-title xsm:h-16 sm:h-16 shadow-md">
           <div className="flex items-center justify-between pt-2 lg:py-5 lg:block">
             {type === "dashboard" ? (
               <img src="/logo_egressos.png" alt="Logo IF" height={55} width={200} />
@@ -262,7 +262,7 @@ const NavBar = ({ type = "full" }) => {
           </div>
           <div>
             <div
-              className={`flex-1 justify-self-center pb-3 lg:block md:pb-0 md:mt-0 bg-black ${
+              className={`flex-1 justify-self-center pb-3 lg:block md:pb-0 md:mt-0 bg-title ${
                 navbar ? "block" : "hidden"
               }`}
             >
