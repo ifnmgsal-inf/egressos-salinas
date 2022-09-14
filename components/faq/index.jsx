@@ -25,7 +25,6 @@ const faqList = [
 ];
 
 const Faq = () => {
-  const [indexState, setIndexState] = useState(false);
   return (
     <div className="flex flex-col mt-8 mb-4 mx-10">
       <h1 className="text-38 text-title mb-6">
@@ -33,13 +32,7 @@ const Faq = () => {
       </h1>
       <div className="mb-28">
         {faqList.map(({ question, response }, index) => (
-          <Accordion
-            key={index}
-            title={question}
-            id={index + 1}
-            index={indexState}
-            setIndex={setIndexState}
-          >
+          <Accordion key={index} title={question}>
             {response}
           </Accordion>
         ))}

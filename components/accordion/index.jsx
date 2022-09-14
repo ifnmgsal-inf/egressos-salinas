@@ -1,32 +1,33 @@
 import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
-const Accordion = ({ title, children, id, index, setIndex }) => {
-  const handleSetIndex = (id) => index !== id && setIndex(id);
+const Accordion = ({ title, children }) => {
+  const [open, setOpen] = useState(false);
 
   return (
     <>
       <div
         className="flex group cursor-pointer w-3/4 mx-auto h-10 justify-between items-center rounded bg-white"
-        onClick={() => handleSetIndex(id)}
+        onClick={() => setOpen(!open)}
       >
         <div className="flex group cursor-pointer items-center">
           <div className="group-hover:text-primary-active">
-            {index !== id ? (
-              <RightOutlined className="text-13 pb-2.5" />
-            ) : (
+            {open ? (
               <DownOutlined className="text-13 text-primary-active pb-2.5" />
+            ) : (
+              <RightOutlined className="text-13 pb-2.5" />
             )}
           </div>
           <div
             className={`${
-              index === id && "text-primary-active"
+              open && "text-primary-active"
             } pl-2 group-hover:text-primary-active font-medium`}
           >
             {title}
           </div>
         </div>
       </div>
-      {index === id && <div className="pl-6 mb-4 text-14">{children}</div>}
+      {open && <div className="pl-6 mb-4 text-14">{children}</div>}
     </>
   );
 };
