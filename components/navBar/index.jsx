@@ -164,7 +164,7 @@ const NavBar = ({ type = "full" }) => {
               </div>
             ) : (
               <>
-                <ul className="items-center justify-center space-y-3 lg:flex lg:space-x-24 lg:space-y-0 lg:mt-10 mx-4 my-4">
+                <ul className="items-center justify-center space-y-3 lg:flex lg:space-x-16 lg:space-y-0 lg:mt-10 mx-4 my-4">
                   {links.map(({ label, link }) => (
                     <div
                       key={link}
