@@ -30,7 +30,7 @@ const Faq = () => {
       <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title mb-6">
         Perguntas <span className="text-primary-active">Frequentes</span>
       </h1>
-      <div className="mb-28">
+      <div className="mb-28 ">
         {faqList.map(({ question, response }, index) => (
           <Accordion key={index} title={question}>
             {response}

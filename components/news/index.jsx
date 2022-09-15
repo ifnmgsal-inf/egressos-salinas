@@ -84,7 +84,7 @@ const News = () => {
   return (
     <div className="px-10 py-10 bg-bg-container">
       <div className="flex xsm:flex-col md:flex-row lg:flex-row xl:flex-row justify-between xsm:items-start md:items-center lg:items-center xl:items-center">
-        <h1 className="text-28 text-title">
+        <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title">
           Novas <span className="text-primary-active">Notícias</span>
         </h1>
         <label className="relative block xsm:mt-5 lg:mt-0 xl:mt-0">

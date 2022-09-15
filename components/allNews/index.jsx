@@ -64,11 +64,11 @@ const AllNews = () => {
 
   return (
     <div className="px-10 py-10">
-      <div className="flex justify-between items-center">
-        <h1 className="text-38 text-title">
+      <div className="flex xsm:flex-col md:flex-row lg:flex-row xl:flex-row justify-between xsm:items-start md:items-center lg:items-center xl:items-center">
+        <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title">
           Todas as <span className="text-primary-active">Notícias</span>
         </h1>
-        <label className="relative block">
+        <label className="relative block xsm:mt-5 lg:mt-0 xl:mt-0">
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
             <SearchOutlined className="text-20 text-title" />
           </span>
@@ -93,7 +93,7 @@ const AllNews = () => {
                   openModal();
                 }}
               >
-                <img className="max-h-167  rounded-t-sm" src={news.image} alt="" />
+                <img className="max-h-167 rounded-t-sm" src={news.image} alt="" />
                 <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
                   <blockquote>
                     <p className="text-lg font-medium">{news.title}</p>

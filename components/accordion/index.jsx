@@ -7,7 +7,7 @@ const Accordion = ({ title, children }) => {
   return (
     <>
       <div
-        className="flex group cursor-pointer w-3/4 mx-auto h-10 justify-between items-center rounded bg-white"
+        className="flex group cursor-pointer w-3/4 mx-auto h-10 justify-between items-center rounded bg-white xsm:mb-4"
         onClick={() => setOpen(!open)}
       >
         <div className="flex group cursor-pointer items-center">
@@ -21,13 +21,13 @@ const Accordion = ({ title, children }) => {
           <div
             className={`${
               open && "text-primary-active"
-            } pl-2 group-hover:text-primary-active font-medium`}
+            } xsm:text-14 lg:text-18 pl-2 group-hover:text-primary-active font-medium`}
           >
             {title}
           </div>
         </div>
       </div>
-      {open && <div className="pl-6 mb-4 text-14">{children}</div>}
+      {open && <div className="pl-6 xsm:mb-8 mb-4 text-14">{children}</div>}
     </>
   );
 };
