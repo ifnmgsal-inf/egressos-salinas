@@ -4,7 +4,7 @@ const Sobre = () => {
   return (
     <div className="flex flex-col items-center pt-8 pb-4 px-10 bg-bg-container">
       <div>
-        <h1 className="text-38 text-title mb-6">
+        <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title mb-6">
           Sobre o <span className="text-primary-active">Egresso</span>
         </h1>
         <span className="font-medium text-title">
@@ -41,7 +41,7 @@ const Sobre = () => {
         </p>
       </div>
 
-      <h1 className="text-38 text-title mt-6">
+      <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title mt-6">
         Questionário do <span className="text-primary-active">Egresso</span>
       </h1>
 

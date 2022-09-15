@@ -9,17 +9,16 @@ const History = () => {
   return (
     <div className="mx-10 py-6">
       <div>
-        <h1 className="font-medium text-38 text-title leading-tight">
+        <h1 className="font-medium xsm:text-24 sm:text-24 lg:text-30 text-title leading-tight">
           Nossa história continua após
           <br /> a formatura
         </h1>
-        <p className="font-light text-18 my-5">
+        <p className="font-light xsm:text-15 lg:text-18 my-5">
           Informações sobre egressos do ensino médio, técnico e Superior oferecidos por todo o
-          grande Norte de Minas
-          <br /> no Instituto Federal do Norte de Minas Gerais - Campus Salinas.
+          grande Norte de Minas no Instituto Federal do Norte de Minas Gerais - Campus Salinas.
         </p>
       </div>
-      <div className="flex mt-16 mb-5 items-center justify-between">
+      <div className="flex xsm:flex-col sm:flex-col md:flex-row lg:flex-row mt-16 mb-5 items-center justify-between">
         <div className="basis-1/2">
           <Link href={"/sobre"}>
             <button className="py-1.5 px-8 text-primary borde-solid border-primary-active border rounded-sm hover:border-primary hover:text-primary">

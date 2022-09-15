@@ -16,11 +16,11 @@ const depositionsList = [
 const Depositions = () => {
   return (
     <div className="flex flex-col mt-10 mb-32 mx-10">
-      <h1 className="text-38 text-title">
+      <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title">
         Novos <span className="text-primary-active">Depoimentos</span>
       </h1>
       {depositionsList.map(({ image, name, message }) => (
-        <div key={name} className="flex mt-10 odd:flex-row-reverse">
+        <div key={name} className="flex xsm:flex-col lg:flex-row mt-10 lg:odd:flex-row-reverse">
           <div className="flex flex-col items-center">
             <span className="inline-block" style={{ width: "150px", height: "150px" }}>
               <img

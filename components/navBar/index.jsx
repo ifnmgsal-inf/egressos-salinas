@@ -62,7 +62,7 @@ const NavBar = ({ type = "full" }) => {
         <div>
           <div
             className={`flex items-center justify-between ${
-              type === "full" ? "xsm:pt-5 md:pt-5 lg:py-5" : "py-1"
+              type === "full" ? "xsm:pt-2 md:pt-2 lg:py-2 px-2" : "py-1"
             } lg:block`}
           >
             {type === "dashboard" ? (

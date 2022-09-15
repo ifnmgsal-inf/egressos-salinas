@@ -83,11 +83,11 @@ const News = () => {
 
   return (
     <div className="px-10 py-10 bg-bg-container">
-      <div className="flex md:flex-col justify-between items-center">
-        <h1 className="text-38 text-title">
+      <div className="flex xsm:flex-col md:flex-row lg:flex-row xl:flex-row justify-between xsm:items-start md:items-center lg:items-center xl:items-center">
+        <h1 className="text-28 text-title">
           Novas <span className="text-primary-active">Notícias</span>
         </h1>
-        <label className="relative block">
+        <label className="relative block xsm:mt-5 lg:mt-0 xl:mt-0">
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
             <SearchOutlined className="text-20 text-title" />
           </span>
