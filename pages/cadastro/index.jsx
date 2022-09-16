@@ -29,7 +29,7 @@ const Registration = () => {
   return (
     <div className="flex h-full justify-center my-10">
       <div className="flex flex-col justify-center ">
-        <div>
+        <div className="xsm:mx-5">
           <Link href={"/"}>
             <a className="flex items-center text-16 font-medium">
               <ArrowLeftOutlined className="text-16 mr-2 text-primary-active" /> Voltar
