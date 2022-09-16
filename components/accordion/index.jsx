@@ -7,7 +7,7 @@ const Accordion = ({ title, children }) => {
   return (
     <>
       <div
-        className="flex group cursor-pointer w-3/4 mx-auto h-10 justify-between items-center rounded bg-white xsm:mb-4"
+        className="flex group cursor-pointer w-3/4 mx-auto xsm:h-10 md:h-8 justify-between items-center rounded bg-white xsm:mb-2"
         onClick={() => setOpen(!open)}
       >
         <div className="flex group cursor-pointer items-center">
