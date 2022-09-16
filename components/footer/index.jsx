@@ -46,7 +46,7 @@ const Footer = () => {
           <hr></hr>
         </div>
         <div className="flex xsm:flex-col-reverse md:flex-row items-center md:space-x-40 xl:space-x-52">
-          <div className="text-xs text-white my-4 mx-2">
+          <div className="text-10 text-white py-4 mx-2 xsm:border-t md:border-none">
             Copyright © 2022 Portal Egressos Do IFNMG-Campus Salinas | Tales Ferreira®
           </div>
           <div className="flex text-12 my-4 space-x-6">

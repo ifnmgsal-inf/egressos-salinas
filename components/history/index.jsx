@@ -9,7 +9,7 @@ const History = () => {
   return (
     <div className="mx-10 py-6">
       <div>
-        <h1 className="font-medium xsm:text-24 sm:text-24 lg:text-30 text-title leading-tight">
+        <h1 className="font-medium xsm:text-20 sm:text-20 lg:text-30 text-title leading-tight">
           Nossa história continua após
           <br /> a formatura
         </h1>

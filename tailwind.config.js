@@ -66,6 +66,7 @@ module.exports = {
       "5xl": "3rem",
       "6xl": "4rem",
       "7xl": "5rem",
+      10: "10px",
       12: "12px",
       13: "13px",
       14: "14px",

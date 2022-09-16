@@ -182,7 +182,7 @@ const NavBar = ({ type = "full" }) => {
                       </button>
                     </Link>
                     <Link href={"/cadastro"}>
-                      <button className="inline-block w-full py-1 px-6 text-white bg-secundary borde-solid border border-secundary rounded-sm hover:bg-primary hover:border-primary hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
+                      <button className="inline-block w-full py-1 px-6 text-white bg-primary-active borde-solid border border-primary-active rounded-sm hover:bg-primary hover:border-primary hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
                         Criar conta
                       </button>
                     </Link>
@@ -279,7 +279,7 @@ const NavBar = ({ type = "full" }) => {
               <div className="lg:hidden py-4">
                 <div className="flex flex-col space-y-4 mx-10">
                   <Link href={"/login"}>
-                    <button className="inline-block w-full py-1 text-primary borde-solid border border-primary rounded-sm hover:text-primary hover:border-primary transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
+                    <button className="inline-block w-full py-1 text-white borde-solid border border-white rounded-sm hover:text-primary hover:border-primary transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-150">
                       Entrar
                     </button>
                   </Link>

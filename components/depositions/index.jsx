@@ -31,7 +31,7 @@ const Depositions = () => {
             </span>
             <span className="text-13 font-medium">{name}</span>
           </div>
-          <div className="flex max-h-170 mx-8 p-4 items-center bg-bg-grey rounded-sm drop-shadow-md">
+          <div className="flex max-h-170 mx-8 p-4 items-center bg-bg-grey rounded-sm drop-shadow-md xsm:text-xs md:text-base">
             {message}
           </div>
         </div>
