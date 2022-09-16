@@ -27,20 +27,20 @@ const Registration = () => {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex flex-col items-center justify-center ">
+    <div className="flex h-full justify-center my-10">
+      <div className="flex flex-col justify-center ">
         <div>
-          <div className="flex flex-col items-center mt-20">
-            <Link href={"/"}>
-              <a className="flex items-center text-16 font-medium">
-                <ArrowLeftOutlined className="text-16 mr-2 text-primary-active" /> Voltar
-              </a>
-            </Link>
+          <Link href={"/"}>
+            <a className="flex items-center text-16 font-medium">
+              <ArrowLeftOutlined className="text-16 mr-2 text-primary-active" /> Voltar
+            </a>
+          </Link>
 
-            <h1 className="text-title font-bold text-28 mt-4">
-              Agora precisamos de algumas
-              <br /> informações...
-            </h1>
+          <h1 className="text-title font-bold xsm:text-20 lg:text-28 ">
+            Agora precisamos de algumas
+            <br /> informações...
+          </h1>
+          <div className="flex flex-col items-center">
             <span className="inline-block mt-8" style={{ width: "130px", height: "130px" }}>
               {image ? (
                 <img
@@ -64,13 +64,13 @@ const Registration = () => {
             </span>
             <input
               {...register("image")}
-              className="file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer file:px-6 file:py-1.5 file:bg-white"
+              className="xsm:file:text-13 xsm:file:my-4 lg:file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer lg:file:px-6 file:py-1.5 file:bg-white"
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
             />
           </div>
 
-          <form className="flex flex-col my-6 " onSubmit={handleSubmit(handleRegister)}>
+          <form className="flex flex-col" onSubmit={handleSubmit(handleRegister)}>
             <label className="text-14 font-medium">Nome Completo</label>
             <input
               className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
