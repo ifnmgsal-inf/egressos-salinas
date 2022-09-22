@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect } from "react";
 
 import { collection, getFirestore, query, where, getDocs, addDoc } from "firebase/firestore";
@@ -20,6 +21,7 @@ export function AuthUserProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userGoogle, setUserGoogle] = useState(null);
   const [usersNumber, setUsersNumber] = useState(null);
+  const [usersAll, setUsersAll] = useState(null);
 
   const [progress, setProgress] = useState(0);
   const [imageURL, setImageURL] = useState(null);
@@ -42,6 +44,7 @@ export function AuthUserProvider({ children }) {
     const getUsersNumber = async () => {
       const data = await getDocs(usersCollectionRef);
       setUsersNumber(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).length);
+      setUsersAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getUsersNumber();
   }, []);
@@ -49,6 +52,7 @@ export function AuthUserProvider({ children }) {
   function singIn({ email, password }) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        console.log(userCredential);
         const { accessToken, email } = userCredential.user;
 
         setCookie(undefined, "next-egressos.token", accessToken, {
@@ -62,6 +66,8 @@ export function AuthUserProvider({ children }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert("Email ou senha inválidos");
+        console.log({ errorMessage, errorCode });
       });
   }
 
@@ -89,7 +95,7 @@ export function AuthUserProvider({ children }) {
       }
     );
 
-    const docRef = await addDoc(collection(db, "users"), {
+    await addDoc(collection(db, "users"), {
       name,
       email,
       cpf,
@@ -150,6 +156,7 @@ export function AuthUserProvider({ children }) {
         registrationIn,
         signOutUser,
         usersNumber,
+        usersAll,
         user,
         setUser,
         userGoogle,

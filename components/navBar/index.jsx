@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext, useEffect, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 
@@ -137,6 +138,7 @@ const NavBar = ({ type = "full" }) => {
                 </div>
                 <span className="inline-block mx-4" style={{ width: "40px", height: "40px" }}>
                   {data.imageURL ? (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       className="shadow-2xl"
                       style={{

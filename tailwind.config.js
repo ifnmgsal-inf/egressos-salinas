@@ -53,6 +53,13 @@ module.exports = {
       600: "600px",
       500: "500px",
     },
+    minWidth: {
+      1400: "1400px",
+      1000: "1000px",
+      700: "700px",
+      600: "600px",
+      500: "500px",
+    },
     fontSize: {
       xs: ".75rem",
       sm: ".875rem",
