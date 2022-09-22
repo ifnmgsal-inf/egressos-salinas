@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { EditOutlined, SaveOutlined, UserOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
@@ -22,14 +24,14 @@ const CurriculoPage = () => {
   }
 
   return (
-    <form className="pl-10" onSubmit={handleSubmit(handleUpdateCurriculum)}>
+    <form className="xsm:px-2 lx:pl-10" onSubmit={handleSubmit(handleUpdateCurriculum)}>
       <div className="flex flex-col max-w-1000 bg-white justify-center my-10 border rounded-lg px-5 py-2">
-        <h2 className="text-16 mb-5 font-medium">Informações curriculares</h2>
-        <div className="flex pb-4">
-          <span className="inline-block mx-4" style={{ width: "150px", height: "150px" }}>
+        <h2 className="text-base mb-5 font-medium">Informações curriculares</h2>
+        <div className="flex xsm:flex-col md:flex-row xl:flex-row pb-4">
+          <span className="inline-block mx-4 xsm:mb-5" style={{ width: "150px", height: "150px" }}>
             {user?.imageURL ? (
               <img
-                className="shadow-2xl"
+                className="xl:shadow-2xl"
                 style={{ borderRadius: "50%", width: "100%", height: "100%", objectFit: "cover" }}
                 src={user?.imageURL}
                 alt=""
@@ -49,45 +51,45 @@ const CurriculoPage = () => {
           </span>
           <div className="flex flex-col ml-2">
             <div>
-              <label className="text-13 font-medium">Nome:</label>
+              <label className="text-sm font-medium">Nome:</label>
               <input
-                className="px-2 text-grey-text"
+                className="xsm:text-sm px-2 text-grey-text"
                 {...register("name")}
                 type="text"
                 onChange={() => setAlteration(false)}
               />
             </div>
             <div className="mt-2">
-              <label className="text-13 font-medium">Data de nascimento:</label>
+              <label className="text-sm font-medium">Data de nascimento:</label>
               <input
-                className="px-2 text-grey-text"
+                className="xsm:text-sm px-2 text-grey-text"
                 {...register("birth-date")}
                 type="text"
                 onChange={() => setAlteration(false)}
               />
             </div>
             <div className="mt-2">
-              <label className="text-13 font-medium">Endereço:</label>
+              <label className="text-sm font-medium">Endereço:</label>
               <input
-                className="px-2 text-grey-text"
+                className="xsm:text-sm px-2 text-grey-text"
                 {...register("address")}
                 type="text"
                 onChange={() => setAlteration(false)}
               />
             </div>
             <div className="mt-2">
-              <label className="text-13 font-medium">Telefone celular:</label>
+              <label className="text-sm font-medium">Telefone celular:</label>
               <input
-                className="px-2 text-grey-text"
+                className="xsm:text-sm px-2 text-grey-text"
                 {...register("phone")}
                 type="text"
                 onChange={() => setAlteration(false)}
               />
             </div>
             <div className="mt-2">
-              <label className="text-13 font-medium">E-mail:</label>
+              <label className="text-sm font-medium">E-mail:</label>
               <input
-                className="px-2 text-grey-text"
+                className="xsm:text-sm px-2 text-grey-text"
                 {...register("email")}
                 type="text"
                 onChange={() => setAlteration(false)}
@@ -97,7 +99,7 @@ const CurriculoPage = () => {
         </div>
       </div>
       <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-lg px-5 py-2">
-        <h2 className="text-16 mb-4 font-medium">
+        <h2 className="text-base mb-4 font-medium">
           Breve descrição pessoal e objetivos profissionais
         </h2>
         <textarea
@@ -110,13 +112,13 @@ const CurriculoPage = () => {
         />
       </div>
       <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-lg px-5 py-2">
-        <h2 className="text-16 mb-4 font-medium">formação</h2>
+        <h2 className="text-base mb-4 font-medium">formação</h2>
       </div>
       <div className="flex justify-start">
         <button
           type="submit"
           disabled={alteration}
-          className="flex items-center cursor-pointer text-13 text-primary border border-primary-active px-4 py-0.5 rounded-sm hover:bg-primary-active hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex items-center cursor-pointer text-sm text-primary border border-primary-active px-4 py-0.5 rounded-sm hover:bg-primary-active hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           <SaveOutlined className="mr-1" /> Salvar
         </button>

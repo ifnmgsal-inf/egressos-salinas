@@ -36,9 +36,9 @@ const NavBar = ({ type = "full" }) => {
   const router = useRouter();
 
   const goOut = () => {
+    router.push("/");
     signOutUser();
     setUser(null);
-    router.push("/");
   };
 
   function handleScroll() {
@@ -63,8 +63,8 @@ const NavBar = ({ type = "full" }) => {
         <div>
           <div
             className={`flex items-center justify-between ${
-              type === "full" ? "xsm:pt-2 md:pt-2 lg:py-2 px-2" : "py-1"
-            } lg:block`}
+              type === "full" ? "xsm:pt-2 md:pt-2 lg:py-2 " : "py-1"
+            } px-2 lg:block`}
           >
             {type === "dashboard" ? (
               <img
