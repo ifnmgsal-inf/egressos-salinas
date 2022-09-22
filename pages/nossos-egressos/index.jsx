@@ -16,7 +16,7 @@ export default function EgressosPage() {
     : [];
   return (
     <BasePage>
-      <label className="flex w-full relative justify-end block xsm:mt-10 lg:mt-10 xl:mt-10 mr-5">
+      <label className="flex relative justify-end block xsm:mt-10 lg:mt-10 xl:mt-10 mr-5">
         <span className="absolute inset-y-0 right-0 flex items-center pr-2">
           <SearchOutlined className="text-20 text-title" />
         </span>
