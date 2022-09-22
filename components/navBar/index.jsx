@@ -29,7 +29,7 @@ const links = [
 const NavBar = ({ type = "full" }) => {
   const [navbar, setNavbar] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
-  const { signOutUser, setUser, user } = useContext(AuthUserContext);
+  const { signOutUser, setUser, user, isMobile } = useContext(AuthUserContext);
 
   const data = type === "dashboard" ? user : null;
 
@@ -67,21 +67,26 @@ const NavBar = ({ type = "full" }) => {
             } lg:block`}
           >
             {type === "dashboard" ? (
-              <img src="/logo_egressos.png" alt="Logo IF" height={55} width={200} />
+              <img
+                src={isMobile ? "/icon_if.png" : "/logo_egressos.png"}
+                alt="Logo IF"
+                height={isMobile ? 5 : 55}
+                width={isMobile ? 20 : 200}
+              />
             ) : (
               <Link href={"/"}>
                 <img
                   className="cursor-pointer"
-                  src="/logo_egressos.png"
+                  src={isMobile ? "/icon_if.png" : "/logo_egressos.png"}
                   alt="Logo IF"
-                  height={55}
-                  width={200}
+                  height={isMobile ? 5 : 55}
+                  width={isMobile ? 20 : 200}
                 />
               </Link>
             )}
             <div className="lg:hidden">
               <button
-                className=" pt-2 text-gray-700 rounded-md outline-none"
+                className="mx-2 pt-2 text-gray-700 rounded-md outline-none"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
@@ -211,23 +216,28 @@ const NavBar = ({ type = "full" }) => {
       </div>
       {scrollTop > 50 && type === "full" && (
         <div className="fixed top-0 left-0 right-0 z-40 justify-around mx-auto md:items-center lg:flex bg-title xsm:h-16 sm:h-16 shadow-md">
-          <div className="flex items-center justify-between pt-2 lg:py-5 lg:block">
+          <div className="flex items-center justify-between px-2 pt-2 lg:py-5 lg:block">
             {type === "dashboard" ? (
-              <img src="/logo_egressos.png" alt="Logo IF" height={55} width={200} />
+              <img
+                src={isMobile ? "/icon_if.png" : "/logo_egressos.png"}
+                alt="Logo IF"
+                height={isMobile ? 5 : 55}
+                width={isMobile ? 20 : 200}
+              />
             ) : (
               <Link href={"/"}>
                 <img
                   className="cursor-pointer"
-                  src="/logo_egressos.png"
+                  src={isMobile ? "/icon_if.png" : "/logo_egressos.png"}
                   alt="Logo IF"
-                  height={55}
-                  width={200}
+                  height={isMobile ? 5 : 55}
+                  width={isMobile ? 20 : 200}
                 />
               </Link>
             )}
             <div className="lg:hidden">
               <button
-                className="mx-2 p-2 text-white rounded-md outline-none"
+                className=" p-2 text-white rounded-md outline-none"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
@@ -317,12 +327,12 @@ export default NavBar;
 // return (
 //   <div className="flex justify-between items-center mx-10 pt-1">
 //     {type === "dashboard" ? (
-//       <img src="/logo_egressos.png" alt="Logo IF" height={55} width={200} />
+//       <img src="/icon_if.png" alt="Logo IF" height={55} width={200} />
 //     ) : (
 //       <Link href={"/"}>
 //         <img
 //           className="cursor-pointer"
-//           src="/logo_egressos.png"
+//           src="/icon_if.png"
 //           alt="Logo IF"
 //           height={55}
 //           width={200}

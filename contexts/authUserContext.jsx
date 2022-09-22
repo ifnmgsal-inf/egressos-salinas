@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 
 import { collection, getFirestore, query, where, getDocs, addDoc } from "firebase/firestore";
 import { app, storage } from "../services/firebaseConfig";
@@ -162,6 +163,7 @@ export function AuthUserProvider({ children }) {
         userGoogle,
         setUserGoogle,
         autenticationUser,
+        isMobile,
       }}
     >
       {children}

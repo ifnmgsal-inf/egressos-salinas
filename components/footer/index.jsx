@@ -1,4 +1,6 @@
-import { FacebookFilled, InstagramFilled, YoutubeFilled } from "@ant-design/icons";
+/* eslint-disable @next/next/no-img-element */
+import { useContext, useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 const Footer = () => {
   return (
@@ -7,14 +9,20 @@ const Footer = () => {
         <div className="flex xsm:flex-col md:flex-row items-center justify-center sm:space-x-2 md:space-x-4 xl:space-x-16 mx-auto mt-5 md:pb-4 xl:pb-10">
           <div className="flex xsm:space-y-7 xsm:flex-col sm:flex-col md:flex-row md:space-x-20 lg:space-x-20 sm:items-center xsm:mb-4">
             <div className="flex flex-col items-center space-y-4">
-              <img src="/icon_if_footer.png" alt="" height={78} width={60} />
-              <span className="text-grey-text text-13">
-                Fazenda Varginha Km 02 Rod. Salinas/
-                <br />
-                Taiobeiras Salinas/MG - CEP: 39.560-000
-                <br /> Fone/Fax: (38) 3841-7000
-                <br /> E-mail: comunicacao.salinas@ifnmg.edu.br
-              </span>
+              {isMobile ? (
+                <img src="/icon_if.png" alt="" width={40} />
+              ) : (
+                <>
+                  <img src="/icon_if.png" alt="" width={40} />
+                  <span className="text-grey-text text-13">
+                    Fazenda Varginha Km 02 Rod. Salinas/
+                    <br />
+                    Taiobeiras Salinas/MG - CEP: 39.560-000
+                    <br /> Fone/Fax: (38) 3841-7000
+                    <br /> E-mail: comunicacao.salinas@ifnmg.edu.br
+                  </span>
+                </>
+              )}
             </div>
             <div className="xsm:flex flex-col xsm:items-center md:items-start text-white xsm:space-y-2 md:space-y-4 xl:space-y-4">
               <h2 className="text-sm text-white font-semibold">Início</h2>
@@ -99,7 +107,7 @@ const Footer = () => {
     //   <div className="flex flex-col justify-center items-center">
     //     <div className="flex sm:flex-col md:flex-row items-start justify-center sm:space-x-2 md:space-x-4 xl:space-x-16 mt-16 border-b-[0.5px] border-grey-text md:pb-4 xl:pb-16">
     //       <div className="flex flex-col items-center space-y-8">
-    //         <img src="/icon_if_footer.png" alt="" height={78} width={60} />
+    //         <img src="/icon_if.png" alt="" height={78} width={60} />
     //         <span className="text-grey-text text-13">
     //           Fazenda Varginha Km 02 Rod. Salinas/
     //           <br />
