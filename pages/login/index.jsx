@@ -17,7 +17,7 @@ const Login = () => {
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="flex flex-col items-center justify-center">
-        <div>
+        <div className=" xsm:mx-5">
           <Link href={"/"}>
             <a className="flex items-center text-16 font-medium ">
               <ArrowLeftOutlined className="text-16 mr-2 text-primary-active" /> Voltar
