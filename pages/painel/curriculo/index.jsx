@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 
 const CurriculoPage = () => {
   const [alteration, setAlteration] = useState(true);
-  const { setUser, user } = useContext(AuthUserContext);
+  const { setUser, user, isMobile } = useContext(AuthUserContext);
   const { register, handleSubmit, setValue } = useForm();
 
   useEffect(() => {

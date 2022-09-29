@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { isMobile } from "react-device-detect";
 
 import { collection, getFirestore, query, where, getDocs, addDoc } from "firebase/firestore";
 import { app, storage } from "../services/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
-import { useRouter } from "next/router";
 
 import {
   getAuth,
@@ -72,7 +71,7 @@ export function AuthUserProvider({ children }) {
       });
   }
 
-  async function registrationIn({ name, email, cpf, password, image }) {
+  async function registrationIn({ name, email, cpf, course, level, password, image }) {
     const file = image[0];
 
     const storageRef = ref(storage, `images/${file?.name}`);
@@ -100,6 +99,8 @@ export function AuthUserProvider({ children }) {
       name,
       email,
       cpf,
+      course,
+      level,
       password,
       imageURL,
       type: "user",

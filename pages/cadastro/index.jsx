@@ -1,9 +1,66 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
 
 import Link from "next/link";
 import { ArrowLeftOutlined, UserOutlined } from "@ant-design/icons";
+
+const courseOptions = [
+  {
+    value: "Técnico em Agroindústria - Integrado",
+    label: "Técnico em Agroindústria - Integrado",
+  },
+  { value: "Técnico em Agropecuária - Integrado", label: "Técnico em Agropecuária - Integrado" },
+  {
+    value: "Técnico em Agropecuária - Integrado",
+    label: "Técnico em Agropecuária - Integrado",
+  },
+  {
+    value: "Técnico em Informática - Integrado",
+    label: "Técnico em Informática - Integrado",
+  },
+  {
+    value: "Licenciatura em Ciências Biológicas",
+    label: "Licenciatura em Ciências Biológicas",
+  },
+  {
+    value: "Licenciatura em Matemática",
+    label: "Licenciatura em Matemática",
+  },
+  {
+    value: "Licenciatura em Química",
+    label: "Licenciatura em Química",
+  },
+  {
+    value: "Licenciatura em Física",
+    label: "Licenciatura em Física",
+  },
+  {
+    value: "Licenciatura em Pedagogia",
+    label: "Licenciatura em Pedagogia",
+  },
+  {
+    value: "Tecnologia em Produção de Cachaça",
+    label: "Tecnologia em Produção de Cachaça",
+  },
+  {
+    value: "Bacharelado em Medicina Veterinária",
+    label: "Bacharelado em Medicina Veterinária",
+  },
+  {
+    value: "Bacharelado em Engenharia Florestal",
+    label: "Bacharelado em Engenharia Florestal",
+  },
+  {
+    value: "Bacharelado em Engenharia de Alimentos",
+    label: "Bacharelado em Engenharia de Alimentos",
+  },
+  {
+    value: "Bacharelado em Sistemas de Informação",
+    label: "Bacharelado em Sistemas de Informação",
+  },
+];
 
 const Registration = () => {
   const [image, setImage] = useState(null);
@@ -87,6 +144,40 @@ const Registration = () => {
               type="cpf"
               id="cpf"
               name="cpf"
+              required
+            />
+            <label className="text-14 font-medium">Curso</label>
+            <select
+              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
+              {...register("course")}
+              id="course"
+              name="course"
+              required
+            >
+              {courseOptions.map(({ value, label }, index) => (
+                <option key={index} valeu={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            <label className="text-14 font-medium">Nível</label>
+            <select
+              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
+              {...register("level")}
+              id="level"
+              name="level"
+              required
+            >
+              <option value="Técnico">Técnico</option>
+              <option value="Superior">Superior</option>
+            </select>
+            <label className="text-14 font-medium">Ano de conclusão</label>
+            <input
+              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
+              {...register("conclusionYear")}
+              type="number"
+              id="conclusionYear"
+              name="conclusionYear"
               required
             />
             <label className="text-14 font-medium">Email</label>

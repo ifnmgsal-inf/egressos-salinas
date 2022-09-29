@@ -18,9 +18,9 @@ import {
 import Link from "next/link";
 
 const SideBar = () => {
-  const [openSideBar, setOpenSideBar] = useState(true);
+  const { user, isMobile } = useContext(AuthUserContext);
 
-  const { user } = useContext(AuthUserContext);
+  const [openSideBar, setOpenSideBar] = useState(isMobile ? false : true);
 
   if (!user) return;
 
@@ -96,12 +96,14 @@ const SideBar = () => {
         openSideBar ? "w-72" : "w-20"
       } h-screen transition duration-300 bg-title relative`}
     >
-      <LeftOutlined
-        className={`text-title absolute cursor-pointer rounded-full -right-3.5 top-1/2 p-1 w-7 border-2 border-title hover:border-primary bg-white ${
-          !openSideBar && "rotate-180"
-        }`}
-        onClick={() => setOpenSideBar(!openSideBar)}
-      />
+      {!isMobile && (
+        <LeftOutlined
+          className={`text-title absolute cursor-pointer rounded-full -right-3.5 top-1/2 p-1 w-7 border-2 border-title hover:border-primary bg-white ${
+            !openSideBar && "rotate-180"
+          }`}
+          onClick={() => setOpenSideBar(!openSideBar)}
+        />
+      )}
       <ul className="pt-8">
         {menus.map(({ label, icon, defaultItem, link }, index) => (
           <Link key={index} href={link}>

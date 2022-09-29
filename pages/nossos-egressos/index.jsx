@@ -119,8 +119,8 @@ export default function EgressosPage() {
                       <span>{user.name}</span>
                     </th>
                     <td className="py-4 px-6">{user.email}</td>
-                    <td className="py-4 px-6">pendente</td>
-                    <td className="py-4 px-6">pendente</td>
+                    <td className="py-4 px-6">{user.course}</td>
+                    <td className="py-4 px-6">{user.level}</td>
                     <td className="py-4 px-6">pendente</td>
                   </tr>
                 ))}
