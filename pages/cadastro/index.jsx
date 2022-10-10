@@ -175,7 +175,7 @@ const Registration = () => {
             <input
               className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
               {...register("conclusionYear")}
-              type="number"
+              type="date"
               id="conclusionYear"
               name="conclusionYear"
               required
