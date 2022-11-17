@@ -71,7 +71,16 @@ export function AuthUserProvider({ children }) {
       });
   }
 
-  async function registrationIn({ name, email, cpf, course, level, password, image }) {
+  async function registrationIn({
+    name,
+    email,
+    cpf,
+    course,
+    level,
+    password,
+    image,
+    conclusionYear,
+  }) {
     const file = image[0];
 
     const storageRef = ref(storage, `images/${file?.name}`);
@@ -103,6 +112,7 @@ export function AuthUserProvider({ children }) {
       level,
       password,
       imageURL,
+      conclusionYear,
       type: "user",
     });
 
