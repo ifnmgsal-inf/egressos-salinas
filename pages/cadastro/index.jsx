@@ -128,87 +128,107 @@ const Registration = () => {
           </div>
 
           <form className="flex flex-col" onSubmit={handleSubmit(handleRegister)}>
-            <label className="text-14 font-medium">Nome Completo</label>
-            <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
-              {...register("name")}
-              type="text"
-              id="name"
-              name="name"
-              required
-            />
-            <label className="text-14 font-medium">CPF</label>
-            <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
-              {...register("cpf")}
-              type="cpf"
-              id="cpf"
-              name="cpf"
-              required
-            />
-            <label className="text-14 font-medium">Curso</label>
-            <select
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
-              {...register("course")}
-              id="course"
-              name="course"
-              required
-            >
-              {courseOptions.map(({ value, label }, index) => (
-                <option key={index} valeu={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
-            <label className="text-14 font-medium">Nível</label>
-            <select
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
-              {...register("level")}
-              id="level"
-              name="level"
-              required
-            >
-              <option value="Técnico">Técnico</option>
-              <option value="Superior">Superior</option>
-            </select>
-            <label className="text-14 font-medium">Ano de conclusão</label>
-            <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
-              {...register("conclusionYear")}
-              type="date"
-              id="conclusionYear"
-              name="conclusionYear"
-              required
-            />
-            <label className="text-14 font-medium">Email</label>
-            <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
-              {...register("email")}
-              type="text"
-              id="email"
-              name="email"
-              required
-            />
-            <label className="text-14 font-medium">Senha</label>
-            <input
-              className="h-10 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
-              {...register("password")}
-              type="password"
-              id="password"
-              name="password"
-              required
-              onChange={passwordConfirmation}
-            />
-            <label className="text-14 font-medium">Confirmar Senha</label>
-            <input
-              className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
-              {...register("confirmation")}
-              type="password"
-              id="confirmation"
-              name="confirmation"
-              required
-              onChange={passwordConfirmation}
-            />
+            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Nome Completo</label>
+                <input
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("name")}
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">CPF</label>
+                <input
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("cpf")}
+                  type="cpf"
+                  id="cpf"
+                  name="cpf"
+                  required
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Curso</label>
+                <select
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("course")}
+                  id="course"
+                  name="course"
+                  required
+                >
+                  {courseOptions.map(({ value, label }, index) => (
+                    <option key={index} valeu={value}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Nível</label>
+                <select
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("level")}
+                  id="level"
+                  name="level"
+                  required
+                >
+                  <option value="Técnico">Técnico</option>
+                  <option value="Superior">Superior</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Ano de conclusão</label>
+                <input
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("conclusionYear")}
+                  type="date"
+                  id="conclusionYear"
+                  name="conclusionYear"
+                  required
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Email</label>
+                <input
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("email")}
+                  type="text"
+                  id="email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Senha</label>
+                <input
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("password")}
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  onChange={passwordConfirmation}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Confirmar Senha</label>
+                <input
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("confirmation")}
+                  type="password"
+                  id="confirmation"
+                  name="confirmation"
+                  required
+                  onChange={passwordConfirmation}
+                />
+              </div>
+            </div>
+
             <button
               className="bg-primary-active text-15 text-disable h-10 mt-10 rounded-sm shadow hover:bg-primary"
               type="submit"
