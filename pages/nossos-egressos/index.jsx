@@ -121,7 +121,7 @@ export default function EgressosPage() {
                     <td className="py-4 px-6">{user.email}</td>
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
-                    <td className="py-4 px-6">pendente</td>
+                    <td className="py-4 px-6">{user.conclusionYear || "Pendente"}</td>
                   </tr>
                 ))}
           </tbody>
