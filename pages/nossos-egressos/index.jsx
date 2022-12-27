@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import BasePage from "../../components/basePage";
 import { SearchOutlined, UserOutlined } from "@ant-design/icons";
+import moment from "moment/moment";
 
 export default function EgressosPage() {
   const [search, setSearch] = useState("");
@@ -37,7 +38,7 @@ export default function EgressosPage() {
               <th className="py-3 px-6">Email</th>
               <th className="py-3 px-6">Curso</th>
               <th className="py-3 px-6">Nível</th>
-              <th className="py-3 px-6">Ano de Conclusão</th>
+              <th className="flex justify-center py-3 px-6">Ano de Conclusão</th>
             </tr>
           </thead>
           <tbody>
@@ -78,9 +79,11 @@ export default function EgressosPage() {
                       <span>{user.name}</span>
                     </th>
                     <td className="py-4 px-6">{user.email}</td>
-                    <td className="py-4 px-6">pendente</td>
-                    <td className="py-4 px-6">pendente</td>
-                    <td className="py-4 px-6">pendente</td>
+                    <td className="py-4 px-6">{user.course}</td>
+                    <td className="py-4 px-6">{user.level}</td>
+                    <td className="flex justify-center py-4 px-6">
+                      {moment(user.conclusionYear).calendar() || "Pendente"}
+                    </td>
                   </tr>
                 ))
               : usersAll?.map((user, index) => (
@@ -121,7 +124,9 @@ export default function EgressosPage() {
                     <td className="py-4 px-6">{user.email}</td>
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
-                    <td className="py-4 px-6">{user.conclusionYear || "Pendente"}</td>
+                    <td className="flex justify-center py-4 px-6">
+                      {moment(user.conclusionYear).calendar() || "Pendente"}
+                    </td>
                   </tr>
                 ))}
           </tbody>
