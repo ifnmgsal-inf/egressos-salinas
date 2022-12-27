@@ -3,9 +3,12 @@ import { AuthUserContext } from "../../../contexts/authUserContext";
 import { SearchOutlined, UserOutlined } from "@ant-design/icons";
 import { formatDate } from "../../../lib/utils";
 
+import { DeleteOutlined } from "@ant-design/icons";
+
 export default function CadastrosPage() {
   const [search, setSearch] = useState("");
-  const { usersAll } = useContext(AuthUserContext);
+  const { usersAll, deleteUser } = useContext(AuthUserContext);
+  console.log(usersAll);
 
   const filterUsers = search.length
     ? usersAll.filter(
@@ -131,7 +134,12 @@ export default function CadastrosPage() {
                     <td className="py-4 px-6">{user.level}</td>
                     <td className="py-4 px-6">{formatDate(user.conclusionYear) || "Pendente"}</td>
                     <td className="py-4 px-6">{formatDate(user.createdIn) || "Pendente"}</td>
-                    <td className="flex justify-center py-4 px-6">ação</td>
+                    <td className="py-4 px-6">
+                      <DeleteOutlined
+                        className="text-red-500 cursor-pointer"
+                        onClick={() => deleteUser(user)}
+                      />
+                    </td>
                   </tr>
                 ))}
           </tbody>

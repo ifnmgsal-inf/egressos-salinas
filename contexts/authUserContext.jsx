@@ -3,7 +3,16 @@ import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { isMobile } from "react-device-detect";
 
-import { collection, getFirestore, query, where, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getFirestore,
+  query,
+  where,
+  getDocs,
+  addDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { app, storage } from "../services/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -149,6 +158,10 @@ export function AuthUserProvider({ children }) {
       .catch((error) => {});
   };
 
+  const deleteUser = async (user) => {
+    await deleteDoc(doc(db, "users", user.id));
+  };
+
   async function autenticationUser(email) {
     // Create a query against the collection.
     const db = getFirestore(app);
@@ -168,6 +181,7 @@ export function AuthUserProvider({ children }) {
       value={{
         isAuthenticated,
         singIn,
+        deleteUser,
         registrationIn,
         signOutUser,
         usersNumber,

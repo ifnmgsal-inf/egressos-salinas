@@ -55,15 +55,9 @@ const SideBar = () => {
       : [
           {
             label: "CADASTROS",
-            icon: <UsergroupAddOutlined />,
+            icon: <TeamOutlined />,
             defaultItem: true,
             link: "/dashboard/cadastros",
-          },
-          {
-            label: "EGRESSOS",
-            icon: <TeamOutlined />,
-            defaultItem: false,
-            link: "/dashboard/egressos",
           },
           {
             label: "NOTÍCIAS",
