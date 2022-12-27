@@ -51,13 +51,16 @@ export function AuthUserProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    const getUsersNumber = async () => {
-      const data = await getDocs(usersCollectionRef);
-      setUsersNumber(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).length);
-      setUsersAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getUsersNumber();
+    getUsers();
   }, []);
+
+  const getUsers = async () => {
+    const data = await getDocs(usersCollectionRef);
+    setUsersNumber(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).length);
+    setUsersAll(
+      data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).filter((doc) => doc.type !== "adm")
+    );
+  };
 
   function singIn({ email, password }) {
     signInWithEmailAndPassword(auth, email, password)
@@ -160,6 +163,7 @@ export function AuthUserProvider({ children }) {
 
   const deleteUser = async (user) => {
     await deleteDoc(doc(db, "users", user.id));
+    getUsers();
   };
 
   async function autenticationUser(email) {
@@ -182,6 +186,7 @@ export function AuthUserProvider({ children }) {
         isAuthenticated,
         singIn,
         deleteUser,
+        getUsers,
         registrationIn,
         signOutUser,
         usersNumber,
