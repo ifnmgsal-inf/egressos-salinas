@@ -1,6 +1,7 @@
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import Modal from "react-modal";
+import { isMobile } from "react-device-detect";
 
 const newsList = [
   {
@@ -143,7 +144,35 @@ const News = () => {
                 </div>
               </figure>
             ))}
-        <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal">
+        <Modal
+          style={{
+            overlay: {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(255, 255, 255, 0.75)",
+            },
+            content: {
+              position: "absolute",
+              top: "10%",
+              left: "30px",
+              right: "30px",
+              bottom: "40px",
+              border: "1px solid #ccc",
+              background: "#fff",
+              overflow: "auto",
+              WebkitOverflowScrolling: "touch",
+              borderRadius: "4px",
+              outline: "none",
+              padding: "20px",
+            },
+          }}
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Example Modal"
+        >
           <div className="flex items-center justify-between mb-4">
             <p className="text-lg font-medium">{modalData?.title}</p>
             <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
