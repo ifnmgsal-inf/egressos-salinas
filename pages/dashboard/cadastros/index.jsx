@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { SearchOutlined, UserOutlined } from "@ant-design/icons";
-import moment from "moment/moment";
+import { formatDate } from "../../../lib/utils";
 
 export default function CadastrosPage() {
   const [search, setSearch] = useState("");
@@ -37,6 +37,7 @@ export default function CadastrosPage() {
               <th className="py-3 px-6">Email</th>
               <th className="py-3 px-6">Curso</th>
               <th className="py-3 px-6">Nível</th>
+              <th className="py-3 px-6">Data de conclusão</th>
               <th className="py-3 px-6">Data de cadastro</th>
               <th className="flex justify-center py-3 px-6">Ações</th>
             </tr>
@@ -82,7 +83,10 @@ export default function CadastrosPage() {
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
                     <td className="flex justify-center py-4 px-6">
-                      {moment(user.conclusionYear).calendar() || "Pendente"}
+                      {formatDate(user.conclusionYear) || "Pendente"}
+                    </td>
+                    <td className="flex justify-center py-4 px-6">
+                      {formatDate(user.createdIn) || "Pendente"}
                     </td>
                     <td className="py-4 px-6">ação</td>
                   </tr>
@@ -125,9 +129,8 @@ export default function CadastrosPage() {
                     <td className="py-4 px-6">{user.email}</td>
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
-                    <td className="py-4 px-6">
-                      {moment(user.conclusionYear).calendar() || "Pendente"}
-                    </td>
+                    <td className="py-4 px-6">{formatDate(user.conclusionYear) || "Pendente"}</td>
+                    <td className="py-4 px-6">{formatDate(user.createdIn) || "Pendente"}</td>
                     <td className="flex justify-center py-4 px-6">ação</td>
                   </tr>
                 ))}

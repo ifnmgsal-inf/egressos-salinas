@@ -14,6 +14,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
+import moment from "moment/moment";
 
 export const AuthUserContext = createContext({});
 
@@ -86,6 +87,7 @@ export function AuthUserProvider({ children }) {
     const storageRef = ref(storage, `images/${file?.name}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
+    const createdIn = moment().format("YYYY-MM-DD");
 
     uploadTask.on(
       "state_changed",
@@ -113,6 +115,7 @@ export function AuthUserProvider({ children }) {
       password,
       imageURL,
       conclusionYear,
+      createdIn,
       type: "user",
     });
 

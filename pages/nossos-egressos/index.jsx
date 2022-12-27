@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import BasePage from "../../components/basePage";
 import { SearchOutlined, UserOutlined } from "@ant-design/icons";
-import moment from "moment/moment";
+import { formatDate } from "../../lib/utils";
 
 export default function EgressosPage() {
   const [search, setSearch] = useState("");
@@ -82,7 +82,7 @@ export default function EgressosPage() {
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
                     <td className="flex justify-center py-4 px-6">
-                      {moment(user.conclusionYear).calendar() || "Pendente"}
+                      {formatDate(user.conclusionYear) || "Pendente"}
                     </td>
                   </tr>
                 ))
@@ -125,7 +125,7 @@ export default function EgressosPage() {
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
                     <td className="flex justify-center py-4 px-6">
-                      {moment(user.conclusionYear).calendar() || "Pendente"}
+                      {formatDate(user.conclusionYear) || "Pendente"}
                     </td>
                   </tr>
                 ))}
