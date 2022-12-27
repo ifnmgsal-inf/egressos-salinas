@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import BasePage from "../../components/basePage";
 import { SearchOutlined, UserOutlined } from "@ant-design/icons";
