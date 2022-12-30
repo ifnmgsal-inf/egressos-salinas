@@ -85,13 +85,14 @@ export default function CadastrosPage() {
                     <td className="py-4 px-6">{user.email}</td>
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
-                    <td className="flex justify-center py-4 px-6">
-                      {formatDate(user.conclusionYear) || "Pendente"}
+                    <td className="py-4 px-6">{formatDate(user.conclusionYear) || "Pendente"}</td>
+                    <td className="py-4 px-6">{formatDate(user.createdIn) || "Pendente"}</td>
+                    <td className="py-4 px-6">
+                      <DeleteOutlined
+                        className="text-red-500 cursor-pointer"
+                        onClick={() => deleteUser(user)}
+                      />
                     </td>
-                    <td className="flex justify-center py-4 px-6">
-                      {formatDate(user.createdIn) || "Pendente"}
-                    </td>
-                    <td className="py-4 px-6">ação</td>
                   </tr>
                 ))
               : usersAll?.map((user, index) => (

@@ -32,6 +32,7 @@ export function AuthUserProvider({ children }) {
   const [userGoogle, setUserGoogle] = useState(null);
   const [usersNumber, setUsersNumber] = useState(null);
   const [usersAll, setUsersAll] = useState(null);
+  const [newsAll, setNewsAll] = useState(null);
 
   const [progress, setProgress] = useState(0);
   const [imageURL, setImageURL] = useState(null);
@@ -41,6 +42,7 @@ export function AuthUserProvider({ children }) {
 
   const db = getFirestore(app);
   const usersCollectionRef = collection(db, "users");
+  const newsCollectionRef = collection(db, "news");
   const auth = getAuth();
 
   useEffect(() => {
@@ -52,17 +54,21 @@ export function AuthUserProvider({ children }) {
 
   useEffect(() => {
     getUsers();
+    getNews();
   }, []);
 
   const getUsers = async () => {
     const data = await getDocs(usersCollectionRef);
-    setUsersNumber(
-      data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).filter((doc) => doc.type !== "adm")
-        .length
-    );
-    setUsersAll(
-      data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).filter((doc) => doc.type !== "adm")
-    );
+    const dataFilter = data.docs
+      .map((doc) => ({ ...doc.data(), id: doc.id }))
+      .filter((doc) => doc.type !== "adm");
+    setUsersNumber(dataFilter.length);
+    setUsersAll(dataFilter);
+  };
+
+  const getNews = async () => {
+    const data = await getDocs(newsCollectionRef);
+    setNewsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   function singIn({ email, password }) {
@@ -200,6 +206,7 @@ export function AuthUserProvider({ children }) {
         setUserGoogle,
         autenticationUser,
         isMobile,
+        newsAll,
       }}
     >
       {children}

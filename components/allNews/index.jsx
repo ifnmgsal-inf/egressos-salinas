@@ -1,57 +1,60 @@
+import { useContext, useState } from "react";
+import { AuthUserContext } from "../../contexts/authUserContext";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import { useState } from "react";
 
 import Modal from "react-modal";
 
-const allNewsList = [
-  {
-    image: "/bg_header.jpg",
-    title: "Título da notícia 1",
-    description: "Uma prévia das informações da notícia 1 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    title: "Título da notícia 2",
-    description: "Uma prévia das informações da notícia 2 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    title: "Título da notícia 3",
-    description: "Uma prévia das informações da notícia 3 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    title: "Título da notícia 4",
-    description: "Uma prévia das informações da notícia 4 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    title: "Título da notícia 5",
-    description: "Uma prévia das informações da notícia 5 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    title: "Título da notícia 6",
-    description: "Uma prévia das informações da notícia 6 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    title: "Título da notícia 7",
-    description: "Uma prévia das informações da notícia 5 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    title: "Título da notícia 8",
-    description: "Uma prévia das informações da notícia 6 aparecerá aqui.",
-  },
-];
+// const allNewsList = [
+//   {
+//     image: "/bg_header.jpg",
+//     title: "Título da notícia 1",
+//     description: "Uma prévia das informações da notícia 1 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     title: "Título da notícia 2",
+//     description: "Uma prévia das informações da notícia 2 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     title: "Título da notícia 3",
+//     description: "Uma prévia das informações da notícia 3 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     title: "Título da notícia 4",
+//     description: "Uma prévia das informações da notícia 4 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     title: "Título da notícia 5",
+//     description: "Uma prévia das informações da notícia 5 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     title: "Título da notícia 6",
+//     description: "Uma prévia das informações da notícia 6 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     title: "Título da notícia 7",
+//     description: "Uma prévia das informações da notícia 5 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     title: "Título da notícia 8",
+//     description: "Uma prévia das informações da notícia 6 aparecerá aqui.",
+//   },
+// ];
 
 const AllNews = () => {
   const [search, setSearch] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
+  const { newsAll } = useContext(AuthUserContext);
+  console.log(newsAll, "Notícias do Firebase");
 
-  const filterNews = search.length ? allNewsList.filter(({ title }) => title.includes(search)) : [];
+  const filterNews = search.length ? newsAll.filter(({ title }) => title.includes(search)) : [];
 
   function openModal() {
     setModalIsOpen(true);
@@ -104,7 +107,7 @@ const AllNews = () => {
                 </div>
               </figure>
             ))
-          : allNewsList.map((news, index) => (
+          : newsAll?.map((news, index) => (
               <figure
                 key={index}
                 className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
