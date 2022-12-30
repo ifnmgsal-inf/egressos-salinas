@@ -56,7 +56,10 @@ export function AuthUserProvider({ children }) {
 
   const getUsers = async () => {
     const data = await getDocs(usersCollectionRef);
-    setUsersNumber(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).length);
+    setUsersNumber(
+      data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).filter((doc) => doc.type !== "adm")
+        .length
+    );
     setUsersAll(
       data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).filter((doc) => doc.type !== "adm")
     );
