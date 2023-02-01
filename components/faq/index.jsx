@@ -26,7 +26,7 @@ const faqList = [
 
 const Faq = () => {
   return (
-    <div className="flex flex-col mt-8 mb-4 mx-10">
+    <div className="flex flex-col mt-8 mb-4 xsm:mx-10 xl:mx-32">
       <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title mb-6">
         Perguntas <span className="text-primary-active">Frequentes</span>
       </h1>

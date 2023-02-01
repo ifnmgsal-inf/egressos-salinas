@@ -2,7 +2,7 @@ import { FileTextOutlined } from "@ant-design/icons";
 
 const Sobre = () => {
   return (
-    <div className="flex flex-col items-center pt-8 pb-4 px-10 bg-bg-container">
+    <div className="flex flex-col items-center pt-8 pb-4 xsm:px-10 xl:px-32 bg-bg-container">
       <div>
         <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title mb-6">
           Sobre o <span className="text-primary-active">Egresso</span>

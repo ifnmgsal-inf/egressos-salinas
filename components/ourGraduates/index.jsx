@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const OurGraduates = () => {
   return (
-    <div className="flex flex-col items-center mt-8 mb-4 mx-10">
+    <div className="flex flex-col items-center mt-8 mb-4 xl:mx-32 xsm:mx-10">
       <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title">
         Nossos <span className="text-primary-active">Egressos</span>
       </h1>

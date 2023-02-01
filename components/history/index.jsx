@@ -7,7 +7,7 @@ import Link from "next/link";
 const History = () => {
   const { usersNumber } = useContext(AuthUserContext);
   return (
-    <div className="mx-10 py-6">
+    <div className="xsm:mx-10 xl:mx-32 py-6">
       <div>
         <h1 className="font-medium xsm:text-20 sm:text-20 lg:text-30 text-title leading-tight">
           Nossa história continua após
