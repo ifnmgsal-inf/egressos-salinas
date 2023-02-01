@@ -66,7 +66,7 @@ const AllNews = () => {
   }
 
   return (
-    <div className="px-10 py-10">
+    <div className="xsm:px-10 xl:px-32 py-10">
       <div className="flex xsm:flex-col md:flex-row lg:flex-row xl:flex-row justify-between xsm:items-start md:items-center lg:items-center xl:items-center">
         <h1 className="xsm:text-24 sm:text-24 lg:text-30 text-title">
           Todas as <span className="text-primary-active">Notícias</span>
