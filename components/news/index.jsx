@@ -1,74 +1,77 @@
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "react-modal";
 import { isMobile } from "react-device-detect";
+import { AuthUserContext } from "../../contexts/authUserContext";
 
-const newsList = [
-  {
-    image: "/bg_header.jpg",
-    simpleTitle: "Título da notícia 1",
-    simpleDescription: "Uma prévia das informações da notícia 1 aparecerá aqui.",
-    title: "Título completo sobre a notícia 1",
-    description: "Todas as informações completas da notícia 1 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    simpleTitle: "Título da notícia 2",
-    simpleDescription: "Uma prévia das informações da notícia 2 aparecerá aqui.",
-    title: "Título completo sobre a notícia 2",
-    description: "Todas as informações completas da notícia 2 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    simpleTitle: "Título da notícia 3",
-    simpleDescription: "Uma prévia das informações da notícia 3 aparecerá aqui.",
-    title: "Título completo sobre a notícia 3",
-    description: "Todas as informações completas da notícia 3 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    simpleTitle: "Título da notícia 4",
-    simpleDescription: "Uma prévia das informações da notícia 4 aparecerá aqui.",
-    title: "Título completo sobre a notícia 4",
-    description: "Todas as informações completas da notícia 4 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    simpleTitle: "Título da notícia 5",
-    simpleDescription: "Uma prévia das informações da notícia 5 aparecerá aqui.",
-    title: "Título completo sobre a notícia 5",
-    description: "Todas as informações completas da notícia 5 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    simpleTitle: "Título da notícia 6",
-    simpleDescription: "Uma prévia das informações da notícia 6 aparecerá aqui.",
-    title: "Título completo sobre a notícia 6",
-    description: "Todas as informações completas da notícia 6 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    simpleTitle: "Título da notícia 7",
-    simpleDescription: "Uma prévia das informações da notícia 5 aparecerá aqui.",
-    title: "Título completo sobre a notícia 7",
-    description: "Todas as informações completas da notícia 7 aparecerá aqui.",
-  },
-  {
-    image: "/bg_header.jpg",
-    simpleTitle: "Título da notícia 8",
-    simpleDescription: "Uma prévia das informações da notícia 6 aparecerá aqui.",
-    title: "Título completo sobre a notícia 8",
-    description: "Todas as informações completas da notícia 8 aparecerá aqui.",
-  },
-];
+// const news = [
+//   {
+//     image: "/bg_header.jpg",
+//     simpleTitle: "Título da notícia 1",
+//     simpleDescription: "Uma prévia das informações da notícia 1 aparecerá aqui.",
+//     title: "Título completo sobre a notícia 1",
+//     description: "Todas as informações completas da notícia 1 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     simpleTitle: "Título da notícia 2",
+//     simpleDescription: "Uma prévia das informações da notícia 2 aparecerá aqui.",
+//     title: "Título completo sobre a notícia 2",
+//     description: "Todas as informações completas da notícia 2 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     simpleTitle: "Título da notícia 3",
+//     simpleDescription: "Uma prévia das informações da notícia 3 aparecerá aqui.",
+//     title: "Título completo sobre a notícia 3",
+//     description: "Todas as informações completas da notícia 3 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     simpleTitle: "Título da notícia 4",
+//     simpleDescription: "Uma prévia das informações da notícia 4 aparecerá aqui.",
+//     title: "Título completo sobre a notícia 4",
+//     description: "Todas as informações completas da notícia 4 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     simpleTitle: "Título da notícia 5",
+//     simpleDescription: "Uma prévia das informações da notícia 5 aparecerá aqui.",
+//     title: "Título completo sobre a notícia 5",
+//     description: "Todas as informações completas da notícia 5 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     simpleTitle: "Título da notícia 6",
+//     simpleDescription: "Uma prévia das informações da notícia 6 aparecerá aqui.",
+//     title: "Título completo sobre a notícia 6",
+//     description: "Todas as informações completas da notícia 6 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     simpleTitle: "Título da notícia 7",
+//     simpleDescription: "Uma prévia das informações da notícia 5 aparecerá aqui.",
+//     title: "Título completo sobre a notícia 7",
+//     description: "Todas as informações completas da notícia 7 aparecerá aqui.",
+//   },
+//   {
+//     image: "/bg_header.jpg",
+//     simpleTitle: "Título da notícia 8",
+//     simpleDescription: "Uma prévia das informações da notícia 6 aparecerá aqui.",
+//     title: "Título completo sobre a notícia 8",
+//     description: "Todas as informações completas da notícia 8 aparecerá aqui.",
+//   },
+// ];
 
 const News = () => {
   const [search, setSearch] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
 
+  const { newsAll } = useContext(AuthUserContext);
+
   const filterNews = search.length
-    ? newsList.filter(
+    ? newsAll.filter(
         ({ title, description }) => title.includes(search) || description.includes(search)
       )
     : [];
@@ -124,7 +127,7 @@ const News = () => {
                 </div>
               </figure>
             ))
-          : newsList.map((news, index) => (
+          : newsAll?.map((news, index) => (
               <figure
                 key={index}
                 className="flex flex-col min-h-270 bg-white rounded-sm p-0 drop-shadow-md cursor-pointer"
@@ -136,10 +139,10 @@ const News = () => {
                 <img className="w-full h-24 rounded-t-sm" src={news.image} alt="" />
                 <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
                   <blockquote>
-                    <p className="text-lg font-medium">{news.simpleTitle}</p>
+                    <p className="text-lg font-medium">{news.title}</p>
                   </blockquote>
                   <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{news.simpleDescription}</div>
+                    <div className="text-13 text-grey-text">{news.description}</div>
                   </figcaption>
                 </div>
               </figure>

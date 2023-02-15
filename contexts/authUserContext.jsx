@@ -75,6 +75,39 @@ export function AuthUserProvider({ children }) {
     setNewsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  async function createNewsUpload({ image, title, description }) {
+    console.log({ image, title, description });
+    const file = image[0];
+
+    const storageRef = ref(storage, `images/${file?.name}`);
+
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setImageURL(url);
+        });
+      }
+    );
+
+    await addDoc(collection(db, "news"), {
+      image: imageURL,
+      title,
+      description,
+    });
+    getNews();
+  }
+
   const getFAQs = async () => {
     const data = await getDocs(faqsCollectionRef);
     setFaqsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -238,6 +271,7 @@ export function AuthUserProvider({ children }) {
         autenticationUser,
         isMobile,
         newsAll,
+        createNewsUpload,
         faqsAll,
         createFaqIn,
         getFAQs,

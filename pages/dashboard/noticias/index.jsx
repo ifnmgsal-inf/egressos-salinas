@@ -13,8 +13,7 @@ const NewsPage = () => {
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [image, setImage] = useState(null);
-  const { newsAll } = useContext(AuthUserContext);
-  console.log(newsAll, "Notícias do Firebase");
+  const { newsAll, createNewsUpload } = useContext(AuthUserContext);
 
   const { register, handleSubmit } = useForm();
 
@@ -38,8 +37,10 @@ const NewsPage = () => {
     setImage(null);
   }
 
-  function handleRegister(data) {
-    console.log(data);
+  function handleCreateNews(data) {
+    // console.log(data);
+    createNewsUpload(data);
+    closeModalCreate();
   }
 
   return (
@@ -214,7 +215,7 @@ const NewsPage = () => {
             </div>
             <form
               className="flex-1 flex-col lg:mt-20 space-y-4"
-              onSubmit={handleSubmit(handleRegister)}
+              onSubmit={handleSubmit(handleCreateNews)}
             >
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Título</label>
