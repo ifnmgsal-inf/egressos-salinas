@@ -220,7 +220,7 @@ const NewsPage = () => {
                 <label className="text-14 font-medium">Título</label>
                 <input
                   className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
-                  {...register("Título")}
+                  {...register("title")}
                   type="text"
                   id="title"
                   name="title"

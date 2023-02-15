@@ -12,6 +12,7 @@ import {
   addDoc,
   doc,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { app, storage } from "../services/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -85,6 +86,21 @@ export function AuthUserProvider({ children }) {
       response,
     });
   }
+
+  const deleteFAQ = async (id) => {
+    console.log(id);
+    await deleteDoc(doc(db, "faqs", id));
+    getFAQs();
+  };
+
+  const updateFAQ = async ({ id, question, response }) => {
+    console.log(id);
+    await updateDoc(doc(db, "faqs", id), {
+      question,
+      response,
+    });
+    getFAQs();
+  };
 
   function singIn({ email, password }) {
     signInWithEmailAndPassword(auth, email, password)
@@ -225,6 +241,8 @@ export function AuthUserProvider({ children }) {
         faqsAll,
         createFaqIn,
         getFAQs,
+        deleteFAQ,
+        updateFAQ,
       }}
     >
       {children}

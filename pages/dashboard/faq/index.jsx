@@ -8,9 +8,11 @@ import Accordion from "../../../components/accordion";
 
 const FaqPage = () => {
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const [editFAQid, setEditFAQid] = useState(null);
+  const { register, handleSubmit, setValue } = useForm();
 
-  const { faqsAll, createFaqIn, getFAQs } = useContext(AuthUserContext);
+  const { faqsAll, createFaqIn, getFAQs, deleteFAQ, updateFAQ } = useContext(AuthUserContext);
 
   function openModalCreate() {
     setCreateModalIsOpen(true);
@@ -19,12 +21,32 @@ const FaqPage = () => {
   function closeModalCreate() {
     setCreateModalIsOpen(false);
   }
+  function openModalEdit(id) {
+    console.log(faqsAll.filter((faq) => faq.id === id));
+    const item = faqsAll.filter((faq) => faq.id === id);
+    setValue("question", item[0].question);
+    setValue("response", item[0].response);
+    setEditModalIsOpen(true);
+    setEditFAQid(id);
+  }
 
-  function handleRegister(data) {
+  function closeModalEdit() {
+    setEditModalIsOpen(false);
+  }
+
+  function handleCreateFAQ(data) {
     console.log(data);
     createFaqIn(data);
     getFAQs();
     closeModalCreate();
+  }
+  function handleEditFAQ(data) {
+    console.log(data);
+    const item = { id: editFAQid, question: data.question, response: data.response };
+
+    updateFAQ(item);
+    getFAQs();
+    closeModalEdit();
   }
   return (
     <>
@@ -36,8 +58,14 @@ const FaqPage = () => {
           <button onClick={() => openModalCreate()}>Adicionar FAQ</button>
         </div>
         <div className="mb-28 ">
-          {faqsAll?.map(({ question, response }, index) => (
-            <Accordion key={index} title={question} edit>
+          {faqsAll?.map(({ question, response, id }, index) => (
+            <Accordion
+              key={index}
+              title={question}
+              edit
+              onClickDelete={() => deleteFAQ(id)}
+              onClickEdit={() => openModalEdit(id)}
+            >
               {response}
             </Accordion>
           ))}
@@ -80,7 +108,81 @@ const FaqPage = () => {
         <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text">
           <form
             className="flex-1 flex-col lg:mt-20 space-y-4"
-            onSubmit={handleSubmit(handleRegister)}
+            onSubmit={handleSubmit(handleCreateFAQ)}
+          >
+            <div className="flex flex-col">
+              <label className="text-14 font-medium">Pergunta</label>
+              <input
+                className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                {...register("question")}
+                type="text"
+                id="question"
+                name="question"
+                required
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label className="text-14 font-medium">Resposta</label>
+              <textarea
+                className="border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                {...register("response")}
+                type="textArea"
+                id="response"
+                name="response"
+                required
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <button
+                className="bg-primary-active text-15 text-disable h-10 mt-5 rounded-sm shadow hover:bg-primary"
+                type="submit"
+              >
+                Salvar
+              </button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+      <Modal
+        style={{
+          overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.75)",
+          },
+          content: {
+            position: "absolute",
+            top: "10%",
+            left: "20%",
+            right: "20%",
+            bottom: "20%",
+            border: "1px solid #ccc",
+            background: "#fff",
+            overflow: "auto",
+            WebkitOverflowScrolling: "touch",
+            borderRadius: "4px",
+            outline: "none",
+            padding: "20px",
+          },
+        }}
+        isOpen={editModalIsOpen}
+        onRequestClose={closeModalEdit}
+        contentLabel="Example Modal"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-lg font-medium">Novo FAQ</p>
+          <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModalEdit} />
+        </div>
+        <hr />
+        <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text">
+          <form
+            className="flex-1 flex-col lg:mt-20 space-y-4"
+            onSubmit={handleSubmit(handleEditFAQ)}
           >
             <div className="flex flex-col">
               <label className="text-14 font-medium">Pergunta</label>
