@@ -35,6 +35,7 @@ const NewsPage = () => {
 
   function closeModalCreate() {
     setCreateModalIsOpen(false);
+    setImage(null);
   }
 
   function handleRegister(data) {
@@ -211,7 +212,10 @@ const NewsPage = () => {
                 onChange={(e) => setImage(e.target.files[0])}
               />
             </div>
-            <form className="flex-1 flex-col lg:mt-20" onSubmit={handleSubmit(handleRegister)}>
+            <form
+              className="flex-1 flex-col lg:mt-20 space-y-4"
+              onSubmit={handleSubmit(handleRegister)}
+            >
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Título</label>
                 <input
@@ -238,7 +242,7 @@ const NewsPage = () => {
 
               <div className="flex flex-col">
                 <button
-                  className="bg-primary-active text-15 text-disable h-10 mt-10 rounded-sm shadow hover:bg-primary"
+                  className="bg-primary-active text-15 text-disable h-10 mt-5 rounded-sm shadow hover:bg-primary"
                   type="submit"
                 >
                   Salvar

@@ -1,13 +1,13 @@
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import { DownOutlined, RightOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
-const Accordion = ({ title, children }) => {
+const Accordion = ({ title, children, edit = false }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <div
-        className="flex group cursor-pointer w-3/4 mx-auto xsm:h-10 md:h-8 justify-between items-center rounded bg-white xsm:mb-2"
+        className="flex group cursor-pointer w-3/4 mx-auto xsm:h-10 md:h-8 justify-between items-center rounded xsm:mb-2"
         onClick={() => setOpen(!open)}
       >
         <div className="flex group cursor-pointer items-center">
@@ -26,6 +26,12 @@ const Accordion = ({ title, children }) => {
             {title}
           </div>
         </div>
+        {edit ? (
+          <div>
+            <EditOutlined />
+            <DeleteOutlined />
+          </div>
+        ) : null}
       </div>
       {open && <div className="pl-6 xsm:mb-8 mb-4 text-14">{children}</div>}
     </>
