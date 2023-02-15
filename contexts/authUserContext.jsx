@@ -35,6 +35,7 @@ export function AuthUserProvider({ children }) {
   const [usersAll, setUsersAll] = useState(null);
   const [newsAll, setNewsAll] = useState(null);
   const [faqsAll, setFaqsAll] = useState(null);
+  const [testimonialsAll, setTestimonialsAll] = useState(null);
 
   const [progress, setProgress] = useState(0);
   const [imageURL, setImageURL] = useState(null);
@@ -46,6 +47,7 @@ export function AuthUserProvider({ children }) {
   const usersCollectionRef = collection(db, "users");
   const newsCollectionRef = collection(db, "news");
   const faqsCollectionRef = collection(db, "faqs");
+  const testimonialsCollectionRef = collection(db, "publishedTestimonials");
   const auth = getAuth();
 
   useEffect(() => {
@@ -59,6 +61,7 @@ export function AuthUserProvider({ children }) {
     getUsers();
     getNews();
     getFAQs();
+    getTestimonialsAll();
   }, []);
 
   const getUsers = async () => {
@@ -133,6 +136,27 @@ export function AuthUserProvider({ children }) {
       response,
     });
     getFAQs();
+  };
+
+  const getTestimonialsAll = async () => {
+    const data = await getDocs(testimonialsCollectionRef);
+    setTestimonialsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
+  async function createPublishedTestimonials({ id, name, imageURL, testimony }) {
+    await addDoc(collection(db, "publishedTestimonials"), {
+      userId: id,
+      userName: name,
+      userImage: imageURL,
+      userTestimony: testimony,
+    });
+    getTestimonialsAll();
+  }
+
+  const deletePublishedTestimonials = async (id) => {
+    console.log(id);
+    await deleteDoc(doc(db, "publishedTestimonials", id));
+    getTestimonialsAll();
   };
 
   function singIn({ email, password }) {
@@ -277,6 +301,10 @@ export function AuthUserProvider({ children }) {
         getFAQs,
         deleteFAQ,
         updateFAQ,
+        testimonialsAll,
+        getTestimonialsAll,
+        createPublishedTestimonials,
+        deletePublishedTestimonials,
       }}
     >
       {children}
