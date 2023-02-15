@@ -33,6 +33,7 @@ export function AuthUserProvider({ children }) {
   const [usersNumber, setUsersNumber] = useState(null);
   const [usersAll, setUsersAll] = useState(null);
   const [newsAll, setNewsAll] = useState(null);
+  const [faqsAll, setFaqsAll] = useState(null);
 
   const [progress, setProgress] = useState(0);
   const [imageURL, setImageURL] = useState(null);
@@ -43,6 +44,7 @@ export function AuthUserProvider({ children }) {
   const db = getFirestore(app);
   const usersCollectionRef = collection(db, "users");
   const newsCollectionRef = collection(db, "news");
+  const faqsCollectionRef = collection(db, "faqs");
   const auth = getAuth();
 
   useEffect(() => {
@@ -55,6 +57,7 @@ export function AuthUserProvider({ children }) {
   useEffect(() => {
     getUsers();
     getNews();
+    getFAQs();
   }, []);
 
   const getUsers = async () => {
@@ -70,6 +73,18 @@ export function AuthUserProvider({ children }) {
     const data = await getDocs(newsCollectionRef);
     setNewsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
+
+  const getFAQs = async () => {
+    const data = await getDocs(faqsCollectionRef);
+    setFaqsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
+  async function createFaqIn({ question, response }) {
+    await addDoc(collection(db, "faqs"), {
+      question,
+      response,
+    });
+  }
 
   function singIn({ email, password }) {
     signInWithEmailAndPassword(auth, email, password)
@@ -207,6 +222,9 @@ export function AuthUserProvider({ children }) {
         autenticationUser,
         isMobile,
         newsAll,
+        faqsAll,
+        createFaqIn,
+        getFAQs,
       }}
     >
       {children}

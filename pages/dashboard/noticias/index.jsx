@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import { UserOutlined, FileImageOutlined } from "@ant-design/icons";
+import { FileImageOutlined } from "@ant-design/icons";
 
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
