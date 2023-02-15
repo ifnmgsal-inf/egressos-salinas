@@ -1,15 +1,22 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import { UserOutlined, FileImageOutlined } from "@ant-design/icons";
 
 import Modal from "react-modal";
+import { useForm } from "react-hook-form";
 
 const NewsPage = () => {
   const [search, setSearch] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
+  const [image, setImage] = useState(null);
   const { newsAll } = useContext(AuthUserContext);
   console.log(newsAll, "Notícias do Firebase");
+
+  const { register, handleSubmit } = useForm();
 
   const filterNews = search.length ? newsAll.filter(({ title }) => title.includes(search)) : [];
 
@@ -20,6 +27,18 @@ const NewsPage = () => {
   function closeModal() {
     setModalIsOpen(false);
     setModalData(null);
+  }
+
+  function openModalCreate() {
+    setCreateModalIsOpen(true);
+  }
+
+  function closeModalCreate() {
+    setCreateModalIsOpen(false);
+  }
+
+  function handleRegister(data) {
+    console.log(data);
   }
 
   return (
@@ -42,7 +61,7 @@ const NewsPage = () => {
               value={search}
             />
           </label>
-          <button>Criar notícia</button>
+          <button onClick={() => openModalCreate()}>Criar notícia</button>
         </div>
       </div>
       <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-x-4 gap-y-8 my-8">
@@ -122,6 +141,111 @@ const NewsPage = () => {
           </div>
           <hr />
           <div className="text-13 text-grey-text mt-4w-100">{modalData?.description}</div>
+        </Modal>
+        <Modal
+          style={{
+            overlay: {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(255, 255, 255, 0.75)",
+            },
+            content: {
+              position: "absolute",
+              top: "10%",
+              left: "5%",
+              right: "5%",
+              bottom: "10%",
+              border: "1px solid #ccc",
+              background: "#fff",
+              overflow: "auto",
+              WebkitOverflowScrolling: "touch",
+              borderRadius: "4px",
+              outline: "none",
+              padding: "20px",
+            },
+          }}
+          isOpen={createModalIsOpen}
+          onRequestClose={closeModalCreate}
+          contentLabel="Example Modal"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-lg font-medium">Nova notícia</p>
+            <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModalCreate} />
+          </div>
+          <hr />
+          <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text">
+            <div className="flex flex-col items-center justify-center sm:m-0 lg:m-10">
+              <span className="inline-block mt-8" style={{ width: "300px", height: "300px" }}>
+                {image ? (
+                  <img
+                    className="shadow-2xl"
+                    style={{
+                      borderRadius: "5%",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                    src={URL.createObjectURL(image)}
+                    alt=""
+                  />
+                ) : (
+                  <FileImageOutlined
+                    className="flex items-center justify-center text-white-text text-50 rounded-full"
+                    style={{
+                      borderRadius: "5%",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      backgroundColor: "#D9D9D9",
+                    }}
+                  />
+                )}
+              </span>
+              <input
+                {...register("image")}
+                className="xsm:file:text-13 xsm:file:my-4 lg:file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer lg:file:px-6 file:py-1.5 file:bg-white"
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </div>
+            <form className="flex-1 flex-col lg:mt-20" onSubmit={handleSubmit(handleRegister)}>
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Título</label>
+                <input
+                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("Título")}
+                  type="text"
+                  id="title"
+                  name="title"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-14 font-medium">Descrição</label>
+                <textarea
+                  className="border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  {...register("description")}
+                  type="textArea"
+                  id="description"
+                  name="description"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <button
+                  className="bg-primary-active text-15 text-disable h-10 mt-10 rounded-sm shadow hover:bg-primary"
+                  type="submit"
+                >
+                  Salvar
+                </button>
+              </div>
+            </form>
+          </div>
         </Modal>
       </div>
     </div>
