@@ -143,6 +143,14 @@ export function AuthUserProvider({ children }) {
     setTestimonialsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  const updateTestimonyUser = async (user, { testimony }) => {
+    console.log({ user, testimony });
+    await updateDoc(doc(db, "users", user.id), {
+      testimony,
+    });
+    getTestimonialsAll();
+  };
+
   async function createPublishedTestimonials({ id, name, imageURL, testimony }) {
     await addDoc(collection(db, "publishedTestimonials"), {
       userId: id,
@@ -270,7 +278,7 @@ export function AuthUserProvider({ children }) {
     const q = query(userRef, where("email", "==", email));
 
     const querySnapshot = await getDocs(q);
-    const user = querySnapshot.docs.map((doc) => ({ ...doc.data() }))[0] || null;
+    const user = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0] || null;
     if (user) {
       setUser(user);
       user.type === "adm" ? router.push("/dashboard/cadastros") : router.push("/painel/curriculo");
@@ -305,6 +313,7 @@ export function AuthUserProvider({ children }) {
         getTestimonialsAll,
         createPublishedTestimonials,
         deletePublishedTestimonials,
+        updateTestimonyUser,
       }}
     >
       {children}

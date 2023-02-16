@@ -8,12 +8,14 @@ const DepoimentoPage = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   const { register, handleSubmit } = useForm();
-  const { user } = useContext(AuthUserContext);
+  const { user, updateTestimonyUser } = useContext(AuthUserContext);
 
   const handleDeleteTestimony = () => {};
-  const handleEditTestimony = () => {
+  function handleEditTestimony(data) {
+    // console.log(data);
+    updateTestimonyUser(user, data);
     setIsEdit(false);
-  };
+  }
 
   return (
     <>
@@ -49,25 +51,23 @@ const DepoimentoPage = () => {
             <span>{user?.name}</span>
           </div>
           <div>
-            <form className="flex" onSubmit={handleSubmit(handleEditTestimony)}>
-              <div className="flex flex-col">
-                <label className="text-14 font-medium">Meu Depoimento</label>
-                <textarea
-                  className="rounded-sm focus:outline-primary-active p-1"
-                  value={user?.testimony || "Você não possui depoimento..."}
-                  disabled={!isEdit}
-                  {...register("testimony")}
-                  type="textArea"
-                  id="testimony"
-                  name="testimony"
-                  required
-                />
-              </div>
-            </form>
+            <div className="flex flex-col">
+              <label className="text-14 font-medium">Meu Depoimento</label>
+              <input
+                className="rounded-sm focus:outline-primary-active p-1"
+                defaultValue={user?.testimony || "Você não possui depoimento..."}
+                disabled={!isEdit}
+                {...register("testimony")}
+                type="text"
+                id="testimony"
+                name="testimony"
+                required
+              />
+            </div>
           </div>
           {isEdit ? (
             <div className="flex flex-col">
-              <CheckOutlined onClick={handleEditTestimony} />{" "}
+              <CheckOutlined onClick={handleSubmit(handleEditTestimony)} />{" "}
             </div>
           ) : (
             <div className="flex flex-col">
