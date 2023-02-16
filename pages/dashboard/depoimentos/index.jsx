@@ -33,7 +33,7 @@ const DepositionsPage = () => {
                       height: "100%",
                       objectFit: "cover",
                     }}
-                    src={URL.createObjectURL(user?.imageURL)}
+                    src={user?.imageURL}
                     alt=""
                   />
                 ) : (
@@ -88,7 +88,7 @@ const DepositionsPage = () => {
                       height: "100%",
                       objectFit: "cover",
                     }}
-                    src={URL.createObjectURL(testimony?.userImage)}
+                    src={testimony?.userImage}
                     alt=""
                   />
                 ) : (
