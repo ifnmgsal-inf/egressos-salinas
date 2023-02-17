@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
-import { UserOutlined, EditOutlined, DeleteOutlined, CheckOutlined } from "@ant-design/icons";
+import { UserOutlined, DeleteOutlined, CheckOutlined } from "@ant-design/icons";
 
 const DepositionsPage = () => {
   const { usersAll, testimonialsAll, createPublishedTestimonials, deletePublishedTestimonials } =

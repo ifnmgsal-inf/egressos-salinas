@@ -113,6 +113,7 @@ module.exports = {
         icon: {
           bgGreen: "rgba(0, 123, 4, 0.07)",
           bgRed: "rgba(185, 28, 28, 0.07)",
+          bgGrey: "rgba(20, 20, 20, 0.07)",
         },
       },
     },
