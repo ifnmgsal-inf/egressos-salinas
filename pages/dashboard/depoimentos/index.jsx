@@ -17,7 +17,7 @@ const DepositionsPage = () => {
       <div className="flex flex-col mt-8 mb-4 xsm:mx-2 xl:mx-8">
         <div className="flex items-center justify-between mb-4">
           <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
-            Todos <span className="text-primary-active">Depoimento</span>
+            Novos <span className="text-primary-active">Depoimento</span>
           </h1>
         </div>
         {usersAll?.map((user) => (

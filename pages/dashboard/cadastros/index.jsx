@@ -18,21 +18,26 @@ export default function CadastrosPage() {
       )
     : [];
   return (
-    <div className="bg-white py-2 px-10">
-      <label className="flex relative justify-end xsm:mt-10 lg:mt-10 xl:mt-10 mr-5">
-        <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-          <SearchOutlined className="text-20 text-title" />
-        </span>
-        <input
-          className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-sm py-1 pl-3 pr-3 shadow-sm focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
-          placeholder="Buscar..."
-          type="text"
-          name="search"
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-        />
-      </label>
-      <div className="flex flex-col justify-center overflow-x-auto mt-5 mb-20 mx-5 relative">
+    <div className="bg-white py-10 px-10">
+      <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-center xl:items-center">
+        <h1 className="xsm:text-16 sm:text-18 lg:text-20 text-title font-medium">
+          Todos os <span className="text-primary-active">Cadastros</span>
+        </h1>
+        <label className="flex relative justify-end xsm:mt-8 lg:mt-0">
+          <span className="absolute inset-y-0 right-0 flex items-center pr-2">
+            <SearchOutlined className="text-20 text-title" />
+          </span>
+          <input
+            className="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-sm py-1 pl-3 pr-3 shadow-sm focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+            placeholder="Buscar..."
+            type="text"
+            name="search"
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+        </label>
+      </div>
+      <div className="flex flex-col justify-center overflow-x-auto mt-5 mb-20  relative">
         <table className="w-full text-sm text-left text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-100 ">
             <tr>
@@ -135,9 +140,9 @@ export default function CadastrosPage() {
                     <td className="py-4 px-6">{user.level}</td>
                     <td className="py-4 px-6">{formatDate(user.conclusionYear) || "Pendente"}</td>
                     <td className="py-4 px-6">{formatDate(user.createdIn) || "Pendente"}</td>
-                    <td className="py-4 px-6">
+                    <td className="flex flex-row justify-center py-4 px-6">
                       <DeleteOutlined
-                        className="text-red-500 cursor-pointer"
+                        className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
                         onClick={() => deleteUser(user)}
                       />
                     </td>

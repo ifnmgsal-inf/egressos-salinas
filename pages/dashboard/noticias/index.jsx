@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import { EditOutlined, DeleteOutlined, CheckOutlined, FileImageOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, PlusOutlined, FileImageOutlined } from "@ant-design/icons";
 
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
@@ -64,7 +64,7 @@ const NewsPage = () => {
   return (
     <div className="px-10 py-10">
       <div className="flex xsm:flex-col md:flex-row lg:flex-row xl:flex-row justify-between xsm:items-start md:items-center lg:items-center xl:items-center">
-        <h1 className="xsm:text-15 sm:text-20 lg:text-24 text-title">
+        <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
           Todas as <span className="text-primary-active">Notícias</span>
         </h1>
         <div className="flex space-x-4">
@@ -81,7 +81,13 @@ const NewsPage = () => {
               value={search}
             />
           </label>
-          <button onClick={() => openModalHandleNews()}>Criar notícia</button>
+          <button
+            className="flex items-center px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
+            onClick={() => openModalHandleNews()}
+          >
+            Criar notícia
+            <PlusOutlined className="ml-1 text-14" />
+          </button>
         </div>
       </div>
       <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-x-4 gap-y-8 my-8">
@@ -104,8 +110,14 @@ const NewsPage = () => {
                     <div className="text-13 text-grey-text">{news.description}</div>
                   </figcaption>
                 </div>
-                <EditOutlined onClick={() => handleEdit(news)} />
-                <DeleteOutlined className="p-4" onClick={() => handleDeleteNews(news)} />
+                <EditOutlined
+                  className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
+                  onClick={() => handleEdit(news)}
+                />
+                <DeleteOutlined
+                  className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
+                  onClick={() => handleDeleteNews(news)}
+                />
               </figure>
             ))
           : newsAll?.map((news, index) => (
@@ -131,9 +143,15 @@ const NewsPage = () => {
                   </span>
                 </div>
 
-                <div className="flex flex-col items-center justify-center">
-                  <EditOutlined onClick={() => handleEdit(news)} />
-                  <DeleteOutlined className="p-4" onClick={() => handleDeleteNews(news)} />
+                <div className="flex flex-col items-center justify-center space-y-4 m-2">
+                  <EditOutlined
+                    className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
+                    onClick={() => handleEdit(news)}
+                  />
+                  <DeleteOutlined
+                    className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
+                    onClick={() => handleDeleteNews(news)}
+                  />
                 </div>
               </div>
             ))}

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import Modal from "react-modal";
 
 import Accordion from "../../../components/accordion";
@@ -52,12 +52,18 @@ const FaqPage = () => {
     <>
       <div className="flex flex-col mt-8 mb-4 xsm:mx-2 xl:mx-8">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
+          <h1 className="xsm:text-10 sm:text-15 lg:text-20 text-title font-medium ">
             Perguntas <span className="text-primary-active">Frequentes</span>
           </h1>
-          <button onClick={() => openModalCreate()}>Adicionar FAQ</button>
+          <button
+            className="flex items-center px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
+            onClick={() => openModalCreate()}
+          >
+            Adicionar
+            <PlusOutlined className="ml-1 text-14" />
+          </button>
         </div>
-        <div className="mb-28 ">
+        <div>
           {faqsAll?.map(({ question, response, id }, index) => (
             <Accordion
               key={index}
@@ -86,7 +92,7 @@ const FaqPage = () => {
             top: "10%",
             left: "20%",
             right: "20%",
-            bottom: "20%",
+            bottom: "auto",
             border: "1px solid #ccc",
             background: "#fff",
             overflow: "auto",
@@ -107,7 +113,7 @@ const FaqPage = () => {
         <hr />
         <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text">
           <form
-            className="flex-1 flex-col lg:mt-20 space-y-4"
+            className="flex-1 flex-col lg:mt-5 space-y-4"
             onSubmit={handleSubmit(handleCreateFAQ)}
           >
             <div className="flex flex-col">
@@ -125,7 +131,7 @@ const FaqPage = () => {
             <div className="flex flex-col">
               <label className="text-14 font-medium">Resposta</label>
               <textarea
-                className="border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                className="border border-grey-text rounded-sm focus:outline-primary-active p-4"
                 {...register("response")}
                 type="textArea"
                 id="response"
@@ -160,7 +166,7 @@ const FaqPage = () => {
             top: "10%",
             left: "20%",
             right: "20%",
-            bottom: "20%",
+            bottom: "auto",
             border: "1px solid #ccc",
             background: "#fff",
             overflow: "auto",
@@ -181,7 +187,7 @@ const FaqPage = () => {
         <hr />
         <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text">
           <form
-            className="flex-1 flex-col lg:mt-20 space-y-4"
+            className="flex-1 flex-col lg:mt-5 space-y-4"
             onSubmit={handleSubmit(handleEditFAQ)}
           >
             <div className="flex flex-col">
@@ -199,7 +205,7 @@ const FaqPage = () => {
             <div className="flex flex-col">
               <label className="text-14 font-medium">Resposta</label>
               <textarea
-                className="border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                className="border border-grey-text rounded-sm focus:outline-primary-active p-4"
                 {...register("response")}
                 type="textArea"
                 id="response"
