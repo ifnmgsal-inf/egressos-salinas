@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import { FileImageOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, CheckOutlined, FileImageOutlined } from "@ant-design/icons";
 
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
@@ -10,12 +10,14 @@ import { useForm } from "react-hook-form";
 const NewsPage = () => {
   const [search, setSearch] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
+  const [handleModalIsOpen, setHandleModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [image, setImage] = useState(null);
-  const { newsAll, createNewsUpload } = useContext(AuthUserContext);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editNewsId, setEditNewsId] = useState(false);
+  const { newsAll, createNewsUpload, deleteNews, updateNews } = useContext(AuthUserContext);
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
 
   const filterNews = search.length ? newsAll.filter(({ title }) => title.includes(search)) : [];
 
@@ -28,19 +30,35 @@ const NewsPage = () => {
     setModalData(null);
   }
 
-  function openModalCreate() {
-    setCreateModalIsOpen(true);
+  function openModalHandleNews() {
+    setHandleModalIsOpen(true);
   }
 
-  function closeModalCreate() {
-    setCreateModalIsOpen(false);
+  function closeModalHandleNews() {
+    setHandleModalIsOpen(false);
     setImage(null);
   }
 
-  function handleCreateNews(data) {
+  function handleNews(data) {
     // console.log(data);
-    createNewsUpload(data);
-    closeModalCreate();
+    isEdit ? updateNews({ id: editNewsId, ...data }) : createNewsUpload(data);
+    closeModalHandleNews();
+  }
+
+  function handleDeleteNews(news) {
+    // console.log(news);
+    deleteNews(news);
+  }
+
+  function handleEdit(news) {
+    setIsEdit(true);
+    setEditNewsId(news.id);
+    setValue("title", news.title);
+    setValue("description", news.description);
+    setValue("image", news.image);
+    openModalHandleNews();
+
+    console.log(isEdit);
   }
 
   return (
@@ -63,7 +81,7 @@ const NewsPage = () => {
               value={search}
             />
           </label>
-          <button onClick={() => openModalCreate()}>Criar notícia</button>
+          <button onClick={() => openModalHandleNews()}>Criar notícia</button>
         </div>
       </div>
       <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-x-4 gap-y-8 my-8">
@@ -86,27 +104,38 @@ const NewsPage = () => {
                     <div className="text-13 text-grey-text">{news.description}</div>
                   </figcaption>
                 </div>
+                <EditOutlined onClick={() => handleEdit(news)} />
+                <DeleteOutlined className="p-4" onClick={() => handleDeleteNews(news)} />
               </figure>
             ))
           : newsAll?.map((news, index) => (
-              <figure
+              <div
                 key={index}
-                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
-                onClick={() => {
-                  setModalData(news);
-                  openModal();
-                }}
+                className="flex justify-between max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
               >
-                <img className="max-h-167  rounded-t-sm" src={news.image} alt="" />
-                <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
-                  <blockquote>
-                    <p className="text-lg font-medium">{news.title}</p>
-                  </blockquote>
-                  <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{news.description}</div>
-                  </figcaption>
+                <div
+                  className="flex"
+                  onClick={() => {
+                    setModalData(news);
+                    openModal();
+                  }}
+                >
+                  <img className="max-h-167  rounded-t-sm" src={news.image} alt="" />
+                  <span className="pt-2 md:px-4 text-center md:text-left space-y-4">
+                    <blockquote>
+                      <p className="text-lg font-medium">{news.title}</p>
+                    </blockquote>
+                    <figcaption className="font-medium">
+                      <div className="text-13 text-grey-text">{news.description}</div>
+                    </figcaption>
+                  </span>
                 </div>
-              </figure>
+
+                <div className="flex flex-col items-center justify-center">
+                  <EditOutlined onClick={() => handleEdit(news)} />
+                  <DeleteOutlined className="p-4" onClick={() => handleDeleteNews(news)} />
+                </div>
+              </div>
             ))}
         <Modal
           style={{
@@ -169,13 +198,16 @@ const NewsPage = () => {
               padding: "20px",
             },
           }}
-          isOpen={createModalIsOpen}
-          onRequestClose={closeModalCreate}
+          isOpen={handleModalIsOpen}
+          onRequestClose={closeModalHandleNews}
           contentLabel="Example Modal"
         >
           <div className="flex items-center justify-between mb-4">
             <p className="text-lg font-medium">Nova notícia</p>
-            <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModalCreate} />
+            <CloseOutlined
+              className="text-grey-text cursor-pointer"
+              onClick={closeModalHandleNews}
+            />
           </div>
           <hr />
           <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text">
@@ -215,7 +247,7 @@ const NewsPage = () => {
             </div>
             <form
               className="flex-1 flex-col lg:mt-20 space-y-4"
-              onSubmit={handleSubmit(handleCreateNews)}
+              onSubmit={handleSubmit(handleNews)}
             >
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Título</label>

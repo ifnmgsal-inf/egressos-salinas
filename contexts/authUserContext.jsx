@@ -78,6 +78,20 @@ export function AuthUserProvider({ children }) {
     setNewsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  const deleteNews = async (news) => {
+    await deleteDoc(doc(db, "news", news.id));
+    getNews();
+  };
+
+  const updateNews = async ({ id, image, title, description }) => {
+    await updateDoc(doc(db, "news", id), {
+      image,
+      title,
+      description,
+    });
+    getNews();
+  };
+
   async function createNewsUpload({ image, title, description }) {
     console.log({ image, title, description });
     const file = image[0];
@@ -314,6 +328,8 @@ export function AuthUserProvider({ children }) {
         createPublishedTestimonials,
         deletePublishedTestimonials,
         updateTestimonyUser,
+        deleteNews,
+        updateNews,
       }}
     >
       {children}
