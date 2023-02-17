@@ -188,7 +188,7 @@ const NewsPage = () => {
               top: "10%",
               left: "5%",
               right: "5%",
-              bottom: "10%",
+              bottom: "auto",
               border: "1px solid #ccc",
               background: "#fff",
               overflow: "auto",
@@ -264,7 +264,7 @@ const NewsPage = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Descrição</label>
                 <textarea
-                  className="border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-40 border border-grey-text rounded-sm focus:outline-primary-active p-3"
                   {...register("description")}
                   type="textArea"
                   id="description"
