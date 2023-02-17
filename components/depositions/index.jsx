@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 
 // const depositionsList = [
@@ -35,7 +35,7 @@ const Depositions = () => {
             </span>
             <span className="text-13 font-medium">{userName}</span>
           </div>
-          <div className="flex max-h-170 mx-8 p-4 items-center bg-bg-grey rounded-sm drop-shadow-md xsm:text-xs md:text-base">
+          <div className="flex max-h-170 mx-8 p-4 items-center bg-icon-bgGrey rounded-sm shadow-md xsm:text-xs md:text-base">
             {userTestimony}
           </div>
         </div>

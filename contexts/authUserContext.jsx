@@ -36,6 +36,7 @@ export function AuthUserProvider({ children }) {
   const [newsAll, setNewsAll] = useState(null);
   const [faqsAll, setFaqsAll] = useState(null);
   const [testimonialsAll, setTestimonialsAll] = useState(null);
+  const [linkForm, setLinkForm] = useState(null);
 
   const [progress, setProgress] = useState(0);
   const [imageURL, setImageURL] = useState(null);
@@ -48,6 +49,7 @@ export function AuthUserProvider({ children }) {
   const newsCollectionRef = collection(db, "news");
   const faqsCollectionRef = collection(db, "faqs");
   const testimonialsCollectionRef = collection(db, "publishedTestimonials");
+  const linkFormCollectionRef = collection(db, "linkForm");
   const auth = getAuth();
 
   useEffect(() => {
@@ -62,6 +64,7 @@ export function AuthUserProvider({ children }) {
     getNews();
     getFAQs();
     getTestimonialsAll();
+    getLinkForm();
   }, []);
 
   const getUsers = async () => {
@@ -93,7 +96,6 @@ export function AuthUserProvider({ children }) {
   };
 
   async function createNewsUpload({ image, title, description }) {
-    console.log({ image, title, description });
     const file = image[0];
 
     const storageRef = ref(storage, `images/${file?.name}`);
@@ -138,13 +140,11 @@ export function AuthUserProvider({ children }) {
   }
 
   const deleteFAQ = async (id) => {
-    console.log(id);
     await deleteDoc(doc(db, "faqs", id));
     getFAQs();
   };
 
   const updateFAQ = async ({ id, question, response }) => {
-    console.log(id);
     await updateDoc(doc(db, "faqs", id), {
       question,
       response,
@@ -158,7 +158,6 @@ export function AuthUserProvider({ children }) {
   };
 
   const updateTestimonyUser = async (user, { testimony }) => {
-    console.log({ user, testimony });
     await updateDoc(doc(db, "users", user.id), {
       testimony,
     });
@@ -176,15 +175,25 @@ export function AuthUserProvider({ children }) {
   }
 
   const deletePublishedTestimonials = async (id) => {
-    console.log(id);
     await deleteDoc(doc(db, "publishedTestimonials", id));
     getTestimonialsAll();
+  };
+
+  const getLinkForm = async () => {
+    const data = await getDocs(linkFormCollectionRef);
+    setLinkForm(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
+  const updateLinkForm = async ({ id, link }) => {
+    await updateDoc(doc(db, "linkForm", id), {
+      link,
+    });
+    getLinkForm();
   };
 
   function singIn({ email, password }) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential);
         const { accessToken, email } = userCredential.user;
 
         setCookie(undefined, "next-egressos.token", accessToken, {
@@ -330,6 +339,8 @@ export function AuthUserProvider({ children }) {
         updateTestimonyUser,
         deleteNews,
         updateNews,
+        linkForm,
+        updateLinkForm,
       }}
     >
       {children}

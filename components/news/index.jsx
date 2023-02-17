@@ -72,7 +72,9 @@ const News = () => {
 
   const filterNews = search.length
     ? newsAll.filter(
-        ({ title, description }) => title.includes(search) || description.includes(search)
+        ({ title, description }) =>
+          title.toUpperCase().includes(search.toUpperCase()) ||
+          description.toUpperCase().includes(search.toUpperCase())
       )
     : [];
 
@@ -119,10 +121,10 @@ const News = () => {
                 <img className="w-full h-24 rounded-t-sm" src={news.image} alt="" />
                 <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
                   <blockquote>
-                    <p className="text-lg font-medium">{news.simpleTitle}</p>
+                    <p className="text-lg font-medium">{news.title}</p>
                   </blockquote>
                   <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{news.simpleDescription}</div>
+                    <div className="text-13 text-grey-text">{news.description}</div>
                   </figcaption>
                 </div>
               </figure>

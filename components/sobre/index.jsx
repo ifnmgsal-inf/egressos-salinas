@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { AuthUserContext } from "../../contexts/authUserContext";
 import { FileTextOutlined } from "@ant-design/icons";
 
 const Sobre = () => {
+  const { linkForm } = useContext(AuthUserContext);
+
   return (
     <div className="flex flex-col items-center pt-8 pb-4 xsm:px-10 xl:px-32 bg-bg-container">
       <div>
@@ -45,10 +49,14 @@ const Sobre = () => {
         Questionário do <span className="text-primary-active">Egresso</span>
       </h1>
 
-      <button className="flex items-center my-8 py-1.5 px-8 text-primary-active borde-solid border-primary-active border rounded-sm hover:border-primary hover:text-primary">
+      <a
+        href={linkForm?.[0]?.link}
+        target={"blank"}
+        className="flex items-center my-8 py-1.5 px-8 text-primary-active borde-solid border-primary-active border rounded-sm hover:border-primary hover:text-primary cursor-pointer"
+      >
         Acessar questionário
         <FileTextOutlined className="ml-2" />
-      </button>
+      </a>
     </div>
   );
 };
