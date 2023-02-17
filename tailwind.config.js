@@ -109,6 +109,11 @@ module.exports = {
         "grey-text": "#696969",
         "white-text": "#FFFFFF",
         "grey-border": "#D8D3D2",
+        danger: "#d93026",
+        icon: {
+          bgGreen: "rgba(0, 123, 4, 0.07)",
+          bgRed: "rgba(185, 28, 28, 0.07)",
+        },
       },
     },
   },

@@ -12,9 +12,8 @@ const DepoimentoPage = () => {
 
   const handleDeleteTestimony = () => {};
   function handleEditTestimony(data) {
-    // console.log(data);
-    updateTestimonyUser(user, data);
-    setIsEdit(false);
+    console.log(data);
+    data.testimony ? (updateTestimonyUser(user, data), setIsEdit(false)) : setIsEdit(false);
   }
 
   return (

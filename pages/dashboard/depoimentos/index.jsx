@@ -15,113 +15,122 @@ const DepositionsPage = () => {
   return (
     <>
       <div className="flex flex-col mt-8 mb-4 xsm:mx-2 xl:mx-8">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4">
           <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
             Todos <span className="text-primary-active">Depoimento</span>
           </h1>
         </div>
         {usersAll?.map((user) => (
-          <div key={user.id} className=" flex items-center mb-28 ">
-            <div className="flex flex-col items-center">
-              <span className="inline-block mt-8" style={{ width: "60px", height: "60px" }}>
-                {user?.imageURL ? (
-                  <img
-                    className="shadow-2xl"
-                    style={{
-                      borderRadius: "50%",
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                    src={user?.imageURL}
-                    alt=""
-                  />
-                ) : (
-                  <UserOutlined
-                    className="flex items-center justify-center text-white-text text-30 rounded-full"
-                    style={{
-                      borderRadius: "50%",
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      backgroundColor: "#D9D9D9",
-                    }}
-                  />
-                )}
-              </span>
-              <span>{user?.name || "teste"}</span>
-            </div>
-            <div>
-              <div className="flex flex-col">
-                <label className="text-14 font-medium">Depoimento</label>
+          <div key={user.id} className="flex items-center justify-between mb-4 shadow-sm p-2">
+            <div className="flex p-2">
+              <div className="flex flex-col items-center mr-2">
+                <span className="inline-block" style={{ width: "35px", height: "35px" }}>
+                  {user?.imageURL ? (
+                    <img
+                      className="shadow-2xl"
+                      style={{
+                        borderRadius: "50%",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                      src={user?.imageURL}
+                      alt=""
+                    />
+                  ) : (
+                    <UserOutlined
+                      className="flex items-center justify-center text-white-text text-16 rounded-full"
+                      style={{
+                        borderRadius: "50%",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        backgroundColor: "#D9D9D9",
+                      }}
+                    />
+                  )}
+                </span>
+                <span className="text-12 font-medium">{user?.name || "teste"}</span>
+              </div>
+              <div className="flex flex-col px-2">
+                <label className="text-12 font-medium px-1">Depoimento</label>
                 <textarea
-                  className="rounded-sm focus:outline-primary-active p-1"
-                  value={user?.testimony || "Você não possui depoimento..."}
+                  className="h-10 rounded-sm focus:outline-primary-active p-1 text-13 text-grey-text"
+                  value={user?.testimony}
                   type="textArea"
                   id="testimony"
                   name="testimony"
+                  cols={100}
                   disabled
                 />
               </div>
             </div>
-
             <div className="flex flex-col">
-              <CheckOutlined onClick={() => handlePublishedTestimonials(user)} />{" "}
+              <CheckOutlined
+                className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
+                onClick={() => handlePublishedTestimonials(user)}
+              />{" "}
             </div>
           </div>
         ))}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between my-6">
           <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
             Depoimentos <span className="text-primary-active">puplicados</span>
           </h1>
         </div>
         {testimonialsAll?.map((testimony) => (
-          <div key={testimony.userId} className=" flex items-center mb-28 ">
-            <div className="flex flex-col items-center">
-              <span className="inline-block mt-8" style={{ width: "60px", height: "60px" }}>
-                {testimony?.userImage ? (
-                  <img
-                    className="shadow-2xl"
-                    style={{
-                      borderRadius: "50%",
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                    src={testimony?.userImage}
-                    alt=""
-                  />
-                ) : (
-                  <UserOutlined
-                    className="flex items-center justify-center text-white-text text-30 rounded-full"
-                    style={{
-                      borderRadius: "50%",
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      backgroundColor: "#D9D9D9",
-                    }}
-                  />
-                )}
-              </span>
-              <span>{testimony?.userName}</span>
-            </div>
-            <div>
-              <div className="flex flex-col">
-                <label className="text-14 font-medium">Depoimento</label>
+          <div
+            key={testimony.userId}
+            className="flex items-center justify-between mb-4 shadow-sm p-2"
+          >
+            <div className="flex p-2">
+              <div className="flex flex-col items-center mr-2">
+                <span className="inline-block" style={{ width: "35px", height: "35px" }}>
+                  {testimony?.userImage ? (
+                    <img
+                      className="shadow-2xl"
+                      style={{
+                        borderRadius: "50%",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                      src={testimony?.userImage}
+                      alt=""
+                    />
+                  ) : (
+                    <UserOutlined
+                      className="flex items-center justify-center text-white-text text-16 rounded-full"
+                      style={{
+                        borderRadius: "50%",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        backgroundColor: "#D9D9D9",
+                      }}
+                    />
+                  )}
+                </span>
+                <span className="text-12 font-medium">{testimony?.userName}</span>
+              </div>
+              <div className="flex flex-col px-2">
+                <label className="text-12 font-medium px-1">Depoimento</label>
                 <textarea
-                  className="rounded-sm focus:outline-primary-active p-1"
-                  value={testimony?.userTestimony || "Você não possui depoimento..."}
+                  className="h-10 rounded-sm focus:outline-primary-active p-1 text-13 text-grey-text"
+                  value={testimony?.userTestimony}
                   type="textArea"
                   id="testimony"
                   name="testimony"
+                  cols={100}
                   disabled
                 />
               </div>
             </div>
-
             <div className="flex flex-col">
-              <DeleteOutlined onClick={() => deletePublishedTestimonials(testimony.id)} />{" "}
+              <DeleteOutlined
+                className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
+                onClick={() => deletePublishedTestimonials(testimony.id)}
+              />{" "}
             </div>
           </div>
         ))}
