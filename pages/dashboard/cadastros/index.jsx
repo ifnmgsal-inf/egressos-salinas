@@ -20,7 +20,7 @@ export default function CadastrosPage() {
   return (
     <div className="bg-white py-10 px-10">
       <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-center xl:items-center">
-        <h1 className="xsm:text-16 sm:text-18 lg:text-20 text-title font-medium">
+        <h1 className="xsm:text-16 sm:text-18 lg:text-20 text-title ">
           Todos os <span className="text-primary-active">Cadastros</span>
         </h1>
         <label className="flex relative justify-end xsm:mt-8 lg:mt-0">

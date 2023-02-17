@@ -24,7 +24,7 @@ const CurriculoPage = () => {
   }
 
   return (
-    <form className="xsm:px-2 lx:pl-10" onSubmit={handleSubmit(handleUpdateCurriculum)}>
+    <form className="xsm:px-2 lg:pl-10" onSubmit={handleSubmit(handleUpdateCurriculum)}>
       <div className="flex flex-col max-w-1000 bg-white justify-center my-10 border rounded-lg px-5 py-2">
         <h2 className="text-base mb-5 font-medium">Informações curriculares</h2>
         <div className="flex xsm:flex-col md:flex-row xl:flex-row pb-4">
@@ -38,7 +38,7 @@ const CurriculoPage = () => {
               />
             ) : (
               <UserOutlined
-                className="flex items-center justify-center text-white-text text-20 rounded-full"
+                className="flex items-center justify-center text-white-text text-30 rounded-full"
                 style={{
                   borderRadius: "50%",
                   width: "100%",
@@ -118,9 +118,9 @@ const CurriculoPage = () => {
         <button
           type="submit"
           disabled={alteration}
-          className="flex items-center cursor-pointer text-sm text-primary border border-primary-active px-4 py-0.5 rounded-sm hover:bg-primary-active hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex items-center px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
         >
-          <SaveOutlined className="mr-1" /> Salvar
+          <SaveOutlined className="mr-1 text-14" /> Salvar
         </button>
       </div>
     </form>

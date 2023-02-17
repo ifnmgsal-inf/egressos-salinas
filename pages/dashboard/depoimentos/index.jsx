@@ -14,14 +14,14 @@ const DepositionsPage = () => {
 
   return (
     <>
-      <div className="flex flex-col mt-8 mb-4 xsm:mx-2 xl:mx-8">
+      <div className="flex flex-col mt-8 mb-4 xsm:mx-2 lg:ml-8 lg:mr-14 ">
         <div className="flex items-center justify-between mb-4">
           <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
             Novos <span className="text-primary-active">Depoimento</span>
           </h1>
         </div>
         {usersAll?.map((user) => (
-          <div key={user.id} className="flex items-center justify-between mb-4 shadow-sm p-2">
+          <div key={user.id} className="flex items-center justify-between mb-4 shadow-md p-2">
             <div className="flex p-2">
               <div className="flex flex-col items-center mr-2">
                 <span className="inline-block" style={{ width: "35px", height: "35px" }}>
@@ -81,7 +81,7 @@ const DepositionsPage = () => {
         {testimonialsAll?.map((testimony) => (
           <div
             key={testimony.userId}
-            className="flex items-center justify-between mb-4 shadow-sm p-2"
+            className="flex items-center justify-between mb-4 shadow-md p-2"
           >
             <div className="flex p-2">
               <div className="flex flex-col items-center mr-2">

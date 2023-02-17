@@ -17,16 +17,16 @@ const DepoimentoPage = () => {
   }
 
   return (
-    <>
-      <div className="flex flex-col mt-8 mb-4 xsm:mx-2 xl:mx-8">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
-            Publicar meu <span className="text-primary-active">Depoimento</span>
-          </h1>
-        </div>
-        <div className=" flex items-center mb-28 ">
-          <div className="flex flex-col items-center">
-            <span className="inline-block mt-8" style={{ width: "130px", height: "130px" }}>
+    <div className="flex flex-col mt-8 mb-4 xsm:mx-2 xl:mx-8">
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
+          Publicar meu <span className="text-primary-active">Depoimento</span>
+        </h1>
+      </div>
+      <div className=" flex items-center justify-between shadow-sm bg-white p-4 rounded-sm">
+        <div className="flex">
+          <div className="flex flex-col items-center mr-4">
+            <span className="inline-block " style={{ width: "100px", height: "100px" }}>
               {user?.imageURL ? (
                 <img
                   className="shadow-2xl"
@@ -36,7 +36,7 @@ const DepoimentoPage = () => {
                 />
               ) : (
                 <UserOutlined
-                  className="flex items-center justify-center text-white-text text-50 rounded-full"
+                  className="flex items-center justify-center text-white-text text-40 rounded-full"
                   style={{
                     borderRadius: "50%",
                     width: "100%",
@@ -47,36 +47,44 @@ const DepoimentoPage = () => {
                 />
               )}
             </span>
-            <span>{user?.name}</span>
+            <span className="text-14 font-medium mt-1">{user?.name}</span>
           </div>
-          <div>
-            <div className="flex flex-col">
-              <label className="text-14 font-medium">Meu Depoimento</label>
-              <input
-                className="rounded-sm focus:outline-primary-active p-1"
-                defaultValue={user?.testimony || "Você não possui depoimento..."}
-                disabled={!isEdit}
-                {...register("testimony")}
-                type="text"
-                id="testimony"
-                name="testimony"
-                required
-              />
-            </div>
+          <div className="flex flex-col">
+            <label className="text-14 font-medium">Meu Depoimento</label>
+            <textarea
+              className="h-20 rounded-sm focus:outline-primary-active p-1 text-grey-text text-13 bg-white"
+              defaultValue={user?.testimony || "Você não possui depoimento..."}
+              {...register("testimony")}
+              disabled={!isEdit}
+              type="text"
+              id="testimony"
+              name="testimony"
+              cols={100}
+              required
+            />
           </div>
-          {isEdit ? (
-            <div className="flex flex-col">
-              <CheckOutlined onClick={handleSubmit(handleEditTestimony)} />{" "}
-            </div>
-          ) : (
-            <div className="flex flex-col">
-              <EditOutlined onClick={() => setIsEdit(true)} />
-              <DeleteOutlined onClick={() => handleDeleteTestimony(user)} />
-            </div>
-          )}
         </div>
+        {isEdit ? (
+          <div className="flex flex-col mx-5">
+            <CheckOutlined
+              className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
+              onClick={handleSubmit(handleEditTestimony)}
+            />{" "}
+          </div>
+        ) : (
+          <div className="flex flex-col space-y-6 mx-5">
+            <EditOutlined
+              className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
+              onClick={() => setIsEdit(true)}
+            />
+            <DeleteOutlined
+              className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
+              onClick={() => handleDeleteTestimony(user)}
+            />
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
