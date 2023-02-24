@@ -19,7 +19,9 @@ const NewsPage = () => {
 
   const { register, handleSubmit, setValue } = useForm();
 
-  const filterNews = search.length ? newsAll.filter(({ title }) => title.includes(search)) : [];
+  const filterNews = search.length
+    ? newsAll.filter(({ title }) => title.toUpperCase().includes(search.toUpperCase()))
+    : [];
 
   function openModal() {
     setModalIsOpen(true);
@@ -63,12 +65,12 @@ const NewsPage = () => {
 
   return (
     <div className="px-10 py-10 mr-5">
-      <div className="flex xsm:flex-col md:flex-row lg:flex-row xl:flex-row justify-between xsm:items-start md:items-center lg:items-center xl:items-center">
-        <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
+      <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-start xl:items-center">
+        <h1 className="text-20 text-title xsm:mb-5 md:mb-5 lg:mb-0 xl:mb-0">
           Todas as <span className="text-primary-active">Notícias</span>
         </h1>
-        <div className="flex space-x-4">
-          <label className="relative block xsm:mt-5 lg:mt-0 xl:mt-0">
+        <div className="flex items-center justify-center space-x-4">
+          <label className="relative block lg:mt-0 xl:mt-0">
             <span className="absolute inset-y-0 left-0 flex items-center pl-2">
               <SearchOutlined className="text-20 text-title" />
             </span>
@@ -93,57 +95,72 @@ const NewsPage = () => {
       <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-x-4 gap-y-8 my-8">
         {search.length
           ? filterNews.map((news, index) => (
-              <figure
-                key={index}
-                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
-                onClick={() => {
-                  setModalData(news);
-                  openModal();
-                }}
-              >
-                <img className="max-h-167 rounded-t-sm" src={news.image} alt="" />
-                <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
-                  <blockquote>
-                    <p className="text-lg font-medium">{news.title}</p>
-                  </blockquote>
-                  <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{news.description}</div>
-                  </figcaption>
-                </div>
-                <EditOutlined
-                  className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
-                  onClick={() => handleEdit(news)}
-                />
-                <DeleteOutlined
-                  className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-                  onClick={() => handleDeleteNews(news)}
-                />
-              </figure>
-            ))
-          : newsAll?.map((news, index) => (
               <div
                 key={index}
                 className="flex justify-between max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
               >
                 <div
-                  className="flex"
+                  className="flex flex-row"
                   onClick={() => {
                     setModalData(news);
                     openModal();
                   }}
                 >
-                  <img className="max-h-167  rounded-t-sm" src={news.image} alt="" />
-                  <span className="pt-2 md:px-4 text-center md:text-left space-y-4">
-                    <blockquote>
-                      <p className="text-lg font-medium">{news.title}</p>
-                    </blockquote>
-                    <figcaption className="font-medium">
-                      <div className="text-13 text-grey-text">{news.description}</div>
-                    </figcaption>
-                  </span>
+                  <img className="max-h-167" src={news.image} alt="" />
+                  <div className="flex flex-col overflow-auto pt-2 md:px-4 text-center md:text-left space-y-4">
+                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
+                    <div
+                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: "1",
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      {news.description}
+                    </div>
+                  </div>
                 </div>
-
                 <div className="flex flex-col items-center justify-center space-y-4 m-2">
+                  <EditOutlined
+                    className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
+                    onClick={() => handleEdit(news)}
+                  />
+                  <DeleteOutlined
+                    className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
+                    onClick={() => handleDeleteNews(news)}
+                  />
+                </div>
+              </div>
+            ))
+          : newsAll?.map((news, index) => (
+              <div
+                key={index}
+                className="flex xsm:flex-col md:flex-row lg:flex-row justify-between  bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
+              >
+                <div
+                  className="flex xsm:flex-col md:flex-row lg:flex-row"
+                  onClick={() => {
+                    setModalData(news);
+                    openModal();
+                  }}
+                >
+                  <img className="max-h-167" src={news.image} alt="" />
+                  <div className="flex flex-col overflow-auto pt-2 md:px-4 text-center xsm:text-left md:text-left space-y-2 xsm:mx-2 md:mx-0">
+                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
+                    <div
+                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: "1",
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      {news.description}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex xsm:flex-row md:flex-col lg:flex-col items-center xsm:justify-end md:justify-center xsm:space-x-4 md:space-y-4 md:space-x-0 m-2">
                   <EditOutlined
                     className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
                     onClick={() => handleEdit(news)}

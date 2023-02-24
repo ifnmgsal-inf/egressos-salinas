@@ -37,7 +37,7 @@ export default function CadastrosPage() {
           />
         </label>
       </div>
-      <div className="flex flex-col justify-center overflow-x-auto mt-5 mb-20  relative">
+      <div className="flex flex-col justify-center overflow-x-auto mt-5 mb-20 relative">
         <table className="w-full text-sm text-left text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-100 ">
             <tr>
