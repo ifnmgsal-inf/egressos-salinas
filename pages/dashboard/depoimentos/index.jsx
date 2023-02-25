@@ -20,7 +20,7 @@ const DepositionsPage = () => {
             Novos <span className="text-primary-active">Depoimento</span>
           </h1>
         </div>
-        <div class="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
           {usersAll?.map((user) => (
             <div key={user.id} className="flex items-center justify-between mb-4 shadow-md p-2">
               <div className="flex p-2">
