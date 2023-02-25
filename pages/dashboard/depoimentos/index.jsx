@@ -78,7 +78,7 @@ const DepositionsPage = () => {
             Depoimentos <span className="text-primary-active">puplicados</span>
           </h1>
         </div>
-        <div class="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
           {testimonialsAll?.map((testimony) => (
             <div
               key={testimony.userId}
