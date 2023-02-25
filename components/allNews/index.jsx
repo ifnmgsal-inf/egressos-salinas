@@ -88,44 +88,62 @@ const AllNews = () => {
       <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-x-4 gap-y-8 my-8">
         {search.length
           ? filterNews.map((news, index) => (
-              <figure
+              <div
                 key={index}
-                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
-                onClick={() => {
-                  setModalData(news);
-                  openModal();
-                }}
+                className="flex justify-between max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
               >
-                <img className="max-h-167 rounded-t-sm" src={news.image} alt="" />
-                <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
-                  <blockquote>
-                    <p className="text-lg font-medium">{news.title}</p>
-                  </blockquote>
-                  <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{news.description}</div>
-                  </figcaption>
+                <div
+                  className="flex flex-row"
+                  onClick={() => {
+                    setModalData(news);
+                    openModal();
+                  }}
+                >
+                  <img className="max-h-167" src={news.image} alt="" />
+                  <div className="flex flex-col overflow-auto pt-2 md:px-4 text-center md:text-left space-y-4">
+                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
+                    <div
+                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: "1",
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      {news.description}
+                    </div>
+                  </div>
                 </div>
-              </figure>
+              </div>
             ))
           : newsAll?.map((news, index) => (
-              <figure
+              <div
                 key={index}
-                className="flex max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
-                onClick={() => {
-                  setModalData(news);
-                  openModal();
-                }}
+                className="flex justify-between max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
               >
-                <img className="max-h-167  rounded-t-sm" src={news.image} alt="" />
-                <div className="pt-2 md:px-4 text-center md:text-left space-y-4">
-                  <blockquote>
-                    <p className="text-lg font-medium">{news.title}</p>
-                  </blockquote>
-                  <figcaption className="font-medium">
-                    <div className="text-13 text-grey-text">{news.description}</div>
-                  </figcaption>
+                <div
+                  className="flex flex-row"
+                  onClick={() => {
+                    setModalData(news);
+                    openModal();
+                  }}
+                >
+                  <img className="max-h-167" src={news.image} alt="" />
+                  <div className="flex flex-col overflow-auto pt-2 md:px-4 text-center md:text-left space-y-4">
+                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
+                    <div
+                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: "1",
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      {news.description}
+                    </div>
+                  </div>
                 </div>
-              </figure>
+              </div>
             ))}
         <Modal
           style={{
