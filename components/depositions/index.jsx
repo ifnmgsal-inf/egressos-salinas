@@ -1,20 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
-
-// const depositionsList = [
-//   {
-//     image: "/bg_header.jpg",
-//     name: "Pâmela Veridiane",
-//     message:
-//       "A Licenciatura em Matemática me deu suporte para desenvolver minhas estratégias pedagógicas e de estudo. A partir disso posso contribuir para uma educação mais justa e humana.",
-//   },
-//   {
-//     image: "/bg_header.jpg",
-//     name: "Rodrigo Medeiros",
-//     message:
-//       "O IFNMG é minha segunda casa. Foi lá que fiz minha primeira faculdade, primeira pós graduação e meu mestrado acadêmico. Espero retornar em breve para novos desafios.",
-//   },
-// ];
+import { UserOutlined } from "@ant-design/icons";
 
 const Depositions = () => {
   const { testimonialsAll } = useContext(AuthUserContext);
@@ -27,11 +14,30 @@ const Depositions = () => {
         <div key={id} className="flex xsm:flex-col lg:flex-row mt-10 lg:odd:flex-row-reverse">
           <div className="flex flex-col items-center">
             <span className="inline-block" style={{ width: "150px", height: "150px" }}>
-              <img
-                style={{ borderRadius: "50%", width: "100%", height: "100%", objectFit: "cover" }}
-                src={userImage}
-                alt=""
-              />
+              {userImage ? (
+                <img
+                  className="shadow-2xl"
+                  style={{
+                    borderRadius: "50%",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                  src={userImage}
+                  alt=""
+                />
+              ) : (
+                <UserOutlined
+                  className="flex items-center justify-center text-white-text text-40 rounded-full"
+                  style={{
+                    borderRadius: "50%",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    backgroundColor: "#D9D9D9",
+                  }}
+                />
+              )}
             </span>
             <span className="text-13 font-medium">{userName}</span>
           </div>
