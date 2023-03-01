@@ -39,7 +39,7 @@ export function AuthUserProvider({ children }) {
   const [linkForm, setLinkForm] = useState(null);
 
   const [progress, setProgress] = useState(0);
-  const [imageURL, setImageURL] = useState(null);
+  // const [imageURL, setImageURL] = useState(null);
 
   const isAuthenticated = false;
   const router = useRouter();
@@ -192,6 +192,7 @@ export function AuthUserProvider({ children }) {
   };
 
   function singIn({ email, password }) {
+    console.log({ email, password });
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { accessToken, email } = userCredential.user;
@@ -228,6 +229,7 @@ export function AuthUserProvider({ children }) {
 
     const uploadTask = uploadBytesResumable(storageRef, file);
     const createdIn = moment().format("YYYY-MM-DD");
+    let imageURL = null;
 
     uploadTask.on(
       "state_changed",
@@ -239,44 +241,45 @@ export function AuthUserProvider({ children }) {
         console.log(error);
         alert(error);
       },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setImageURL(url);
+      async () => {
+        await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          imageURL = url;
         });
+        console.log(imageURL);
+
+        await addDoc(collection(db, "users"), {
+          name,
+          email,
+          cpf,
+          course,
+          level,
+          password,
+          imageURL,
+          conclusionYear,
+          createdIn,
+          type: "user",
+        });
+
+        await createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            // Signed in
+            const { accessToken, email } = userCredential.user;
+
+            setCookie(undefined, "next-egressos.token", accessToken, {
+              maxAge: 60 * 60 * 1, //1 hour
+            });
+            setCookie(undefined, "next-egressos.email", email, {
+              maxAge: 60 * 60 * 1, //1 hour
+            });
+            if (accessToken) autenticationUser(email);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          });
       }
     );
-
-    await addDoc(collection(db, "users"), {
-      name,
-      email,
-      cpf,
-      course,
-      level,
-      password,
-      imageURL,
-      conclusionYear,
-      createdIn,
-      type: "user",
-    });
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const { accessToken, email } = userCredential.user;
-
-        setCookie(undefined, "next-egressos.token", accessToken, {
-          maxAge: 60 * 60 * 1, //1 hour
-        });
-        setCookie(undefined, "next-egressos.email", email, {
-          maxAge: 60 * 60 * 1, //1 hour
-        });
-        if (accessToken) autenticationUser(email);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
   }
 
   const signOutUser = () => {

@@ -22,12 +22,12 @@ const ConfigurationPage = () => {
           Configurações do <span className="text-primary-active">Sistema</span>
         </h1>
       </div>
-      <div className="flex items-center justify-between mb-4 shadow-md p-2">
+      <div className="flex items-center justify-between mb-4 shadow-md p-2 bg-white">
         <div className="flex p-2">
           <div className="flex flex-col px-2">
             <label className="text-14 font-medium px-1">Link para o formulário do egresso</label>
             <textarea
-              className="h-10 rounded-sm focus:outline-primary-active p-1 text-13 text-grey-text resize"
+              className="h-10 rounded-sm focus:outline-primary-active p-1 text-13 text-grey-text resize bg-white"
               defaultValue={linkForm?.[0]?.link}
               {...register("linkFormInput")}
               type="text"

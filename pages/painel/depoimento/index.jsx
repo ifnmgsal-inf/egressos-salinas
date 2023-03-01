@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
@@ -10,9 +11,7 @@ const DepoimentoPage = () => {
   const { register, handleSubmit } = useForm();
   const { user, updateTestimonyUser } = useContext(AuthUserContext);
 
-  const handleDeleteTestimony = () => {};
   function handleEditTestimony(data) {
-    console.log(data);
     data.testimony ? (updateTestimonyUser(user, data), setIsEdit(false)) : setIsEdit(false);
   }
 
@@ -24,14 +23,14 @@ const DepoimentoPage = () => {
         </h1>
       </div>
       <div className=" flex items-center justify-between shadow-sm bg-white p-4 rounded-sm">
-        <div className="flex">
+        <div className="flex p-2">
           <div className="flex flex-col items-center mr-4">
-            <span className="inline-block " style={{ width: "100px", height: "100px" }}>
+            <span className="inline-block" style={{ width: "100px", height: "100px" }}>
               {user?.imageURL ? (
                 <img
-                  className="shadow-2xl"
+                  className="shadow-lg"
                   style={{ borderRadius: "50%", width: "100%", height: "100%", objectFit: "cover" }}
-                  src={URL.createObjectURL(user?.imageURL)}
+                  src={user?.imageURL}
                   alt=""
                 />
               ) : (
@@ -76,10 +75,6 @@ const DepoimentoPage = () => {
             <EditOutlined
               className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
               onClick={() => setIsEdit(true)}
-            />
-            <DeleteOutlined
-              className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-              onClick={() => handleDeleteTestimony(user)}
             />
           </div>
         )}
