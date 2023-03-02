@@ -25,6 +25,7 @@ import {
 } from "firebase/auth";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 import moment from "moment/moment";
+import { toast } from "react-toastify";
 
 export const AuthUserContext = createContext({});
 
@@ -39,7 +40,6 @@ export function AuthUserProvider({ children }) {
   const [linkForm, setLinkForm] = useState(null);
 
   const [progress, setProgress] = useState(0);
-  // const [imageURL, setImageURL] = useState(null);
 
   const isAuthenticated = false;
   const router = useRouter();
@@ -82,17 +82,29 @@ export function AuthUserProvider({ children }) {
   };
 
   const deleteNews = async (news) => {
-    await deleteDoc(doc(db, "news", news.id));
-    getNews();
+    try {
+      await deleteDoc(doc(db, "news", news.id));
+      getNews();
+      toast.success("Notícia deletada com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao deletar a notícia.");
+      console.log(error);
+    }
   };
 
   const updateNews = async ({ id, image, title, description }) => {
-    await updateDoc(doc(db, "news", id), {
-      image,
-      title,
-      description,
-    });
-    getNews();
+    try {
+      await updateDoc(doc(db, "news", id), {
+        image,
+        title,
+        description,
+      });
+      getNews();
+      toast.success("Notícia atualizada com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao atualizar a notícia.");
+      console.log(error);
+    }
   };
 
   async function createNewsUpload({ image, title, description }) {
@@ -101,6 +113,7 @@ export function AuthUserProvider({ children }) {
     const storageRef = ref(storage, `images/${file?.name}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
+    let imageURL = null;
 
     uploadTask.on(
       "state_changed",
@@ -112,19 +125,25 @@ export function AuthUserProvider({ children }) {
         console.log(error);
         alert(error);
       },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setImageURL(url);
-        });
+      async () => {
+        try {
+          await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            imageURL = url;
+          });
+
+          await addDoc(collection(db, "news"), {
+            image: imageURL,
+            title,
+            description,
+          });
+          getNews();
+          toast.success("Notícia criada com sucesso.");
+        } catch (error) {
+          toast.error("Erro ao criar a notícia.");
+          console.log(error);
+        }
       }
     );
-
-    await addDoc(collection(db, "news"), {
-      image: imageURL,
-      title,
-      description,
-    });
-    getNews();
   }
 
   const getFAQs = async () => {
@@ -133,23 +152,42 @@ export function AuthUserProvider({ children }) {
   };
 
   async function createFaqIn({ question, response }) {
-    await addDoc(collection(db, "faqs"), {
-      question,
-      response,
-    });
+    try {
+      await addDoc(collection(db, "faqs"), {
+        question,
+        response,
+      });
+      getFAQs();
+      toast.success("FAQ criado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao criar o FAQ.");
+      console.log(error);
+    }
   }
 
   const deleteFAQ = async (id) => {
-    await deleteDoc(doc(db, "faqs", id));
-    getFAQs();
+    try {
+      await deleteDoc(doc(db, "faqs", id));
+      getFAQs();
+      toast.success("FAQ deletado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao deletar o FAQ.");
+      console.log(error);
+    }
   };
 
   const updateFAQ = async ({ id, question, response }) => {
-    await updateDoc(doc(db, "faqs", id), {
-      question,
-      response,
-    });
-    getFAQs();
+    try {
+      await updateDoc(doc(db, "faqs", id), {
+        question,
+        response,
+      });
+      getFAQs();
+      toast.success("FAQ atualizado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao atualizar o FAQ.");
+      console.log(error);
+    }
   };
 
   const getTestimonialsAll = async () => {
@@ -165,18 +203,30 @@ export function AuthUserProvider({ children }) {
   };
 
   async function createPublishedTestimonials({ id, name, imageURL, testimony }) {
-    await addDoc(collection(db, "publishedTestimonials"), {
-      userId: id,
-      userName: name,
-      userImage: imageURL,
-      userTestimony: testimony,
-    });
-    getTestimonialsAll();
+    try {
+      await addDoc(collection(db, "publishedTestimonials"), {
+        userId: id,
+        userName: name,
+        userImage: imageURL,
+        userTestimony: testimony,
+      });
+      getTestimonialsAll();
+      toast.success("Depoimento publicado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao publicar o depoimento.");
+      console.log(error);
+    }
   }
 
   const deletePublishedTestimonials = async (id) => {
-    await deleteDoc(doc(db, "publishedTestimonials", id));
-    getTestimonialsAll();
+    try {
+      await deleteDoc(doc(db, "publishedTestimonials", id));
+      getTestimonialsAll();
+      toast.success("Depoimento deletado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao deletar o depoimento.");
+      console.log(error);
+    }
   };
 
   const getLinkForm = async () => {
@@ -185,10 +235,16 @@ export function AuthUserProvider({ children }) {
   };
 
   const updateLinkForm = async ({ id, link }) => {
-    await updateDoc(doc(db, "linkForm", id), {
-      link,
-    });
-    getLinkForm();
+    try {
+      await updateDoc(doc(db, "linkForm", id), {
+        link,
+      });
+      getLinkForm();
+      toast.success("Link atualizado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao atualizar o depoimento.");
+      console.log(error);
+    }
   };
 
   function singIn({ email, password }) {
@@ -208,7 +264,7 @@ export function AuthUserProvider({ children }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert("Email ou senha inválidos");
+        toast.warning("Email ou senha inválidos");
         console.log({ errorMessage, errorCode });
       });
   }
@@ -272,10 +328,12 @@ export function AuthUserProvider({ children }) {
               maxAge: 60 * 60 * 1, //1 hour
             });
             if (accessToken) autenticationUser(email);
+            toast.success("Conta criada com sucesso.");
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            toast.error("Erro ao criar sua conta, revise os campos e tente novamente.");
             // ..
           });
       }
@@ -293,8 +351,13 @@ export function AuthUserProvider({ children }) {
   };
 
   const deleteUser = async (user) => {
-    await deleteDoc(doc(db, "users", user.id));
-    getUsers();
+    try {
+      await deleteDoc(doc(db, "users", user.id));
+      getUsers();
+      toast.success("Usuário deletado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao deletar usuário.");
+    }
   };
 
   async function autenticationUser(email) {

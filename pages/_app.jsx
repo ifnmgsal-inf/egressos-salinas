@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+import { ToastContainer } from "react-toastify";
 import { AuthUserProvider } from "../contexts/authUserContext";
+
 import NProgress from "nprogress";
 
 import NavBar from "../components/navBar";
@@ -10,6 +12,7 @@ import SideBar from "../components/sideBar";
 
 import "../styles/globals.css";
 import "../styles/nprogress.css";
+import "../styles/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -59,6 +62,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         )}
       </AuthUserProvider>
+      <ToastContainer autoClose={1000} theme="dark" />
     </>
   );
 }

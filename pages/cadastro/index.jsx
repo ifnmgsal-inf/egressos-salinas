@@ -78,9 +78,16 @@ const Registration = () => {
     const password = document.querySelector("input[name=password]");
     const confirmation = document.querySelector("input[name=confirmation]");
 
-    if (password.value === confirmation.value) {
+    if (password.value.length >= 8 || confirmation.value.length >= 8) {
+      password.setCustomValidity("");
       confirmation.setCustomValidity("");
-    } else confirmation.setCustomValidity("As senhas não conferem");
+      if (password.value === confirmation.value) {
+        confirmation.setCustomValidity("");
+      } else confirmation.setCustomValidity("As senhas não conferem");
+    } else {
+      password.setCustomValidity("Sua senha precisa ter pelo menos 8 caracteres.");
+      confirmation.setCustomValidity("Sua senha precisa ter pelo menos 8 caracteres.");
+    }
   }
 
   return (
