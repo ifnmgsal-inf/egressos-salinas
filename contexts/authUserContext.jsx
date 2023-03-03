@@ -81,9 +81,9 @@ export function AuthUserProvider({ children }) {
     setNewsAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
-  const deleteNews = async (news) => {
+  const deleteNews = async (id) => {
     try {
-      await deleteDoc(doc(db, "news", news.id));
+      await deleteDoc(doc(db, "news", id));
       getNews();
       toast.success("Notícia deletada com sucesso.");
     } catch (error) {
@@ -95,11 +95,8 @@ export function AuthUserProvider({ children }) {
   const updateNews = async ({ id, image, title, description }) => {
     console.log({ id, image, title, description });
     try {
-      await updateDoc(doc(db, "news", id), {
-        image,
-        title,
-        description,
-      });
+      deleteNews(id);
+      createNewsUpload({ image, title, description });
       getNews();
       toast.success("Notícia atualizada com sucesso.");
     } catch (error) {
@@ -197,10 +194,16 @@ export function AuthUserProvider({ children }) {
   };
 
   const updateTestimonyUser = async (user, { testimony }) => {
-    await updateDoc(doc(db, "users", user.id), {
-      testimony,
-    });
-    getTestimonialsAll();
+    try {
+      await updateDoc(doc(db, "users", user.id), {
+        testimony,
+      });
+      getTestimonialsAll();
+      toast.success("Depoimento atualizado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao atualizar seu depoimento.");
+      console.log(error);
+    }
   };
 
   async function createPublishedTestimonials({ id, name, imageURL, testimony }) {
@@ -243,7 +246,7 @@ export function AuthUserProvider({ children }) {
       getLinkForm();
       toast.success("Link atualizado com sucesso.");
     } catch (error) {
-      toast.error("Erro ao atualizar o depoimento.");
+      toast.error("Erro ao atualizar o Link.");
       console.log(error);
     }
   };

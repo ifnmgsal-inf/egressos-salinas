@@ -73,7 +73,7 @@ const DepoimentoPage = () => {
         ) : (
           <div className="flex flex-col space-y-6 mx-5">
             <EditOutlined
-              className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
+              className="text-12  text-title cursor-pointer bg-icon-bgGrey  backdrop-opacity-5 p-2.5 rounded-full"
               onClick={() => setIsEdit(true)}
             />
           </div>

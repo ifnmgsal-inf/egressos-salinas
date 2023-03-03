@@ -81,9 +81,7 @@ export default function EgressosPage() {
                     <td className="py-4 px-6">{user.email}</td>
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
-                    <td className="flex justify-center py-4 px-6">
-                      {formatDate(user.conclusionYear) || "Pendente"}
-                    </td>
+                    <td className="py-4 px-6">{formatDate(user.conclusionYear) || "Pendente"}</td>
                   </tr>
                 ))
               : usersAll?.map((user, index) => (
@@ -124,9 +122,7 @@ export default function EgressosPage() {
                     <td className="py-4 px-6">{user.email}</td>
                     <td className="py-4 px-6">{user.course}</td>
                     <td className="py-4 px-6">{user.level}</td>
-                    <td className="flex justify-center py-4 px-6">
-                      {formatDate(user.conclusionYear) || "Pendente"}
-                    </td>
+                    <td className="py-4 px-6">{formatDate(user.conclusionYear) || "Pendente"}</td>
                   </tr>
                 ))}
           </tbody>

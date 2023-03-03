@@ -49,7 +49,7 @@ const NewsPage = () => {
 
   function handleDeleteNews(news) {
     // console.log(news);
-    deleteNews(news);
+    deleteNews(news.id);
   }
 
   function handleEdit(news) {
@@ -57,7 +57,7 @@ const NewsPage = () => {
     setEditNewsId(news.id);
     setValue("title", news.title);
     setValue("description", news.description);
-    setValue("image", news.image);
+    setImage(news.image);
     openModalHandleNews();
 
     console.log(isEdit);
@@ -257,7 +257,7 @@ const NewsPage = () => {
                       height: "100%",
                       objectFit: "cover",
                     }}
-                    src={URL.createObjectURL(image)}
+                    src={image}
                     alt=""
                   />
                 ) : (

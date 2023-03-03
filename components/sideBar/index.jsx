@@ -33,19 +33,9 @@ const SideBar = () => {
             link: "/painel/curriculo",
           },
           {
-            label: "DADOS CADASTRAIS",
-            icon: <DatabaseOutlined />,
-            link: "/painel/dados",
-          },
-          {
             label: "DEPOIMENTO",
             icon: <SoundOutlined />,
             link: "/painel/depoimento",
-          },
-          {
-            label: "AVALIAÇÃO",
-            icon: <SmileOutlined />,
-            link: "/painel/avaliacao",
           },
         ]
       : [
