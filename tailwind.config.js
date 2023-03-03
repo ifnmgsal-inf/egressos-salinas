@@ -116,6 +116,11 @@ module.exports = {
           bgGrey: "rgba(20, 20, 20, 0.07)",
         },
       },
+      transitionProperty: {
+        height: "height",
+        width: "width",
+        spacing: "margin, padding",
+      },
     },
   },
   plugins: [],
