@@ -124,8 +124,8 @@ const News = () => {
                   <img className="max-h-167" src={news.image} alt="" />
                   <div className="flex flex-col overflow-auto py-2 md:px-4 text-center md:text-left space-y-2">
                     <span className="font-normal text-11.5 text-label-text">{news.title}</span>
-                    <div
-                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                    <p
+                      className={`text-12 font-normal min-w-0 h-full overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
@@ -133,7 +133,7 @@ const News = () => {
                       }}
                     >
                       {news.description}
-                    </div>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -152,9 +152,9 @@ const News = () => {
                 >
                   <img className="max-h-167" src={news.image} alt="" />
                   <div className="flex flex-col overflow-auto py-2 md:px-4 text-center md:text-left space-y-2">
-                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
-                    <div
-                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                    <span className="font-medium text-14 text-label-text">{news.title}</span>
+                    <p
+                      className={`text-12 font-normal min-w-0 h-full overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
@@ -162,7 +162,7 @@ const News = () => {
                       }}
                     >
                       {news.description}
-                    </div>
+                    </p>
                   </div>
                 </div>
               </div>

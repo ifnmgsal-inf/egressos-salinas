@@ -93,6 +93,7 @@ export function AuthUserProvider({ children }) {
   };
 
   const updateNews = async ({ id, image, title, description }) => {
+    console.log({ id, image, title, description });
     try {
       await updateDoc(doc(db, "news", id), {
         image,
@@ -110,7 +111,7 @@ export function AuthUserProvider({ children }) {
   async function createNewsUpload({ image, title, description }) {
     const file = image[0];
 
-    const storageRef = ref(storage, `images/${file?.name}`);
+    const storageRef = ref(storage, `images/news/${file?.name}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
     let imageURL = null;
@@ -279,65 +280,71 @@ export function AuthUserProvider({ children }) {
     image,
     conclusionYear,
   }) {
-    const file = image[0];
+    getUsers();
+    if (usersAll.length > 0 && usersAll.every((user) => user.email == email || user.cpf == cpf)) {
+      toast.warning("Usuário já cadastrado.");
+      return;
+    } else {
+      const file = image[0];
 
-    const storageRef = ref(storage, `images/${file?.name}`);
+      const storageRef = ref(storage, `images/users/${file?.name}`);
 
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    const createdIn = moment().format("YYYY-MM-DD");
-    let imageURL = null;
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      const createdIn = moment().format("YYYY-MM-DD");
+      let imageURL = null;
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progress);
-      },
-      (error) => {
-        console.log(error);
-        alert(error);
-      },
-      async () => {
-        await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          imageURL = url;
-        });
-        console.log(imageURL);
-
-        await addDoc(collection(db, "users"), {
-          name,
-          email,
-          cpf,
-          course,
-          level,
-          password,
-          imageURL,
-          conclusionYear,
-          createdIn,
-          type: "user",
-        });
-
-        await createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            // Signed in
-            const { accessToken, email } = userCredential.user;
-
-            setCookie(undefined, "next-egressos.token", accessToken, {
-              maxAge: 60 * 60 * 1, //1 hour
-            });
-            setCookie(undefined, "next-egressos.email", email, {
-              maxAge: 60 * 60 * 1, //1 hour
-            });
-            if (accessToken) autenticationUser(email);
-            toast.success("Conta criada com sucesso.");
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            toast.error("Erro ao criar sua conta, revise os campos e tente novamente.");
-            // ..
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setProgress(progress);
+        },
+        (error) => {
+          console.log(error);
+          alert(error);
+        },
+        async () => {
+          await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            imageURL = url;
           });
-      }
-    );
+          console.log(imageURL);
+
+          await addDoc(collection(db, "users"), {
+            name,
+            email,
+            cpf,
+            course,
+            level,
+            password,
+            imageURL,
+            conclusionYear,
+            createdIn,
+            type: "user",
+          });
+
+          await createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in
+              const { accessToken, email } = userCredential.user;
+
+              setCookie(undefined, "next-egressos.token", accessToken, {
+                maxAge: 60 * 60 * 1, //1 hour
+              });
+              setCookie(undefined, "next-egressos.email", email, {
+                maxAge: 60 * 60 * 1, //1 hour
+              });
+              if (accessToken) autenticationUser(email);
+              toast.success("Conta criada com sucesso.");
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              toast.error("Erro ao criar sua conta, revise os campos e tente novamente.");
+              // ..
+            });
+        }
+      );
+    }
   }
 
   const signOutUser = () => {

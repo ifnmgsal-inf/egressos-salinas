@@ -108,9 +108,9 @@ const NewsPage = () => {
                 >
                   <img className="max-h-167" src={news.image} alt="" />
                   <div className="flex flex-col overflow-auto pt-2 md:px-4 text-center md:text-left space-y-4">
-                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
-                    <div
-                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                    <span className="font-medium text-15text-label-text">{news.title}</span>
+                    <p
+                      className={`text-12 font-normal min-w-0 h-full overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
@@ -118,7 +118,7 @@ const NewsPage = () => {
                       }}
                     >
                       {news.description}
-                    </div>
+                    </p>
                   </div>
                 </div>
                 <div className="flex flex-col items-center justify-center space-y-4 m-2">
@@ -146,10 +146,10 @@ const NewsPage = () => {
                   }}
                 >
                   <img className="max-h-167" src={news.image} alt="" />
-                  <div className="flex flex-col overflow-auto pt-2 md:px-4 text-center xsm:text-left md:text-left space-y-2 xsm:mx-2 md:mx-0">
-                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
-                    <div
-                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                  <div className="flex flex-col overflow-auto my-2 md:px-4 text-center xsm:text-left md:text-left space-y-2 xsm:mx-2 md:mx-0">
+                    <span className="font-medium text-15 text-label-text">{news.title}</span>
+                    <p
+                      className={`text-12 font-normal min-w-0 h-full overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
@@ -157,10 +157,10 @@ const NewsPage = () => {
                       }}
                     >
                       {news.description}
-                    </div>
+                    </p>
                   </div>
                 </div>
-                <div className="flex xsm:flex-row md:flex-col lg:flex-col items-center xsm:justify-end md:justify-center xsm:space-x-4 md:space-y-4 md:space-x-0 m-2">
+                <div className="flex xsm:flex-row md:flex-col lg:flex-col items-center xsm:justify-end md:justify-center xsm:space-x-4 md:space-y-4 md:space-x-0 mr-2 my-2">
                   <EditOutlined
                     className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
                     onClick={() => handleEdit(news)}
