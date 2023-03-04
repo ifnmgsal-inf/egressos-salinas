@@ -105,11 +105,11 @@ const NewsPage = () => {
                     openModal();
                   }}
                 >
-                  <img className="max-h-220" src={news.image} alt="" />
+                  <img className="max-h-270" src={news.image} alt="" />
                   <div className="flex flex-col overflow-auto my-2 md:px-4 text-center xsm:text-left md:text-left space-y-2 xsm:mx-2 md:mx-0">
                     <span className="font-medium text-15 text-label-text">{news.title}</span>
                     <p
-                      className={`text-12 font-normal min-w-0 h-full overflow-hidden`}
+                      className={`text-12 font-normal min-w-0 xsm:h-40 overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
