@@ -85,25 +85,25 @@ const AllNews = () => {
           />
         </label>
       </div>
-      <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-x-4 gap-y-8 my-8">
+      <div className="grid 2xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-8 my-4">
         {search.length
           ? filterNews.map((news, index) => (
               <div
                 key={index}
-                className="flex justify-between max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
+                className="flex flex-col justify-between bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
               >
                 <div
-                  className="flex flex-row"
+                  className="flex flex-col"
                   onClick={() => {
                     setModalData(news);
                     openModal();
                   }}
                 >
-                  <img className="max-h-167" src={news.image} alt="" />
-                  <div className="flex flex-col overflow-auto pt-2 md:px-4 text-center md:text-left space-y-4">
-                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
-                    <div
-                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                  <img className="lg:max-h-270" src={news.image} alt="" />
+                  <div className="flex flex-col overflow-auto py-2 px-4 text-left space-y-2">
+                    <span className="font-medium text-14 text-label-text">{news.title}</span>
+                    <p
+                      className={`text-12 font-normal min-w-0 xsm:h-40 overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
@@ -111,7 +111,7 @@ const AllNews = () => {
                       }}
                     >
                       {news.description}
-                    </div>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -119,20 +119,20 @@ const AllNews = () => {
           : newsAll?.map((news, index) => (
               <div
                 key={index}
-                className="flex justify-between max-h-167 bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
+                className="flex flex-col justify-between bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
               >
                 <div
-                  className="flex flex-row"
+                  className="flex flex-col"
                   onClick={() => {
                     setModalData(news);
                     openModal();
                   }}
                 >
-                  <img className="max-h-167" src={news.image} alt="" />
-                  <div className="flex flex-col overflow-auto pt-2 md:px-4 text-center md:text-left space-y-4">
-                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
-                    <div
-                      className={`text-13 font-medium min-w-0 overflow-hidden pr-2`}
+                  <img className="lg:max-h-270" src={news.image} alt="" />
+                  <div className="flex flex-col overflow-auto py-2 px-4 text-left space-y-2">
+                    <span className="font-medium text-14 text-label-text">{news.title}</span>
+                    <p
+                      className={`text-12 font-normal min-w-0 xsm:h-40 overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
@@ -140,7 +140,7 @@ const AllNews = () => {
                       }}
                     >
                       {news.description}
-                    </div>
+                    </p>
                   </div>
                 </div>
               </div>

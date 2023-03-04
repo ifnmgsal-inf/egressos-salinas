@@ -107,7 +107,7 @@ const News = () => {
           />
         </label>
       </div>
-      <div className="grid 2xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-8 my-4">
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xsm:grid-cols-1 gap-x-4 gap-y-8 my-4">
         {search.length
           ? filterNews.map((news, index) => (
               <div
