@@ -122,10 +122,10 @@ const News = () => {
                   }}
                 >
                   <img className="max-h-167" src={news.image} alt="" />
-                  <div className="flex flex-col overflow-auto py-2 md:px-4 text-center md:text-left space-y-2">
-                    <span className="font-normal text-11.5 text-label-text">{news.title}</span>
+                  <div className="flex flex-col overflow-auto py-2 px-4 text-left space-y-2">
+                    <span className="font-normal text-14 text-label-text">{news.title}</span>
                     <p
-                      className={`text-12 font-normal min-w-0 h-full overflow-hidden`}
+                      className={`text-12 font-normal min-w-0 h-40 overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
@@ -150,11 +150,11 @@ const News = () => {
                     openModal();
                   }}
                 >
-                  <img className="max-h-167" src={news.image} alt="" />
-                  <div className="flex flex-col overflow-auto py-2 md:px-4 text-center md:text-left space-y-2">
+                  <img className="lg:max-h-270" src={news.image} alt="" />
+                  <div className="flex flex-col overflow-auto py-2 px-4 text-left space-y-2">
                     <span className="font-medium text-14 text-label-text">{news.title}</span>
                     <p
-                      className={`text-12 font-normal min-w-0 h-full overflow-hidden`}
+                      className={`text-12 font-normal min-w-0 xsm:h-40 overflow-hidden`}
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: "1",
@@ -201,7 +201,7 @@ const News = () => {
             <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
           </div>
           <hr />
-          <div className="text-13 text-grey-text mt-4w-100">{modalData?.description}</div>
+          <div className="text-13 text-grey-text mt-4w-100 py-2">{modalData?.description}</div>
         </Modal>
       </div>
     </div>

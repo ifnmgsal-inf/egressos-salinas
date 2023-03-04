@@ -43,6 +43,8 @@ module.exports = {
       100: "100px",
       167: "167px",
       170: "170px",
+      200: "200px",
+      220: "220px",
       270: "270px",
       780: "780px",
     },
@@ -52,6 +54,8 @@ module.exports = {
       700: "700px",
       600: "600px",
       500: "500px",
+      300: "300px",
+      200: "200px",
     },
     mimWidth: {
       1400: "1400px",
@@ -120,6 +124,10 @@ module.exports = {
         height: "height",
         width: "width",
         spacing: "margin, padding",
+      },
+      opacity: {
+        85: ".85",
+        97: ".97",
       },
     },
   },
