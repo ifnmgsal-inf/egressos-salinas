@@ -69,13 +69,13 @@ export function AuthUserProvider({ children }) {
     getLinkForm();
   }, []);
 
-  async function createUserCurriculum() {
+  async function createUserCurriculum(user) {
     try {
       await addDoc(collection(db, "userResume"), {
         userId: user?.id,
         email: user?.email,
         name: user?.name,
-        education: user?.course,
+        education: `${user?.course} - IFNMG Campus Salinas - ${user?.conclusionYear}`,
         publish: false,
       });
       getUserCurriculum(user);
@@ -319,7 +319,6 @@ export function AuthUserProvider({ children }) {
   };
 
   function singIn({ email, password }) {
-    console.log({ email, password });
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { accessToken, email } = userCredential.user;
@@ -404,8 +403,7 @@ export function AuthUserProvider({ children }) {
                 maxAge: 60 * 60 * 1, //1 hour
               });
               if (accessToken) {
-                autenticationUser(email);
-                createUserCurriculum();
+                autenticationUser(email, true);
                 toast.success("Conta criada com sucesso.");
               }
             })
@@ -438,7 +436,7 @@ export function AuthUserProvider({ children }) {
     }
   };
 
-  async function autenticationUser(email) {
+  async function autenticationUser(email, createUser = false) {
     // Create a query against the collection.
     // const db = getFirestore(app);
     const userRef = collection(db, "users");
@@ -451,7 +449,7 @@ export function AuthUserProvider({ children }) {
       if (user.type === "adm") {
         router.push("/dashboard/cadastros");
       } else {
-        await getUserCurriculum(user);
+        createUser ? await createUserCurriculum(user) : await getUserCurriculum(user);
         router.push("/painel/curriculo");
       }
     }

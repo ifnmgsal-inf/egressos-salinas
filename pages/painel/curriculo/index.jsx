@@ -25,7 +25,6 @@ const CurriculoPage = () => {
     setValue("publish", userCurriculum?.publish);
   }, []);
 
-  console.log(userCurriculum);
   function handleCurriculum(data) {
     // console.log(data);
     updateUserCurriculum({ id: userCurriculum.id, user, ...data });
