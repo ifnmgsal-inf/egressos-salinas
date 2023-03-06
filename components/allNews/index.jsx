@@ -54,7 +54,9 @@ const AllNews = () => {
   const { newsAll } = useContext(AuthUserContext);
   console.log(newsAll, "Notícias do Firebase");
 
-  const filterNews = search.length ? newsAll.filter(({ title }) => title.includes(search)) : [];
+  const filterNews = search.length
+    ? newsAll.filter(({ title }) => title.toUpperCase().includes(search.toUpperCase()))
+    : [];
 
   function openModal() {
     setModalIsOpen(true);

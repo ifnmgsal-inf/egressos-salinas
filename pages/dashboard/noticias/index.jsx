@@ -33,6 +33,7 @@ const NewsPage = () => {
   }
 
   function openModalHandleNews() {
+    setIsEdit(false);
     setHandleModalIsOpen(true);
   }
 
@@ -61,7 +62,6 @@ const NewsPage = () => {
     openModalHandleNews();
   }
 
-  console.log(isEdit);
   return (
     <div className="px-10 py-10 mr-5">
       <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-start xl:items-center">

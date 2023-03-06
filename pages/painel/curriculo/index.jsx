@@ -25,7 +25,7 @@ const CurriculoPage = () => {
 
   return (
     <form className="xsm:px-2 lg:pl-10" onSubmit={handleSubmit(handleUpdateCurriculum)}>
-      <div className="flex flex-col max-w-1000 bg-white justify-center my-10 border rounded-lg px-5 py-2">
+      <div className="flex flex-col max-w-1000 bg-white justify-center my-10 border rounded-sm px-5 py-2">
         <h2 className="text-base mb-5 font-medium">Informações curriculares</h2>
         <div className="flex xsm:flex-col md:flex-row xl:flex-row pb-4">
           <span className="inline-block mx-4 xsm:mb-5" style={{ width: "150px", height: "150px" }}>
@@ -98,7 +98,7 @@ const CurriculoPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-lg px-5 py-2">
+      <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
         <h2 className="text-base mb-4 font-medium">
           Breve descrição pessoal e objetivos profissionais
         </h2>
@@ -111,7 +111,7 @@ const CurriculoPage = () => {
           onChange={() => setAlteration(false)}
         />
       </div>
-      <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-lg px-5 py-2">
+      <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
         <h2 className="text-base mb-4 font-medium">formação</h2>
       </div>
       <div className="flex justify-start">
