@@ -1,33 +1,42 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { EditOutlined, SaveOutlined, UserOutlined } from "@ant-design/icons";
+import { SaveOutlined, CheckOutlined, UserOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
 
 const CurriculoPage = () => {
-  const [alteration, setAlteration] = useState(true);
-  const { setUser, user, isMobile } = useContext(AuthUserContext);
+  const [alteration, setAlteration] = useState(false);
+  const { user, updateUserCurriculum, userCurriculum, getUserCurriculum } =
+    useContext(AuthUserContext);
   const { register, handleSubmit, setValue } = useForm();
 
   useEffect(() => {
-    setValue("name", user?.name);
-    setValue("birth-date", "1111");
-    setValue("address", "rua");
-    setValue("phone", "(38)988197980");
-    setValue("email", user?.email);
-    setValue("description", "Descrição do usuário");
-  }, [user]);
+    setValue("name", userCurriculum?.name);
+    setValue("birthDate", userCurriculum?.birthDate);
+    setValue("address", userCurriculum?.address);
+    setValue("phone", userCurriculum?.phone);
+    setValue("email", userCurriculum?.email);
+    setValue("description", userCurriculum?.description);
+    setValue("education", userCurriculum?.education);
+    setValue("languages", userCurriculum?.languages);
+    setValue("extraCourses", userCurriculum?.extraCourses);
+    setValue("professionalHistory", userCurriculum?.professionalHistory);
+    setValue("publish", userCurriculum?.publish);
+  }, []);
 
-  function handleUpdateCurriculum(data) {
-    console.log(data);
+  console.log(userCurriculum);
+  function handleCurriculum(data) {
+    // console.log(data);
+    updateUserCurriculum({ id: userCurriculum.id, user, ...data });
+    getUserCurriculum(user);
   }
 
   return (
-    <form className="xsm:px-2 lg:pl-10" onSubmit={handleSubmit(handleUpdateCurriculum)}>
-      <div className="flex flex-col max-w-1000 bg-white justify-center my-10 border rounded-sm px-5 py-2">
+    <form className="xsm:px-2 lg:pl-10" onSubmit={handleSubmit(handleCurriculum)}>
+      <div className="flex flex-col max-w-1000 bg-white justify-center my-8 border rounded-sm px-5 py-2">
         <h2 className="text-base mb-5 font-medium">Informações curriculares</h2>
-        <div className="flex xsm:flex-col md:flex-row xl:flex-row pb-4">
+        <div className="flex xsm:flex-col md:flex-row xl:flex-row">
           <span className="inline-block mx-4 xsm:mb-5" style={{ width: "150px", height: "150px" }}>
             {user?.imageURL ? (
               <img
@@ -53,46 +62,51 @@ const CurriculoPage = () => {
             <div>
               <label className="text-sm font-medium">Nome:</label>
               <input
-                className="xsm:text-sm px-2 text-grey-text"
+                className="xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                placeholder="Nada informado."
                 {...register("name")}
                 type="text"
-                onChange={() => setAlteration(false)}
+                onChange={() => setAlteration(true)}
               />
             </div>
             <div className="mt-2">
               <label className="text-sm font-medium">Data de nascimento:</label>
               <input
-                className="xsm:text-sm px-2 text-grey-text"
-                {...register("birth-date")}
-                type="text"
-                onChange={() => setAlteration(false)}
+                className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                placeholder="Nada informado."
+                {...register("birthDate")}
+                type="date"
+                onChange={() => setAlteration(true)}
               />
             </div>
             <div className="mt-2">
               <label className="text-sm font-medium">Endereço:</label>
               <input
-                className="xsm:text-sm px-2 text-grey-text"
+                className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                placeholder="Nada informado."
                 {...register("address")}
                 type="text"
-                onChange={() => setAlteration(false)}
+                onChange={() => setAlteration(true)}
               />
             </div>
             <div className="mt-2">
               <label className="text-sm font-medium">Telefone celular:</label>
               <input
-                className="xsm:text-sm px-2 text-grey-text"
+                className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                placeholder="Nada informado."
                 {...register("phone")}
                 type="text"
-                onChange={() => setAlteration(false)}
+                onChange={() => setAlteration(true)}
               />
             </div>
             <div className="mt-2">
               <label className="text-sm font-medium">E-mail:</label>
               <input
-                className="xsm:text-sm px-2 text-grey-text"
+                className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                placeholder="Nada informado."
                 {...register("email")}
                 type="text"
-                onChange={() => setAlteration(false)}
+                onChange={() => setAlteration(true)}
               />
             </div>
           </div>
@@ -104,20 +118,66 @@ const CurriculoPage = () => {
         </h2>
         <textarea
           {...register("description")}
-          className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-grey-text focus:outline-none"
-          id="exampleFormControlTextarea1"
+          className="placeholder:text-14 form-control block w-full px-3 py-1.5 xsm:text-sm  md:text-15 font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none"
+          id="description"
           rows="3"
           placeholder="Descrição"
-          onChange={() => setAlteration(false)}
+          onChange={() => setAlteration(true)}
         />
       </div>
       <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
-        <h2 className="text-base mb-4 font-medium">formação</h2>
+        <h2 className="text-base mb-1 font-medium">formação</h2>
+        <input
+          className="placeholder:text-14 xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+          placeholder="Nada informado."
+          {...register("education")}
+          type="text"
+          onChange={() => setAlteration(true)}
+        />
       </div>
-      <div className="flex justify-start">
+      <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
+        <h2 className="text-base mb-1 font-medium">Idiomas</h2>
+        <input
+          className="xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+          placeholder="Nada informado."
+          {...register("languages")}
+          type="text"
+          onChange={() => setAlteration(true)}
+        />
+      </div>
+      <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
+        <h2 className="text-base mb-1 font-medium">Cursos extracurriculares</h2>
+        <input
+          className="xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+          placeholder="Nada informado."
+          {...register("extraCourses")}
+          type="text"
+          onChange={() => setAlteration(true)}
+        />
+      </div>
+      <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
+        <h2 className="text-base mb-1 font-medium">Histórico profissinal</h2>
+        <input
+          className="xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+          placeholder="Nada informado."
+          {...register("professionalHistory")}
+          type="text"
+          onChange={() => setAlteration(true)}
+        />
+      </div>
+      <div className="flex flex-col justify-start items-start space-y-3">
+        <div className="flex items-center ">
+          <input
+            type="checkbox"
+            className="accent-primary-active"
+            {...register("publish")}
+            onChange={() => setAlteration(true)}
+          />
+          <span className="text-13 ml-2">Publicar currículo.</span>
+        </div>
         <button
           type="submit"
-          disabled={alteration}
+          disabled={!alteration}
           className="flex items-center px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
         >
           <SaveOutlined className="mr-1 text-14" /> Salvar

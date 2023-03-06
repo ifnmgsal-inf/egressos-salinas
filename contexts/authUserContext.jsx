@@ -38,6 +38,7 @@ export function AuthUserProvider({ children }) {
   const [faqsAll, setFaqsAll] = useState(null);
   const [testimonialsAll, setTestimonialsAll] = useState(null);
   const [linkForm, setLinkForm] = useState(null);
+  const [userCurriculum, setUserCurriculum] = useState(null);
 
   const [progress, setProgress] = useState(0);
 
@@ -50,6 +51,7 @@ export function AuthUserProvider({ children }) {
   const faqsCollectionRef = collection(db, "faqs");
   const testimonialsCollectionRef = collection(db, "publishedTestimonials");
   const linkFormCollectionRef = collection(db, "linkForm");
+  const userCurriculumCollectionRef = collection(db, "userResume");
   const auth = getAuth();
 
   useEffect(() => {
@@ -66,6 +68,71 @@ export function AuthUserProvider({ children }) {
     getTestimonialsAll();
     getLinkForm();
   }, []);
+
+  async function createUserCurriculum() {
+    try {
+      await addDoc(collection(db, "userResume"), {
+        userId: user?.id,
+        email: user?.email,
+        name: user?.name,
+        education: user?.course,
+        publish: false,
+      });
+      getUserCurriculum(user);
+      toast.success("Currículo criado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao criar seu currículo.");
+      console.log(error);
+    }
+  }
+
+  const getUserCurriculum = async (user) => {
+    const q = query(userCurriculumCollectionRef, where("userId", "==", user.id));
+
+    const querySnapshot = await getDocs(q);
+    const userCurriculumDate =
+      querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0] || null;
+    if (userCurriculumDate) {
+      setUserCurriculum(userCurriculumDate);
+    }
+  };
+
+  const updateUserCurriculum = async ({
+    id,
+    user,
+    address,
+    birthDate,
+    description,
+    education,
+    email,
+    extraCourses,
+    languages,
+    name,
+    phone,
+    professionalHistory,
+    publish,
+  }) => {
+    try {
+      await updateDoc(doc(db, "userResume", id), {
+        address,
+        birthDate,
+        description,
+        education,
+        email,
+        extraCourses,
+        languages,
+        name,
+        phone,
+        professionalHistory,
+        publish,
+      });
+      getUserCurriculum(user);
+      toast.success("Currículo atualizado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao atualizar o FAQ.");
+      console.log(error);
+    }
+  };
 
   const getUsers = async () => {
     const data = await getDocs(usersCollectionRef);
@@ -336,14 +403,15 @@ export function AuthUserProvider({ children }) {
               setCookie(undefined, "next-egressos.email", email, {
                 maxAge: 60 * 60 * 1, //1 hour
               });
-              if (accessToken) autenticationUser(email);
-              toast.success("Conta criada com sucesso.");
+              if (accessToken) {
+                autenticationUser(email);
+                createUserCurriculum();
+                toast.success("Conta criada com sucesso.");
+              }
             })
             .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
               toast.error("Erro ao criar sua conta, revise os campos e tente novamente.");
-              // ..
+              console.log(error);
             });
         }
       );
@@ -372,7 +440,7 @@ export function AuthUserProvider({ children }) {
 
   async function autenticationUser(email) {
     // Create a query against the collection.
-    const db = getFirestore(app);
+    // const db = getFirestore(app);
     const userRef = collection(db, "users");
     const q = query(userRef, where("email", "==", email));
 
@@ -380,7 +448,12 @@ export function AuthUserProvider({ children }) {
     const user = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0] || null;
     if (user) {
       setUser(user);
-      user.type === "adm" ? router.push("/dashboard/cadastros") : router.push("/painel/curriculo");
+      if (user.type === "adm") {
+        router.push("/dashboard/cadastros");
+      } else {
+        await getUserCurriculum(user);
+        router.push("/painel/curriculo");
+      }
     }
   }
 
@@ -417,6 +490,10 @@ export function AuthUserProvider({ children }) {
         updateNews,
         linkForm,
         updateLinkForm,
+        createUserCurriculum,
+        userCurriculum,
+        getUserCurriculum,
+        updateUserCurriculum,
       }}
     >
       {children}
