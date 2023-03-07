@@ -1,7 +1,13 @@
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import BasePage from "../../components/basePage";
-import { SearchOutlined, UserOutlined, CloseOutlined } from "@ant-design/icons";
+import {
+  SearchOutlined,
+  UserOutlined,
+  CloseOutlined,
+  AlignLeftOutlined,
+  InfoCircleOutlined,
+} from "@ant-design/icons";
 import { formatDate } from "../../lib/utils";
 import Modal from "react-modal";
 
@@ -147,16 +153,23 @@ export default function EgressosPage() {
                     <td className="py-4 px-6">
                       {user?.resume?.publish ? (
                         <span
-                          className="cursor-pointer"
+                          className="flex items-center font-medium cursor-pointer hover:text-primary-active"
                           onClick={() => {
                             setModalData(user);
                             openModal();
                           }}
                         >
-                          Currículo
+                          <AlignLeftOutlined className="mr-2 text-17" />
+                          Visualizar
                         </span>
                       ) : (
-                        "Pendente"
+                        <span
+                          className="flex items-center font-medium cursor-pointer hover:text-danger"
+                          aria-disabled
+                        >
+                          <InfoCircleOutlined className="mr-2 text-17" />
+                          Pendente
+                        </span>
                       )}
                     </td>
                   </tr>
