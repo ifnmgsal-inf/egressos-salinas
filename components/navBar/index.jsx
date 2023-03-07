@@ -68,7 +68,7 @@ const NavBar = ({ type = "full" }) => {
           >
             {type === "dashboard" ? (
               <img
-                className="ml-3"
+                className="ml-2"
                 src={isMobile ? "/icon_if.png" : "/logo_egressos.png"}
                 alt="Logo IF"
                 height={isMobile ? 5 : 55}
