@@ -9,7 +9,7 @@ const DepoimentoPage = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   const { register, handleSubmit } = useForm();
-  const { user, updateTestimonyUser } = useContext(AuthUserContext);
+  const { user, updateTestimonyUser, isMobile } = useContext(AuthUserContext);
 
   function handleEditTestimony(data) {
     data.testimony ? (updateTestimonyUser(user, data), setIsEdit(false)) : setIsEdit(false);
@@ -18,13 +18,13 @@ const DepoimentoPage = () => {
   return (
     <div className="flex flex-col mt-8 mb-4 xsm:mx-2 xl:mx-8">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
+        <h1 className="xsm:text-14 sm:text-14 lg:text-20 text-title ">
           Publicar meu <span className="text-primary-active">Depoimento</span>
         </h1>
       </div>
-      <div className=" flex items-center justify-between shadow-sm bg-white p-4 rounded-sm">
-        <div className="flex p-2">
-          <div className="flex flex-col items-center mr-4">
+      <div className=" flex xsm:flex-col md:flex-row xsm:max-w-300 md:max-w-700 lg:md:max-w-1000 justify-between shadow-sm bg-white p-4 rounded-sm">
+        <div className="flex xsm:flex-col md:flex-row p-2">
+          <div className="flex xsm:flex-col-reverse md:flex-col items-center ">
             <span className="inline-block" style={{ width: "100px", height: "100px" }}>
               {user?.imageURL ? (
                 <img
@@ -48,36 +48,37 @@ const DepoimentoPage = () => {
             </span>
             <span className="text-14 font-medium mt-1">{user?.name}</span>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center ml-4 xsm:my-2">
             <label className="text-14 font-medium">Meu Depoimento</label>
             <textarea
-              className="h-20 rounded-sm focus:outline-primary-active p-1 text-grey-text text-13 bg-white"
+              className="h-20 rounded-sm focus:outline-primary-active p-1 text-grey-text text-13 bg-white resize xsm:max-w-250 sm:max-w-250 md:max-w-500 lg:max-w-700 xsm:my-1"
               defaultValue={user?.testimony || "Você não possui depoimento..."}
               {...register("testimony")}
               disabled={!isEdit}
               type="text"
               id="testimony"
               name="testimony"
-              cols={100}
               required
             />
           </div>
         </div>
-        {isEdit ? (
-          <div className="flex flex-col mx-5">
-            <CheckOutlined
-              className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
-              onClick={handleSubmit(handleEditTestimony)}
-            />{" "}
-          </div>
-        ) : (
-          <div className="flex flex-col space-y-6 mx-5">
-            <EditOutlined
-              className="text-12  text-title cursor-pointer bg-icon-bgGrey  backdrop-opacity-5 p-2.5 rounded-full"
-              onClick={() => setIsEdit(true)}
-            />
-          </div>
-        )}
+        <div className="flex flex-row xsm:items-start md:items-end justify-end">
+          {isEdit ? (
+            <div className="flex mx-2">
+              <CheckOutlined
+                className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
+                onClick={handleSubmit(handleEditTestimony)}
+              />{" "}
+            </div>
+          ) : (
+            <div className="flex mx-2">
+              <EditOutlined
+                className="text-12  text-title cursor-pointer bg-icon-bgGrey  backdrop-opacity-5 p-2.5 rounded-full"
+                onClick={() => setIsEdit(true)}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
