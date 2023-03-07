@@ -32,14 +32,14 @@ const CurriculoPage = () => {
   }
 
   return (
-    <form className="xsm:px-2 lg:pl-10" onSubmit={handleSubmit(handleCurriculum)}>
+    <form className="xsm:px-2 lg:pl-10 pb-20" onSubmit={handleSubmit(handleCurriculum)}>
       <div className="flex flex-col max-w-1000 bg-white justify-center my-8 border rounded-sm px-5 py-2">
         <h2 className="text-base mb-5 font-medium">Informações curriculares</h2>
         <div className="flex xsm:flex-col md:flex-row xl:flex-row">
           <span className="inline-block mx-4 xsm:mb-5" style={{ width: "150px", height: "150px" }}>
             {user?.imageURL ? (
               <img
-                className="xl:shadow-2xl"
+                className="xl:shadow-xl"
                 style={{ borderRadius: "50%", width: "100%", height: "100%", objectFit: "cover" }}
                 src={user?.imageURL}
                 alt=""
@@ -154,7 +154,7 @@ const CurriculoPage = () => {
           onChange={() => setAlteration(true)}
         />
       </div>
-      <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
+      <div className="flex flex-col max-w-700 bg-white justify-center mt-5 mb-2 border rounded-sm px-5 py-2">
         <h2 className="text-base mb-1 font-medium">Histórico profissinal</h2>
         <input
           className="xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
@@ -165,21 +165,21 @@ const CurriculoPage = () => {
         />
       </div>
       <div className="flex flex-col justify-start items-start space-y-3">
-        <div className="flex items-center ">
+        <div className="flex items-center ml-1 mb-4">
           <input
             type="checkbox"
             className="accent-primary-active"
             {...register("publish")}
             onChange={() => setAlteration(true)}
           />
-          <span className="text-13 ml-2">Publicar currículo.</span>
+          <span className="text-14 ml-2">Publicar currículo.</span>
         </div>
         <button
           type="submit"
           disabled={!alteration}
-          className="flex items-center px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
+          className="flex items-center px-8 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-sm"
         >
-          <SaveOutlined className="mr-1 text-14" /> Salvar
+          <CheckOutlined className="mr-1.5 text-14" /> Salvar
         </button>
       </div>
     </form>
