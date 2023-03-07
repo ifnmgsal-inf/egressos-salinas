@@ -245,7 +245,10 @@ const Registration = () => {
             <Link href={"/login"}>
               <a className="flex items-center my-2 text-grey-text font-semibold text-14 cursor-pointer">
                 Já tenho um cadastro.{" "}
-                <span className="ml-2 font-normal text-primary-active underline"> Fazer login</span>
+                <span className="ml-2 font-normal text-primary-active underline hover:font-medium">
+                  {" "}
+                  Fazer login
+                </span>
               </a>
             </Link>
           </form>

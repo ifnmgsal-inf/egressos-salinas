@@ -26,6 +26,7 @@ import {
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 import moment from "moment/moment";
 import { toast } from "react-toastify";
+import { formatDate } from "../lib/utils";
 
 export const AuthUserContext = createContext({});
 
@@ -77,7 +78,7 @@ export function AuthUserProvider({ children }) {
         userId: user?.id,
         email: user?.email,
         name: user?.name,
-        education: `${user?.course} - IFNMG Campus Salinas - ${user?.conclusionYear}`,
+        education: `${user?.course} - IFNMG Campus Salinas - ${formatDate(user?.conclusionYear)}`,
         publish: false,
       });
       getUserCurriculum(user);
@@ -341,7 +342,7 @@ export function AuthUserProvider({ children }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        toast.warning("Email ou senha inválidos");
+        toast.warning("Email ou senha inválidos, verifique os campos e tente novamente.");
         console.log({ errorMessage, errorCode });
       });
   }
@@ -357,7 +358,7 @@ export function AuthUserProvider({ children }) {
     conclusionYear,
   }) {
     getUsers();
-    if (usersAll.length > 0 && usersAll.every((user) => user.email == email || user.cpf == cpf)) {
+    if (usersAll.length > 0 && usersAll.every((user) => user.email === email || user.cpf === cpf)) {
       toast.warning("Usuário já cadastrado.");
       return;
     } else {

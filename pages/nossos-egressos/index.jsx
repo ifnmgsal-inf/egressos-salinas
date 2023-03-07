@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import BasePage from "../../components/basePage";
@@ -237,7 +238,7 @@ export default function EgressosPage() {
                     >
                       {modalData?.imageURL ? (
                         <img
-                          className="xl:shadow-2xl"
+                          className="xl:shadow-xl"
                           style={{
                             borderRadius: "50%",
                             width: "100%",
@@ -264,46 +265,51 @@ export default function EgressosPage() {
                       <div>
                         <label className="text-sm font-medium">Nome:</label>
                         <input
-                          className="xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                          className="bg-white xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                           placeholder="Nada informado."
                           type="text"
                           defaultValue={modalData?.resume?.name}
+                          disabled
                         />
                       </div>
                       <div className="mt-2">
                         <label className="text-sm font-medium">Data de nascimento:</label>
                         <input
-                          className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                          className="bg-white placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                           placeholder="Nada informado."
                           type="date"
                           defaultValue={modalData?.resume?.birthDate}
+                          disabled
                         />
                       </div>
                       <div className="mt-2">
                         <label className="text-sm font-medium">Endereço:</label>
                         <input
-                          className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                          className="bg-white placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                           placeholder="Nada informado."
                           type="text"
                           defaultValue={modalData?.resume?.address}
+                          disabled
                         />
                       </div>
                       <div className="mt-2">
                         <label className="text-sm font-medium">Telefone celular:</label>
                         <input
-                          className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                          className="bg-white placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                           placeholder="Nada informado."
                           type="text"
                           defaultValue={modalData?.resume?.phone}
+                          disabled
                         />
                       </div>
                       <div className="mt-2">
                         <label className="text-sm font-medium">E-mail:</label>
                         <input
-                          className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                          className="bg-white placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                           placeholder="Nada informado."
                           type="text"
                           defaultValue={modalData?.resume?.email}
+                          disabled
                         />
                       </div>
                     </div>
@@ -314,47 +320,52 @@ export default function EgressosPage() {
                     Breve descrição pessoal e objetivos profissionais
                   </h2>
                   <textarea
-                    className="placeholder:text-14 form-control block w-full px-3 py-1.5 xsm:text-sm  md:text-15 font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none"
+                    className="bg-white placeholder:text-14 form-control block w-full px-3 py-1.5 xsm:text-sm  md:text-15 font-normal text-gray-700bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none"
                     id="description"
                     rows="3"
                     placeholder="Descrição"
                     defaultValue={modalData?.resume?.description}
+                    disabled
                   />
                 </div>
                 <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
                   <h2 className="text-base mb-1 font-medium">formação</h2>
                   <input
-                    className="placeholder:text-14 xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                    className="bg-white placeholder:text-14 xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                     placeholder="Nada informado."
                     type="text"
                     defaultValue={modalData?.resume?.education}
+                    disabled
                   />
                 </div>
                 <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
                   <h2 className="text-base mb-1 font-medium">Idiomas</h2>
                   <input
-                    className="xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                    className="bg-whitexsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                     placeholder="Nada informado."
                     type="text"
                     defaultValue={modalData?.resume?.languages}
+                    disabled
                   />
                 </div>
                 <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
                   <h2 className="text-base mb-1 font-medium">Cursos extracurriculares</h2>
                   <input
-                    className="xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                    className="bg-white xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                     placeholder="Nada informado."
                     type="text"
                     defaultValue={modalData?.resume?.extraCourses}
+                    disabled
                   />
                 </div>
                 <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
                   <h2 className="text-base mb-1 font-medium">Histórico profissinal</h2>
                   <input
-                    className="xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                    className="bg-white xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                     placeholder="Nada informado."
                     type="text"
                     defaultValue={modalData?.resume?.professionalHistory}
+                    disabled
                   />
                 </div>
               </form>

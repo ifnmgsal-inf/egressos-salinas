@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext, useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
+import { YoutubeFilled } from "@ant-design/icons";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -27,27 +28,27 @@ const Footer = () => {
             <div className="xsm:flex flex-col xsm:items-center md:items-start text-white xsm:space-y-2 md:space-y-4 xl:space-y-4">
               <h2 className="text-sm text-white font-semibold">Início</h2>
               <h3 className="text-xs text-bg-grey">
-                <a href="">O que é o portal de egressos?</a>
+                <Link href="sobre">O que é o portal de egressos?</Link>
               </h3>
               <h3 className="text-xs text-bg-grey">
-                <a href="">Notícias</a>
+                <Link href="noticias">Notícias</Link>
               </h3>
               <h3 className="text-xs text-bg-grey">
-                <a href="" target="_blank" rel="noreferrer">
+                <Link href="/" target="_blank" rel="noreferrer">
                   Depoimentos
-                </a>
+                </Link>
               </h3>
             </div>
             <div className="xsm:flex flex-col xsm:items-center md:items-start text-white xsm:space-y-2 md:space-y-4 xl:space-y-4">
               <h2 className="text-sm text-white font-semibold">Sobre</h2>
               <h3 className="text-xs text-bg-grey">
-                <a href="">Sobre o egresso</a>
+                <Link href="sobre">Sobre o egresso</Link>
               </h3>
               <h3 className="text-xs text-bg-grey">
-                <a href="">Questionário do egresso</a>
+                <Link href="sobre">Questionário do egresso</Link>
               </h3>
               <h3 className="text-xs text-bg-grey">
-                <a href="">Pergutas frequentes</a>
+                <Link href="sobre">Pergutas frequentes</Link>
               </h3>
             </div>
           </div>
@@ -60,7 +61,7 @@ const Footer = () => {
           <div className="flex text-12 my-4 space-x-6">
             <a
               className="text-white hover:text-gray-900 dark:hover:text-white"
-              href="https://facebook.com/CatracaApp"
+              href="https://www.facebook.com/IFNMG.Salinas/?locale=pt_BR"
               target="_blank"
               rel="noreferrer"
             >
@@ -75,7 +76,7 @@ const Footer = () => {
             </a>
             <a
               className="text-white hover:text-gray-900 dark:hover:text-white"
-              href="https://instagram.com/CatracaApp"
+              href="https://www.instagram.com/ifnmg.salinas/"
               target="_blank"
               rel="noreferrer"
             >
@@ -90,14 +91,12 @@ const Footer = () => {
             </a>
             <a
               className="text-white hover:text-gray-900 dark:hover:text-white"
-              href="https://twitter.com/CatracaApp"
+              href="https://www.youtube.com/@ifnmgsalinas1552/featured"
               target="_blank"
               rel="noreferrer"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-              </svg>
-              <span className="sr-only">Twitter page</span>
+              <YoutubeFilled className="text-20 text-white" />
+              <span className="sr-only">youtube page</span>
             </a>
           </div>
         </div>

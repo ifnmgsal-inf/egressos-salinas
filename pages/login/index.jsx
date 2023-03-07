@@ -54,9 +54,9 @@ const Login = () => {
               Entrar
             </button>
             <Link href={"/cadastro"}>
-              <a className="flex items-center my-2 text-grey-text font-semibold text-14 cursor-pointer">
+              <a className="flex items-center my-2 text-grey-text font-semibold text-14 cursor-pointer hover:text-primary">
                 <DownloadOutlined className="text-16 text-primary rotate-270 mr-1" />
-                Não tenho cadastro
+                Não tenho cadastro...
               </a>
             </Link>
           </form>
