@@ -77,11 +77,11 @@ const SideBar = () => {
           />
         )}
         <ul className="pt-8">
-          {menus.map(({ label, icon, defaultItem, link }, index) => (
+          {menus.map(({ label, icon, link }, index) => (
             <Link key={index} href={link}>
               <li
                 className={`flex items-center gap-x-4 cursor-pointer ${
-                  !openSideBar ? "ml-4 py-2 mr-4 px-2" : "ml-2 p-2"
+                  !openSideBar ? "py-2 mx-1.5 px-2" : "ml-2 p-2"
                 } text-white hover:bg-primary-active mt-2 rounded-[1px] `}
               >
                 {icon}

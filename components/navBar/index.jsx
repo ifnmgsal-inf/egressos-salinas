@@ -68,6 +68,7 @@ const NavBar = ({ type = "full" }) => {
           >
             {type === "dashboard" ? (
               <img
+                className="ml-3"
                 src={isMobile ? "/icon_if.png" : "/logo_egressos.png"}
                 alt="Logo IF"
                 height={isMobile ? 5 : 55}
@@ -143,7 +144,6 @@ const NavBar = ({ type = "full" }) => {
                 </div>
                 <span className="inline-block mx-4" style={{ width: "40px", height: "40px" }}>
                   {data.imageURL ? (
-                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       className="shadow-2xl"
                       style={{

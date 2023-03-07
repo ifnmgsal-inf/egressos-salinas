@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <AuthUserProvider>
         {router.asPath.includes("/dashboard") || router.asPath.includes("/painel") ? (
-          <div className="">
+          <div>
             <div className="bg-title">
               <NavBar type="dashboard" />
             </div>

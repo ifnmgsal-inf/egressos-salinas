@@ -76,7 +76,6 @@ export default function EgressosPage() {
                     >
                       <span className="inline-block mx-4" style={{ width: "40px", height: "40px" }}>
                         {user.imageURL ? (
-                          // eslint-disable-next-line @next/next/no-img-element
                           <img
                             className="shadow-2xl"
                             style={{
