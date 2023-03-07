@@ -41,7 +41,7 @@ const Depositions = () => {
             </span>
             <span className="mt-2 text-14 font-medium">{userName}</span>
           </div>
-          <div className="flex max-h-170 mx-8 p-4 items-center bg-icon-bgGrey rounded-sm shadow-md xsm:text-xs md:text-base">
+          <div className="flex max-h-200 xsm:mx-0 xsm:my-2 md:mx-8 p-4 items-center bg-icon-bgGrey rounded-sm shadow-md xsm:text-xs md:text-base">
             {userTestimony}
           </div>
         </div>
