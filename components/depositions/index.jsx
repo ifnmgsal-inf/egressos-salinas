@@ -16,7 +16,7 @@ const Depositions = () => {
             <span className="inline-block" style={{ width: "150px", height: "150px" }}>
               {userImage ? (
                 <img
-                  className="shadow-2xl"
+                  className="shadow-xl"
                   style={{
                     borderRadius: "50%",
                     width: "100%",
@@ -39,7 +39,7 @@ const Depositions = () => {
                 />
               )}
             </span>
-            <span className="text-13 font-medium">{userName}</span>
+            <span className="mt-2 text-14 font-medium">{userName}</span>
           </div>
           <div className="flex max-h-170 mx-8 p-4 items-center bg-icon-bgGrey rounded-sm shadow-md xsm:text-xs md:text-base">
             {userTestimony}

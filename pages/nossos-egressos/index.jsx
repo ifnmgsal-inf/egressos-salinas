@@ -230,7 +230,7 @@ export default function EgressosPage() {
               <hr />
               <form className="xsm:px-2 lg:pl-10">
                 <div className="flex flex-col max-w-1000 bg-white justify-center my-8 border rounded-sm px-5 py-2">
-                  <h2 className="text-base mb-5 font-medium">Informações curriculares</h2>
+                  <h2 className="text-base mb-5 font-medium">Informações pessoais</h2>
                   <div className="flex xsm:flex-col md:flex-row xl:flex-row">
                     <span
                       className="inline-block mx-4 xsm:mb-5"
@@ -341,7 +341,7 @@ export default function EgressosPage() {
                 <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
                   <h2 className="text-base mb-1 font-medium">Idiomas</h2>
                   <input
-                    className="bg-whitexsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                    className="bg-white xsm:text-sm p-2 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                     placeholder="Nada informado."
                     type="text"
                     defaultValue={modalData?.resume?.languages}
