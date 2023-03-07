@@ -39,6 +39,7 @@ export function AuthUserProvider({ children }) {
   const [testimonialsAll, setTestimonialsAll] = useState(null);
   const [linkForm, setLinkForm] = useState(null);
   const [userCurriculum, setUserCurriculum] = useState(null);
+  const [userCurriculumAll, setUserCurriculumAll] = useState(null);
 
   const [progress, setProgress] = useState(0);
 
@@ -67,6 +68,7 @@ export function AuthUserProvider({ children }) {
     getFAQs();
     getTestimonialsAll();
     getLinkForm();
+    getUserCurriculumAll();
   }, []);
 
   async function createUserCurriculum(user) {
@@ -95,6 +97,11 @@ export function AuthUserProvider({ children }) {
     if (userCurriculumDate) {
       setUserCurriculum(userCurriculumDate);
     }
+  };
+
+  const getUserCurriculumAll = async () => {
+    const data = await getDocs(userCurriculumCollectionRef);
+    setUserCurriculumAll(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   const updateUserCurriculum = async ({
@@ -492,6 +499,8 @@ export function AuthUserProvider({ children }) {
         userCurriculum,
         getUserCurriculum,
         updateUserCurriculum,
+        getUserCurriculumAll,
+        userCurriculumAll,
       }}
     >
       {children}
