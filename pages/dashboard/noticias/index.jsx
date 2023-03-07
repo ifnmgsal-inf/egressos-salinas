@@ -15,7 +15,8 @@ const NewsPage = () => {
   const [image, setImage] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const [editNewsId, setEditNewsId] = useState(false);
-  const { newsAll, createNewsUpload, deleteNews, updateNews } = useContext(AuthUserContext);
+  const { newsAll, createNewsUpload, deleteNews, updateNews, isMobile } =
+    useContext(AuthUserContext);
 
   const { register, handleSubmit, setValue } = useForm();
 
@@ -63,7 +64,7 @@ const NewsPage = () => {
   }
 
   return (
-    <div className="px-10 py-10 mr-5">
+    <div className="xsm:px-5 md:px-10 py-10 md:mr-5">
       <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-start xl:items-center">
         <h1 className="text-20 text-title xsm:mb-5 md:mb-5 lg:mb-0 xl:mb-0">
           Todas as <span className="text-primary-active">Notícias</span>
@@ -86,7 +87,7 @@ const NewsPage = () => {
             className="flex items-center px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
             onClick={() => openModalHandleNews()}
           >
-            Criar notícia
+            {isMobile ? "Criar" : "criar notícia"}
             <PlusOutlined className="ml-1 text-14" />
           </button>
         </div>
