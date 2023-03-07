@@ -47,17 +47,17 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <AuthUserProvider>
         {router.asPath.includes("/dashboard") || router.asPath.includes("/painel") ? (
-          <>
+          <div className="">
             <div className="bg-title">
               <NavBar type="dashboard" />
             </div>
-            <div className="flex">
+            <div className="flex bg-title">
               <SideBar />
-              <div className="flex-1 h-screen bg-bg-container">
+              <div className="flex-1 bg-bg-container">
                 <Component {...pageProps} />
               </div>
             </div>
-          </>
+          </div>
         ) : (
           <Component {...pageProps} />
         )}
