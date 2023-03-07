@@ -124,7 +124,7 @@ const DepositionsPage = () => {
                   <label className="text-12 font-medium px-1">Depoimento</label>
                   <textarea
                     className="xsm:h-20 md:h-10 rounded-sm focus:outline-primary-active p-1 text-grey-text text-13 bg-white resize xsm:max-w-250 md:max-w-500 lg:max-w-350 xsm:my-1"
-                    value={testimony?.userTestiony}
+                    value={testimony?.userTestimony}
                     id="testimony"
                     name="testimony"
                     disabled
