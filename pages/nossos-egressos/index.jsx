@@ -107,7 +107,26 @@ export default function EgressosPage() {
                     <td className="py-4 px-6">{user.level}</td>
                     <td className="py-4 px-6">{formatDate(user.conclusionYear) || "Pendente"}</td>
                     <td className="py-4 px-6">
-                      {user?.resume?.publish ? "Curriculo" : "Pendente"}
+                      {user?.resume?.publish ? (
+                        <span
+                          className="flex items-center font-medium cursor-pointer hover:text-primary-active"
+                          onClick={() => {
+                            setModalData(user);
+                            openModal();
+                          }}
+                        >
+                          <AlignLeftOutlined className="mr-2 text-17" />
+                          Visualizar
+                        </span>
+                      ) : (
+                        <span
+                          className="flex items-center font-medium cursor-pointer hover:text-danger"
+                          aria-disabled
+                        >
+                          <InfoCircleOutlined className="mr-2 text-17" />
+                          Pendente
+                        </span>
+                      )}
                     </td>
                   </tr>
                 ))
