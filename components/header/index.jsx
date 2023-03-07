@@ -2,7 +2,7 @@ import NavBar from "../navBar";
 
 const Header = () => {
   return (
-    <div className="top-0 lg:h-4/5 bg-cover bg-[url('/bg_header.jpg')] lg:bg-fixed border-b-4 border-primary-active">
+    <div className="top-0 lg:h-4/5 bg-cover bg-[url('/bg_header2.jpg')] lg:bg-fixed border-b-4 border-primary-active">
       <NavBar type={"full"} />
       <div className="flex flex-col xsm:my-40 lg:mt-52">
         <span className="flex font-extra-light xsm:text-white text-center xsm:text-3xl sm:text-3xl md:text-5xl xl:text-5xl justify-center">
