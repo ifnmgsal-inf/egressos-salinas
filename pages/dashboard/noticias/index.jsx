@@ -69,7 +69,7 @@ const NewsPage = () => {
         <h1 className="text-20 text-title xsm:mb-5 md:mb-5 lg:mb-0 xl:mb-0">
           Todas as <span className="text-primary-active">Notícias</span>
         </h1>
-        <div className="flex items-center justify-center space-x-4">
+        <div className="flex xsm:flex-col sm:flex-row xsm:space-y-5 sm:space-y-0 items-center justify-center sm:space-x-4">
           <label className="relative block lg:mt-0 xl:mt-0">
             <span className="absolute inset-y-0 left-0 flex items-center pl-2">
               <SearchOutlined className="text-20 text-title" />
@@ -84,10 +84,10 @@ const NewsPage = () => {
             />
           </label>
           <button
-            className="flex items-center px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
+            className="flex items-center xsm:px-24 sm:px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5  rounded-md"
             onClick={() => openModalHandleNews()}
           >
-            {isMobile ? "Criar" : "criar notícia"}
+            criar notícia
             <PlusOutlined className="ml-1 text-14" />
           </button>
         </div>
@@ -160,7 +160,7 @@ const NewsPage = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-row  items-center justify-end xsm:space-x-4   mr-2 my-2">
+                <div className="flex flex-row  items-center justify-end xsm:space-x-4 mr-2 my-2">
                   <EditOutlined
                     className="text-12 text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-full"
                     onClick={() => handleEdit(news)}

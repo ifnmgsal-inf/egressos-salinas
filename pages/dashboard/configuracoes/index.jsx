@@ -16,9 +16,9 @@ const ConfigurationPage = () => {
   }
 
   return (
-    <div className="flex flex-col mt-8 mb-4 xsm:mx-2 lg:ml-8 lg:mr-14 ">
+    <div className="flex flex-col mt-8 mb-4 xsm:mx-4 sm:mx-6 lg:ml-8 lg:mr-14">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="xsm:text-10 sm:text-10 lg:text-20 text-title ">
+        <h1 className="xsm:text-14 sm:text-15 lg:text-20 text-title ">
           Configurações do <span className="text-primary-active">Sistema</span>
         </h1>
       </div>
@@ -27,13 +27,14 @@ const ConfigurationPage = () => {
           <div className="flex flex-col px-2">
             <label className="text-14 font-medium px-1">Link para o formulário do egresso</label>
             <textarea
-              className="h-10 rounded-sm focus:outline-primary-active p-1 text-13 text-grey-text resize bg-white"
+              className="h-10 rounded-sm focus:outline-primary-active p-1 text-13 text-grey-text resize xsm:max-w-200 md:max-w-500 lg:max-w-900 bg-white"
               defaultValue={linkForm?.[0]?.link}
               {...register("linkFormInput")}
               type="text"
               id="linkFormInput"
               name="linkFormInput"
               disabled={!isEdit}
+              rows="3"
             />
           </div>
         </div>

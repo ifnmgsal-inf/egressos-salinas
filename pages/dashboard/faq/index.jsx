@@ -50,13 +50,13 @@ const FaqPage = () => {
   }
   return (
     <>
-      <div className="flex flex-col mt-8 mb-4 xsm:mx-2 xl:mx-8">
+      <div className="flex flex-col mt-8 mb-4 xsm:mx-4 xl:mx-8">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="xsm:text-10 sm:text-15 lg:text-20 text-title">
+          <h1 className="xsm:text-14 sm:text-15 lg:text-20 text-title">
             Perguntas <span className="text-primary-active">Frequentes</span>
           </h1>
           <button
-            className="flex items-center px-4 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
+            className="flex items-center px-4 py-2 text-12 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-md"
             onClick={() => openModalCreate()}
           >
             Adicionar
