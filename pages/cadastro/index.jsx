@@ -69,7 +69,7 @@ const Registration = () => {
   const { registrationIn } = useContext(AuthUserContext);
 
   function handleRegister(data) {
-    console.log(data);
+    // console.log(data);
 
     registrationIn(data);
   }

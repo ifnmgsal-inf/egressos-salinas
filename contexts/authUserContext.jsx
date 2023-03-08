@@ -357,19 +357,12 @@ export function AuthUserProvider({ children }) {
     image,
     conclusionYear,
   }) {
-    getUsers();
-    if (usersAll.length > 0 && usersAll.every((user) => user.email == email || user.cpf == cpf)) {
-      toast.warning("Usuário já cadastrado.");
-      return;
-    } else {
+    if (usersAll.every((userData) => userData.email != email && userData.cpf != cpf)) {
       const file = image[0];
-
       const storageRef = ref(storage, `images/users/${file?.name}`);
-
       const uploadTask = uploadBytesResumable(storageRef, file);
       const createdIn = moment().format("YYYY-MM-DD");
       let imageURL = null;
-
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -385,7 +378,6 @@ export function AuthUserProvider({ children }) {
             imageURL = url;
           });
           console.log(imageURL);
-
           await addDoc(collection(db, "users"), {
             name,
             email,
@@ -398,12 +390,10 @@ export function AuthUserProvider({ children }) {
             createdIn,
             type: "user",
           });
-
           await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
               // Signed in
               const { accessToken, email } = userCredential.user;
-
               setCookie(undefined, "next-egressos.token", accessToken, {
                 maxAge: 60 * 60 * 1, //1 hour
               });
@@ -421,6 +411,8 @@ export function AuthUserProvider({ children }) {
             });
         }
       );
+    } else {
+      toast.warning("Usuário já cadastrado.");
     }
   }
 
