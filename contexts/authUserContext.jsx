@@ -15,7 +15,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { app, storage } from "../services/firebaseConfig";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import {
   getAuth,
