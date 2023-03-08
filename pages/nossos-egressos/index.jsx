@@ -67,7 +67,7 @@ export default function EgressosPage() {
               <th className="py-3 px-6">Email</th>
               <th className="py-3 px-6">Curso</th>
               <th className="py-3 px-6">Nível</th>
-              <th className="py-3 px-6">Ano de Conclusão</th>
+              <th className="py-3 px-6">Data de Conclusão</th>
               <th className="py-3 px-6">Currículo</th>
             </tr>
           </thead>

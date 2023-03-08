@@ -360,7 +360,7 @@ export function AuthUserProvider({ children }) {
     if (usersAll.every((userData) => userData.email != email && userData.cpf != cpf)) {
       const file = image[0];
       const storageRef = ref(storage, `images/users/${file?.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+      const uploadTask = uploadBytes(storageRef, file);
       const createdIn = moment().format("YYYY-MM-DD");
       let imageURL = null;
       uploadTask.on(
