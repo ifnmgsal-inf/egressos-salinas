@@ -185,7 +185,7 @@ const FaqPage = () => {
           <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModalEdit} />
         </div>
         <hr />
-        <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text">
+        <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text my-4">
           <form
             className="flex-1 flex-col lg:mt-5 space-y-4"
             onSubmit={handleSubmit(handleEditFAQ)}
