@@ -69,7 +69,7 @@ const SideBar = () => {
     <div
       className={`flex ${isMobile ? "fixed bottom-0 left-0 right-0 justify-center" : ""} bg-title`}
     >
-      <div className={`${openSideBar ? "w-72" : "w-20"} md:h-screen relative`}>
+      <div className={`${openSideBar ? "w-72" : "w-20"} ${!isMobile ? "h-screen" : ""} relative`}>
         {!isMobile && (
           <LeftOutlined
             className={`text-title absolute cursor-pointer rounded-full -right-3.5 top-1/2 p-1 w-7 border-2 border-title hover:border-primary bg-white ${

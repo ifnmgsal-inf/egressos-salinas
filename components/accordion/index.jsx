@@ -7,8 +7,8 @@ const Accordion = ({ title, children, edit = false, ...props }) => {
 
   return (
     <div className="mb-4">
-      <div className="flex group cursor-pointer w-3/4 mx-auto xsm:h-10 md:h-10 justify-between items-center rounded mb-2">
-        <div className="flex group cursor-pointer items-center" onClick={() => setOpen(!open)}>
+      <div className="flex group cursor-pointer mx-auto xsm:h-10 md:h-10 justify-between items-center rounded mb-2">
+        <div className="flex group cursor-pointer items-start" onClick={() => setOpen(!open)}>
           <div className="group-hover:text-primary-active">
             {open ? (
               <DownOutlined className="text-12 text-primary-active pb-2.5" />
@@ -19,7 +19,7 @@ const Accordion = ({ title, children, edit = false, ...props }) => {
           <div
             className={`${
               open && "text-primary-active"
-            } xsm:text-12 lg:text-15 pl-2 group-hover:text-primary-active font-medium`}
+            } xsm:text-12 lg:text-15 pl-2 pr-4 group-hover:text-primary-active font-medium`}
           >
             {title}
           </div>

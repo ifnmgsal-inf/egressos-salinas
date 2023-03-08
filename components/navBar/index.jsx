@@ -61,7 +61,7 @@ const NavBar = ({ type = "full" }) => {
     >
       <div
         className={`${
-          type === "full" ? "justify-around" : "justify-between md:mx-10"
+          type === "full" ? "justify-around" : "justify-between md:mx-1"
         } mx-auto md:items-center lg:flex`}
       >
         <div>

@@ -15,12 +15,11 @@ const DepositionsPage = () => {
 
   return (
     <>
-      <div className="flex flex-col xsm:p-2 xsm:mt-4 md:mt-8 mb-4 xsm:px-4 lg:ml-8 lg:mr-14">
-        <div className="flex items-center justify-between my-2">
-          <h1 className="xsm:text-15 sm:text-15 lg:text-20 text-title">
-            Novos <span className="text-primary-active">Depoimentos</span>
-          </h1>
-        </div>
+      <div className="flex flex-col xsm:p-2 xsm:mt-4 md:mt-8 mb-4 xsm:px-4 lg:ml-2 lg:mr-14">
+        <h1 className="xsm:text-15 sm:text-15 lg:text-20 mb-4 text-title">
+          Novos <span className="text-primary-active">Depoimentos</span>
+        </h1>
+
         <div className="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 gap-x-6">
           {usersAll?.map((user) =>
             user.testimony ? (

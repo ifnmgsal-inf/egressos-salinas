@@ -16,7 +16,7 @@ const ConfigurationPage = () => {
   }
 
   return (
-    <div className="flex flex-col mt-8 mb-4 xsm:mx-4 sm:mx-6 lg:ml-8 lg:mr-14">
+    <div className="flex flex-col mt-8 mb-4 xsm:mx-4 sm:mx-5 lg:ml-5 lg:mr-14">
       <div className="flex items-center justify-between mb-4">
         <h1 className="xsm:text-15 sm:text-15 lg:text-20 text-title ">
           Configurações do <span className="text-primary-active">Sistema</span>

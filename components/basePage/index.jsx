@@ -5,12 +5,10 @@ import Footer from "../../components/footer";
 export default function BasePage({ children }) {
   return (
     <div id="main">
-      <main>
-        <Header />
-        {children}
-        <ScrollTopView />
-        <Footer />
-      </main>
+      <Header />
+      {children}
+      <ScrollTopView />
+      <Footer />
     </div>
   );
 }

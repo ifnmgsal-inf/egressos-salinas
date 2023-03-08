@@ -56,11 +56,9 @@ function MyApp({ Component, pageProps }) {
                 <SideBar />
               </div>
             ) : (
-              <div className="flex bg-title">
+              <div className="flex">
                 <SideBar />
-                <div className="flex-1 bg-bg-container">
-                  <Component {...pageProps} />
-                </div>
+                <Component {...pageProps} />
               </div>
             )}
           </>

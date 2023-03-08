@@ -50,7 +50,7 @@ const FaqPage = () => {
   }
   return (
     <>
-      <div className="flex flex-col mt-8 mb-4 xsm:mx-4 xl:mx-8">
+      <div className="flex-1 flex-col mt-8 mb-4 xsm:mx-4 xl:mx-8">
         <div className="flex items-center justify-between mb-10">
           <h1 className="xsm:text-15 sm:text-15 lg:text-20 text-title">
             Perguntas <span className="text-primary-active">Frequentes</span>
@@ -90,8 +90,8 @@ const FaqPage = () => {
           content: {
             position: "absolute",
             top: "10%",
-            left: "20%",
-            right: "20%",
+            left: "5%",
+            right: "5%",
             bottom: "auto",
             border: "1px solid #ccc",
             background: "#fff",
@@ -118,8 +118,8 @@ const FaqPage = () => {
           >
             <div className="flex flex-col">
               <label className="text-14 font-medium">Pergunta</label>
-              <input
-                className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+              <textarea
+                className="h-20 border border-grey-border rounded-sm focus:outline-primary-active p-1.5"
                 {...register("question")}
                 type="text"
                 id="question"
@@ -131,7 +131,7 @@ const FaqPage = () => {
             <div className="flex flex-col">
               <label className="text-14 font-medium">Resposta</label>
               <textarea
-                className="border border-grey-text rounded-sm focus:outline-primary-active p-4"
+                className="h-20 border border-grey-border rounded-sm focus:outline-primary-active p-1.5"
                 {...register("response")}
                 type="textArea"
                 id="response"
@@ -164,8 +164,8 @@ const FaqPage = () => {
           content: {
             position: "absolute",
             top: "10%",
-            left: "20%",
-            right: "20%",
+            left: "10%",
+            right: "10%",
             bottom: "auto",
             border: "1px solid #ccc",
             background: "#fff",
@@ -192,8 +192,8 @@ const FaqPage = () => {
           >
             <div className="flex flex-col">
               <label className="text-14 font-medium">Pergunta</label>
-              <input
-                className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+              <textarea
+                className="h-20 border border-grey-border rounded-sm focus:outline-primary-active p-1.5"
                 {...register("question")}
                 type="text"
                 id="question"
@@ -205,7 +205,7 @@ const FaqPage = () => {
             <div className="flex flex-col">
               <label className="text-14 font-medium">Resposta</label>
               <textarea
-                className="border border-grey-text rounded-sm focus:outline-primary-active p-4"
+                className="h-20 border border-grey-border rounded-sm focus:outline-primary-active p-1.5"
                 {...register("response")}
                 type="textArea"
                 id="response"

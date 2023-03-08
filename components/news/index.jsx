@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { useContext, useState } from "react";
 import Modal from "react-modal";
@@ -201,7 +202,7 @@ const News = () => {
             <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
           </div>
           <hr />
-          <div className="text-13 text-grey-text mt-4w-100 py-2">{modalData?.description}</div>
+          <div className="text-13 text-grey-text mt-4 py-2">{modalData?.description}</div>
         </Modal>
       </div>
     </div>

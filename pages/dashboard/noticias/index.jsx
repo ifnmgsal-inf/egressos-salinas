@@ -64,7 +64,7 @@ const NewsPage = () => {
   }
 
   return (
-    <div className="xsm:px-5 md:px-10 py-8 md:mr-5">
+    <div className="xsm:px-5 md:px-5 py-8 md:mr-5">
       <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-start xl:items-center">
         <h1 className="xsm:text-16 sm:text-18 lg:text-20 text-title xsm:mb-5 md:mb-5 lg:mb-0 xl:mb-0">
           Todas as <span className="text-primary-active">Notícias</span>
@@ -97,7 +97,7 @@ const NewsPage = () => {
           ? filterNews.map((news, index) => (
               <div
                 key={index}
-                className="flex flex-col justify-between bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
+                className="flex flex-col justify-between bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer border"
               >
                 <div
                   className="flex flex-col"
@@ -136,7 +136,7 @@ const NewsPage = () => {
           : newsAll?.map((news, index) => (
               <div
                 key={index}
-                className="flex flex-col justify-between bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer"
+                className="flex flex-col justify-between bg-white rounded-sm p-0 drop-shadow-lg cursor-pointer border"
               >
                 <div
                   className="flex flex-col"
@@ -206,7 +206,7 @@ const NewsPage = () => {
             <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
           </div>
           <hr />
-          <div className="text-13 text-grey-text mt-4w-100">{modalData?.description}</div>
+          <div className="text-13 text-grey-text mt-4">{modalData?.description}</div>
         </Modal>
         <Modal
           style={{
@@ -217,10 +217,11 @@ const NewsPage = () => {
               right: 0,
               bottom: 0,
               backgroundColor: "rgba(255, 255, 255, 0.75)",
+              zIndex: 20,
             },
             content: {
               position: "absolute",
-              top: "10%",
+              top: isMobile ? "2%" : "10%",
               left: "5%",
               right: "5%",
               bottom: "auto",
@@ -247,7 +248,14 @@ const NewsPage = () => {
           <hr />
           <div className="flex xsm:flex-col lg:flex-row text-13 text-grey-text">
             <div className="flex flex-col items-center justify-center sm:m-0 lg:m-10">
-              <span className="inline-block mt-8" style={{ width: "300px", height: "300px" }}>
+              <span
+                className="inline-block xsm:mt-4 md:mt-8"
+                style={
+                  isMobile
+                    ? { width: "200px", height: "200px" }
+                    : { width: "300px", height: "300px" }
+                }
+              >
                 {image ? (
                   <img
                     className="shadow-xl"
@@ -262,7 +270,7 @@ const NewsPage = () => {
                   />
                 ) : (
                   <FileImageOutlined
-                    className="flex items-center justify-center text-white-text text-50 rounded-sm"
+                    className="flex items-center justify-center text-white-text xsm:text-38 md:text-50 rounded-sm"
                     style={{
                       borderRadius: "5%",
                       width: "100%",
@@ -287,7 +295,7 @@ const NewsPage = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Título</label>
                 <input
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 border border-grey-border rounded-sm focus:outline-primary-active px-4"
                   {...register("title")}
                   type="text"
                   id="title"
@@ -299,7 +307,7 @@ const NewsPage = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Descrição</label>
                 <textarea
-                  className="h-40 border border-grey-text rounded-sm focus:outline-primary-active p-3"
+                  className="xsm:h-20 md:h-40 border border-grey-border rounded-sm focus:outline-primary-active p-3"
                   {...register("description")}
                   type="textArea"
                   id="description"
@@ -310,7 +318,7 @@ const NewsPage = () => {
 
               <div className="flex flex-col">
                 <button
-                  className="bg-primary-active text-15 text-disable h-10 mt-5 rounded-sm shadow hover:bg-primary"
+                  className="bg-primary-active text-15 text-disable h-10 mt-2 rounded-sm shadow hover:bg-primary"
                   type="submit"
                 >
                   Salvar
