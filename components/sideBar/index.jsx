@@ -66,8 +66,10 @@ const SideBar = () => {
           },
         ];
   return (
-    <div className="flex">
-      <div className={`${openSideBar ? "w-72" : "w-20"} h-screen bg-title relative`}>
+    <div
+      className={`flex ${isMobile ? "fixed bottom-0 left-0 right-0 justify-center" : ""} bg-title`}
+    >
+      <div className={`${openSideBar ? "w-72" : "w-20"} md:h-screen relative`}>
         {!isMobile && (
           <LeftOutlined
             className={`text-title absolute cursor-pointer rounded-full -right-3.5 top-1/2 p-1 w-7 border-2 border-title hover:border-primary bg-white ${
@@ -76,13 +78,15 @@ const SideBar = () => {
             onClick={() => setOpenSideBar(!openSideBar)}
           />
         )}
-        <ul className="pt-8">
+        <ul className={`${isMobile ? "flex py-1 space-x-10" : "flex-col pt-8"}`}>
           {menus.map(({ label, icon, link }, index) => (
             <Link key={index} href={link}>
               <li
                 className={`flex items-center gap-x-4 cursor-pointer ${
                   !openSideBar ? "py-2 mx-1.5 px-2" : "ml-2 p-2"
-                } text-white hover:bg-primary-active mt-2 rounded-[1px] `}
+                } ${
+                  isMobile ? "text-18" : ""
+                } text-white hover:bg-primary-active my-1 rounded-[1px] `}
               >
                 {icon}
                 <span className={`${!openSideBar && "hidden"} text-13 origin-left duration-200`}>

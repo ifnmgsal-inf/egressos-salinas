@@ -6,8 +6,8 @@ const Accordion = ({ title, children, edit = false, ...props }) => {
   const { onClickDelete, onClickEdit } = props;
 
   return (
-    <>
-      <div className="flex group cursor-pointer w-3/4 mx-auto xsm:h-10 md:h-10 justify-between items-center rounded mb-4">
+    <div className="mb-4">
+      <div className="flex group cursor-pointer w-3/4 mx-auto xsm:h-10 md:h-10 justify-between items-center rounded mb-2">
         <div className="flex group cursor-pointer items-center" onClick={() => setOpen(!open)}>
           <div className="group-hover:text-primary-active">
             {open ? (
@@ -37,10 +37,8 @@ const Accordion = ({ title, children, edit = false, ...props }) => {
           </div>
         ) : null}
       </div>
-      {open && (
-        <div className="pl-6 xsm:pb-8 pb-4 xsm:mb-4 mb-2 text-14 border-b -mt-5">{children}</div>
-      )}
-    </>
+      {open && <div className="pl-6 xsm:pb-4 pb-4 xsm:mb-4 mb-2 text-14 border-b">{children}</div>}
+    </div>
   );
 };
 export default Accordion;

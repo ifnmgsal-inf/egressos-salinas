@@ -13,6 +13,7 @@ import SideBar from "../components/sideBar";
 import "../styles/globals.css";
 import "../styles/nprogress.css";
 import "../styles/ReactToastify.css";
+import { isMobile } from "react-device-detect";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -47,17 +48,22 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <AuthUserProvider>
         {router.asPath.includes("/dashboard") || router.asPath.includes("/painel") ? (
-          <div>
-            <div className="bg-title">
-              <NavBar type="dashboard" />
-            </div>
-            <div className="flex bg-title">
-              <SideBar />
-              <div className="flex-1 bg-bg-container">
+          <>
+            <NavBar type="dashboard" />
+            {isMobile ? (
+              <div className="pt-8">
                 <Component {...pageProps} />
+                <SideBar />
               </div>
-            </div>
-          </div>
+            ) : (
+              <div className="flex bg-title">
+                <SideBar />
+                <div className="flex-1 bg-bg-container">
+                  <Component {...pageProps} />
+                </div>
+              </div>
+            )}
+          </>
         ) : (
           <Component {...pageProps} />
         )}

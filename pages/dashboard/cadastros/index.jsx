@@ -18,9 +18,9 @@ export default function CadastrosPage() {
       )
     : [];
   return (
-    <div className="bg-white xsm:py-4 md:py-8 xsm:pl-4 md:px-10">
-      <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-center xl:items-center">
-        <h1 className="xsm:text-16 sm:text-18 lg:text-20 text-title ">
+    <div className="h-screen bg-white xsm:py-4 md:py-8 xsm:pl-4 md:px-10">
+      <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-center xl:items-center pt-4">
+        <h1 className="xsm:text-15 sm:text-15 lg:text-20 text-title ">
           Todos os <span className="text-primary-active">Cadastros</span>
         </h1>
         <label className="flex relative justify-end xsm:mt-4 lg:mt-0">
@@ -37,7 +37,7 @@ export default function CadastrosPage() {
           />
         </label>
       </div>
-      <div className="flex flex-col xsm:max-w-300 md:max-w-1400 justify-center overflow-x-auto mt-5 mb-20 relative">
+      <div className="flex flex-col justify-center overflow-x-auto mt-5 mb-20 relative">
         <table className="w-full text-sm text-left text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-100 ">
             <tr>

@@ -54,7 +54,11 @@ const NavBar = ({ type = "full" }) => {
   });
 
   return (
-    <nav className="w-full">
+    <nav
+      className={`w-full ${isMobile ? "fixed top-0 left-0 right-0 z-10" : ""} ${
+        type === "dashboard" ? "bg-title" : ""
+      }`}
+    >
       <div
         className={`${
           type === "full" ? "justify-around" : "justify-between md:mx-10"

@@ -64,9 +64,9 @@ const NewsPage = () => {
   }
 
   return (
-    <div className="xsm:px-5 md:px-10 py-10 md:mr-5">
+    <div className="xsm:px-5 md:px-10 py-8 md:mr-5">
       <div className="flex xsm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between xsm:items-start md:items-start lg:items-start xl:items-center">
-        <h1 className="text-20 text-title xsm:mb-5 md:mb-5 lg:mb-0 xl:mb-0">
+        <h1 className="xsm:text-16 sm:text-18 lg:text-20 text-title xsm:mb-5 md:mb-5 lg:mb-0 xl:mb-0">
           Todas as <span className="text-primary-active">Notícias</span>
         </h1>
         <div className="flex xsm:flex-col sm:flex-row xsm:space-y-5 sm:space-y-0 items-center justify-center sm:space-x-4">
