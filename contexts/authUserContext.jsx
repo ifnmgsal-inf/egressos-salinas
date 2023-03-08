@@ -358,7 +358,7 @@ export function AuthUserProvider({ children }) {
     conclusionYear,
   }) {
     getUsers();
-    if (usersAll.length > 0 && usersAll.every((user) => user.email === email || user.cpf === cpf)) {
+    if (usersAll.length > 0 && usersAll.every((user) => user.email == email || user.cpf == cpf)) {
       toast.warning("Usuário já cadastrado.");
       return;
     } else {
