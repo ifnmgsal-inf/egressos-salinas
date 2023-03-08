@@ -118,7 +118,7 @@ module.exports = {
         title: "#1B1B1E",
         "bg-container": "#F5F5F5",
         "bg-grey": "#D9D9D9",
-        "grey-text": "#696969",
+        "grey-text": "#151515",
         "white-text": "#FFFFFF",
         "grey-border": "#D8D3D2",
         danger: "#d93026",
