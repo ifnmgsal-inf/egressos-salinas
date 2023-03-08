@@ -66,6 +66,7 @@ const CurriculoPage = () => {
                 {...register("name")}
                 type="text"
                 onChange={() => setAlteration(true)}
+                required
               />
             </div>
             <div className="mt-2">
@@ -76,6 +77,7 @@ const CurriculoPage = () => {
                 {...register("birthDate")}
                 type="date"
                 onChange={() => setAlteration(true)}
+                required
               />
             </div>
             <div className="mt-2">
@@ -86,6 +88,7 @@ const CurriculoPage = () => {
                 {...register("address")}
                 type="text"
                 onChange={() => setAlteration(true)}
+                required
               />
             </div>
             <div className="mt-2">
@@ -96,6 +99,7 @@ const CurriculoPage = () => {
                 {...register("phone")}
                 type="text"
                 onChange={() => setAlteration(true)}
+                required
               />
             </div>
             <div className="mt-2">
@@ -106,6 +110,7 @@ const CurriculoPage = () => {
                 {...register("email")}
                 type="text"
                 onChange={() => setAlteration(true)}
+                required
               />
             </div>
           </div>
@@ -122,6 +127,7 @@ const CurriculoPage = () => {
           rows="3"
           placeholder="Descrição"
           onChange={() => setAlteration(true)}
+          required
         />
       </div>
       <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
@@ -132,6 +138,7 @@ const CurriculoPage = () => {
           {...register("education")}
           type="text"
           onChange={() => setAlteration(true)}
+          required
         />
       </div>
       <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
@@ -142,6 +149,7 @@ const CurriculoPage = () => {
           {...register("languages")}
           type="text"
           onChange={() => setAlteration(true)}
+          required
         />
       </div>
       <div className="flex flex-col max-w-700 bg-white justify-center my-5 border rounded-sm px-5 py-2">
@@ -152,6 +160,7 @@ const CurriculoPage = () => {
           {...register("extraCourses")}
           type="text"
           onChange={() => setAlteration(true)}
+          required
         />
       </div>
       <div className="flex flex-col max-w-700 bg-white justify-center mt-5 mb-2 border rounded-sm px-5 py-2">
@@ -162,6 +171,7 @@ const CurriculoPage = () => {
           {...register("professionalHistory")}
           type="text"
           onChange={() => setAlteration(true)}
+          required
         />
       </div>
       <div className="flex flex-col justify-start items-start space-y-3">

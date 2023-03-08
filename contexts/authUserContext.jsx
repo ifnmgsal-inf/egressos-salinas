@@ -15,7 +15,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { app, storage } from "../services/firebaseConfig";
-import { ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import {
   getAuth,
@@ -82,9 +82,9 @@ export function AuthUserProvider({ children }) {
         publish: false,
       });
       getUserCurriculum(user);
-      toast.success("Currículo criado com sucesso.");
+      // toast.success("Currículo criado com sucesso.");
     } catch (error) {
-      toast.error("Erro ao criar seu currículo.");
+      // toast.error("Erro ao criar seu currículo.");
       console.log(error);
     }
   }
@@ -122,22 +122,22 @@ export function AuthUserProvider({ children }) {
   }) => {
     try {
       await updateDoc(doc(db, "userResume", id), {
-        address,
-        birthDate,
-        description,
-        education,
-        email,
-        extraCourses,
-        languages,
-        name,
-        phone,
-        professionalHistory,
-        publish,
+        address: address || null,
+        birthDate: birthDate || null,
+        description: description || null,
+        education: education || null,
+        email: email || null,
+        extraCourses: extraCourses || null,
+        languages: languages || null,
+        name: name || null,
+        phone: phone || null,
+        professionalHistory: professionalHistory || null,
+        publish: publish || false,
       });
       getUserCurriculum(user);
       toast.success("Currículo atualizado com sucesso.");
     } catch (error) {
-      toast.error("Erro ao atualizar o FAQ.");
+      toast.error("Erro ao atualizar seu currículo.");
       console.log(error);
     }
   };
@@ -359,58 +359,70 @@ export function AuthUserProvider({ children }) {
   }) {
     if (usersAll.every((userData) => userData.email != email && userData.cpf != cpf)) {
       const file = image[0];
-      const storageRef = ref(storage, `images/users/${file?.name}`);
-      const uploadTask = uploadBytes(storageRef, file);
+      const metadata = {
+        contentType: "image/jpeg",
+      };
+
+      const storageRef = ref(storage, `images/users/${file?.name || name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
       const createdIn = moment().format("YYYY-MM-DD");
       let imageURL = null;
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setProgress(progress);
-        },
-        (error) => {
-          console.log(error);
-          alert(error);
-        },
-        async () => {
-          await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-            imageURL = url;
-          });
-          console.log(imageURL);
-          await addDoc(collection(db, "users"), {
-            name,
-            email,
-            cpf,
-            course,
-            level,
-            password,
-            imageURL,
-            conclusionYear,
-            createdIn,
-            type: "user",
-          });
-          await createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-              // Signed in
-              const { accessToken, email } = userCredential.user;
-              setCookie(undefined, "next-egressos.token", accessToken, {
-                maxAge: 60 * 60 * 1, //1 hour
-              });
-              setCookie(undefined, "next-egressos.email", email, {
-                maxAge: 60 * 60 * 1, //1 hour
-              });
-              if (accessToken) {
-                autenticationUser(email, true);
-                toast.success("Conta criada com sucesso.");
-              }
-            })
-            .catch((error) => {
-              toast.error("Erro ao criar sua conta, revise os campos e tente novamente.");
-              console.log(error);
+
+      const cadastroPromise = new Promise((resolve) => setTimeout(resolve, 3000));
+      cadastroPromise.then(
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progressImage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            setProgress(progressImage);
+          },
+          (error) => {
+            toast.error("Erro ao realizar upload de imagem.");
+            console.log(error);
+            alert(error);
+          },
+          async () => {
+            await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+              imageURL = url;
             });
-        }
+            console.log(imageURL);
+            await addDoc(collection(db, "users"), {
+              name,
+              email,
+              cpf,
+              course,
+              level,
+              password,
+              imageURL,
+              conclusionYear,
+              createdIn,
+              type: "user",
+            });
+            await createUserWithEmailAndPassword(auth, email, password)
+              .then((userCredential) => {
+                // Signed in
+                const { accessToken, email } = userCredential.user;
+                setCookie(undefined, "next-egressos.token", accessToken, {
+                  maxAge: 60 * 60 * 1, //1 hour
+                });
+                setCookie(undefined, "next-egressos.email", email, {
+                  maxAge: 60 * 60 * 1, //1 hour
+                });
+                if (accessToken) {
+                  autenticationUser(email, true);
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+        )
       );
+      toast.promise(cadastroPromise, {
+        pending: "Criando sua conta ...",
+        success: "Conta criada com sucesso👌",
+        error: "Erro ao criar sua conta 🤯",
+      });
     } else {
       toast.warning("Usuário já cadastrado.");
     }
