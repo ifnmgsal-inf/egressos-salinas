@@ -53,29 +53,11 @@ const NavBar = ({ type = "full" }) => {
     };
   });
 
-  // <nav
-  //     className={`w-full ${isMobile ? "fixed top-0 left-0 right-0 z-10" : ""} ${
-  //       type === "dashboard" ? "bg-title" : ""
-  //     }`}
-  //   >
-  //     <div
-  //       className={`${
-  //         type === "full" ? "justify-around" : "justify-between md:mx-10"
-  //       } mx-auto md:items-center lg:flex`}
-  //     >
-  //       <div>
-  //         <div
-  //           className={`flex items-center justify-between ${
-  //             type === "full" ? "xsm:pt-2 md:pt-2 lg:py-2 " : "py-1"
-  //           } px-2 lg:block`}
-  //         >
-  //           {type === "dashboard" ? (
-
   return (
     <nav
-      className={`w-full ${type === "dashboard" ? "fixed top-0 left-0 right-0 z-10" : ""} ${
-        type === "dashboard" ? "bg-title" : ""
-      }`}
+      className={`w-full ${
+        type === "dashboard" && isMobile ? "fixed top-0 left-0 right-0 z-10" : ""
+      } ${type === "dashboard" ? "bg-title" : ""}`}
     >
       <div
         className={`${

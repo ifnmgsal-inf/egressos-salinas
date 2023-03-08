@@ -26,7 +26,7 @@ const DepositionsPage = () => {
             user.testimony ? (
               <div
                 key={user.id}
-                className="flex xsm:flex-col md:flex-row xsm:max-w-350 md:max-w-700 lg:md:max-w-1000 justify-between shadow-sm bg-white px-4 py-2 rounded-sm"
+                className="flex xsm:flex-col md:flex-row xsm:max-w-350 md:max-w-700 lg:md:max-w-1000 justify-between shadow-md bg-white px-4 py-2 rounded-sm border"
               >
                 <div className="flex xsm:flex-col md:flex-row">
                   <div className="flex xsm:flex-col-reverse md:flex-col items-center md:mr-2">
@@ -88,7 +88,7 @@ const DepositionsPage = () => {
           {testimonialsAll?.map((testimony) => (
             <div
               key={testimony.userId}
-              className="flex xsm:flex-col md:flex-row xsm:max-w-350 md:max-w-700 lg:md:max-w-1000 justify-between shadow-sm bg-white px-4 py-2 rounded-sm"
+              className="flex xsm:flex-col md:flex-row xsm:max-w-350 md:max-w-700 lg:md:max-w-1000 justify-between shadow-md bg-white px-4 py-2 rounded-sm border"
             >
               <div className="flex xsm:flex-col md:flex-row p-2">
                 <div className="flex xsm:flex-col-reverse md:flex-col items-center mr-2">
