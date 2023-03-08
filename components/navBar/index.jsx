@@ -134,7 +134,7 @@ const NavBar = ({ type = "full" }) => {
             }`}
           >
             {data ? (
-              <div className="flex items-center justify-end">
+              <div className="flex items-center justify-end pb-3">
                 <div className="flex flex-col text-white text-13 font-light">
                   <span>
                     Olá, <span className="text-white font-medium uppercase">{data.name}</span>

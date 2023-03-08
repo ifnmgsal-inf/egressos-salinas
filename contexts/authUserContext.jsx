@@ -438,14 +438,19 @@ export function AuthUserProvider({ children }) {
       .catch((error) => {});
   };
 
-  const deleteUser = async (user) => {
-    try {
-      await deleteDoc(doc(db, "users", user.id));
-      getUsers();
-      toast.success("Usuário deletado com sucesso.");
-    } catch (error) {
-      toast.error("Erro ao deletar usuário.");
-    }
+  const deleteAccountUser = async (user) => {
+    getAuth()
+      .deleteUser(user.uid)
+      .then(async () => {
+        await deleteDoc(doc(db, "users", user.id));
+        await deleteDoc(doc(db, "userResume", where("userId", "==", user.id)));
+        getUsers();
+        toast.success("Usuário deletado com sucesso.");
+      })
+      .catch((error) => {
+        toast.error("Erro ao deletar usuário.");
+        console.log("Error deleting user:", error);
+      });
   };
 
   async function autenticationUser(email, createUser = false) {
@@ -472,7 +477,7 @@ export function AuthUserProvider({ children }) {
       value={{
         isAuthenticated,
         singIn,
-        deleteUser,
+        deleteAccountUser,
         getUsers,
         registrationIn,
         signOutUser,

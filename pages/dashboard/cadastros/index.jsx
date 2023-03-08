@@ -7,7 +7,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 
 export default function CadastrosPage() {
   const [search, setSearch] = useState("");
-  const { usersAll, deleteUser } = useContext(AuthUserContext);
+  const { usersAll, deleteAccountUser } = useContext(AuthUserContext);
   console.log(usersAll);
 
   const filterUsers = search.length
@@ -98,7 +98,7 @@ export default function CadastrosPage() {
                   <td className="text-center py-4 px-6">
                     <DeleteOutlined
                       className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-                      onClick={() => deleteUser(user)}
+                      onClick={() => deleteAccountUser(user)}
                     />
                   </td>
                 </tr>
@@ -150,7 +150,7 @@ export default function CadastrosPage() {
                   <td className="text-center py-4 px-6">
                     <DeleteOutlined
                       className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-                      onClick={() => deleteUser(user)}
+                      onClick={() => deleteAccountUser(user)}
                     />
                   </td>
                 </tr>
