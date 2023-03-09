@@ -6,7 +6,6 @@ import { UserOutlined, DeleteOutlined, CheckOutlined } from "@ant-design/icons";
 const DepositionsPage = () => {
   const { usersAll, testimonialsAll, createPublishedTestimonials, deletePublishedTestimonials } =
     useContext(AuthUserContext);
-  console.log(testimonialsAll);
 
   const handlePublishedTestimonials = (user) => {
     // console.log(user);
@@ -15,17 +14,17 @@ const DepositionsPage = () => {
 
   return (
     <>
-      <div className="flex flex-col xsm:p-2 xsm:mt-4 md:mt-8 mb-4 xsm:px-4 lg:ml-2 lg:mr-14">
+      <div className="flex flex-col w-full xsm:p-2 xsm:mt-5 xsm:mb-20 md:mt-8 md:mb-4 xsm:px-4 lg:ml-2 lg:mr-4">
         <h1 className="xsm:text-15 sm:text-15 lg:text-20 mb-4 text-title">
           Novos <span className="text-primary-active">Depoimentos</span>
         </h1>
 
-        <div className="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 gap-x-6">
+        <div className="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 gap-x-6">
           {usersAll?.map((user) =>
             user.testimony ? (
               <div
                 key={user.id}
-                className="flex xsm:flex-col md:flex-row xsm:max-w-350 md:max-w-700 lg:md:max-w-1000 justify-between shadow-md bg-white px-4 py-2 rounded-sm border"
+                className="flex xsm:flex-col md:flex-row xsm:max-w-350 sm:max-w-400 md:max-w-700 lg:md:max-w-1000 justify-between shadow-md bg-white px-4 py-2 rounded-sm border"
               >
                 <div className="flex xsm:flex-col md:flex-row">
                   <div className="flex xsm:flex-col-reverse md:flex-col items-center md:mr-2">
@@ -83,7 +82,7 @@ const DepositionsPage = () => {
             Depoimentos <span className="text-primary-active">Puplicados</span>
           </h1>
         </div>
-        <div className="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 gap-x-6">
+        <div className="grid xsm:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 gap-x-6">
           {testimonialsAll?.map((testimony) => (
             <div
               key={testimony.userId}

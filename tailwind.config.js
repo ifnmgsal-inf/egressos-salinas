@@ -125,7 +125,7 @@ module.exports = {
         "bg-grey": "#D9D9D9",
         "grey-text": "#0C0C0C",
         "white-text": "#FFFFFF",
-        c: "#D8D3D2",
+        "grey-border": "#D8D3D2",
         danger: "#d93026",
         icon: {
           bgGreen: "rgba(0, 123, 4, 0.07)",
