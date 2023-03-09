@@ -42,6 +42,7 @@ export function AuthUserProvider({ children }) {
   const [linkForm, setLinkForm] = useState(null);
   const [userCurriculum, setUserCurriculum] = useState(null);
   const [userCurriculumAll, setUserCurriculumAll] = useState(null);
+  const [loading, setLoadind] = useState(false);
 
   const [progress, setProgress] = useState(0);
 
@@ -384,6 +385,7 @@ export function AuthUserProvider({ children }) {
           (snapshot) => {
             const progressImage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             setProgress(progressImage);
+            setLoadind(true);
           },
           (error) => {
             toast.error("Erro ao realizar upload de imagem.");
@@ -432,6 +434,7 @@ export function AuthUserProvider({ children }) {
         success: "Conta criada com sucesso👌",
         error: "Erro ao criar sua conta 🤯",
       });
+      setLoadind(false);
     } else {
       toast.warning("Usuário já cadastrado.");
     }
@@ -483,6 +486,7 @@ export function AuthUserProvider({ children }) {
   return (
     <AuthUserContext.Provider
       value={{
+        loading,
         isAuthenticated,
         singIn,
         deleteAccountUser,
