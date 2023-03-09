@@ -92,8 +92,8 @@ const Registration = () => {
 
   return (
     <div className="flex h-full justify-center my-10">
-      <div className="flex flex-col justify-center ">
-        <div className="xsm:mx-4">
+      <div className="flex flex-col justify-center">
+        <div className="xsm:mx-2">
           <Link href={"/"}>
             <a className="flex items-center text-16 font-medium">
               <ArrowLeftOutlined className="text-16 mr-2 text-primary-active" /> Voltar
@@ -128,7 +128,7 @@ const Registration = () => {
             </span>
             <input
               {...register("image")}
-              className="xsm:max-w-280 md:max-w-500 xsm:file:text-13 xsm:file:my-4 lg:file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer lg:file:px-6 file:py-1.5 file:bg-white"
+              className="xsm:max-w-350 md:max-w-500 xsm:file:text-13 xsm:file:my-4 lg:file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer lg:file:px-6 file:py-1.5 file:bg-white"
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
             />
@@ -139,7 +139,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Nome Completo</label>
                 <input
-                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("name")}
                   type="text"
                   id="name"
@@ -151,7 +151,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">CPF</label>
                 <input
-                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("cpf")}
                   type="cpf"
                   id="cpf"
@@ -162,7 +162,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Curso</label>
                 <select
-                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
                   {...register("course")}
                   id="course"
                   name="course"
@@ -178,7 +178,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Nível</label>
                 <select
-                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
                   {...register("level")}
                   id="level"
                   name="level"
@@ -193,9 +193,9 @@ const Registration = () => {
                 </select>
               </div>
               <div className="flex flex-col">
-                <label className="text-14 font-medium">Ano de conclusão</label>
+                <label className="text-14 font-medium">Data de conclusão</label>
                 <input
-                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4 uppercase"
+                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4 uppercase"
                   {...register("conclusionYear")}
                   type="date"
                   id="conclusionYear"
@@ -206,7 +206,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Email</label>
                 <input
-                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("email")}
                   type="text"
                   id="email"
@@ -217,7 +217,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Senha</label>
                 <input
-                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("password")}
                   type="password"
                   id="password"
@@ -229,7 +229,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Confirmar Senha</label>
                 <input
-                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("confirmation")}
                   type="password"
                   id="confirmation"
