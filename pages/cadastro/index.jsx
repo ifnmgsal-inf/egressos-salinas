@@ -93,19 +93,19 @@ const Registration = () => {
   return (
     <div className="flex h-full justify-center my-10">
       <div className="flex flex-col justify-center ">
-        <div className="xsm:mx-5">
+        <div className="xsm:mx-4">
           <Link href={"/"}>
             <a className="flex items-center text-16 font-medium">
               <ArrowLeftOutlined className="text-16 mr-2 text-primary-active" /> Voltar
             </a>
           </Link>
 
-          <h1 className="text-title font-bold xsm:text-20 lg:text-28 ">
+          <h1 className="text-title font-bold xsm:text-16 lg:text-28 mt-4">
             Agora precisamos de algumas
             <br /> informações...
           </h1>
-          <div className="flex flex-col items-center">
-            <span className="inline-block mt-8" style={{ width: "130px", height: "130px" }}>
+          <div className="flex flex-col items-center mb-2">
+            <span className="inline-block mt-4" style={{ width: "130px", height: "130px" }}>
               {image ? (
                 <img
                   className="shadow-2xl"
@@ -128,7 +128,7 @@ const Registration = () => {
             </span>
             <input
               {...register("image")}
-              className="xsm:file:text-13 xsm:file:my-4 lg:file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer lg:file:px-6 file:py-1.5 file:bg-white"
+              className="xsm:max-w-280 md:max-w-500 xsm:file:text-13 xsm:file:my-4 lg:file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer lg:file:px-6 file:py-1.5 file:bg-white"
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
             />
@@ -139,7 +139,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Nome Completo</label>
                 <input
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("name")}
                   type="text"
                   id="name"
@@ -151,7 +151,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">CPF</label>
                 <input
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("cpf")}
                   type="cpf"
                   id="cpf"
@@ -162,14 +162,14 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Curso</label>
                 <select
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
                   {...register("course")}
                   id="course"
                   name="course"
                   required
                 >
                   {courseOptions.map(({ value, label }, index) => (
-                    <option key={index} valeu={value}>
+                    <option className="xsm:text-13 md:text-15" key={index} valeu={value}>
                       {label}
                     </option>
                   ))}
@@ -178,20 +178,24 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Nível</label>
                 <select
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
                   {...register("level")}
                   id="level"
                   name="level"
                   required
                 >
-                  <option value="Técnico">Técnico</option>
-                  <option value="Superior">Superior</option>
+                  <option className="xsm:text-13 md:text-15" value="Técnico">
+                    Técnico
+                  </option>
+                  <option className="xsm:text-13 md:text-15" value="Superior">
+                    Superior
+                  </option>
                 </select>
               </div>
               <div className="flex flex-col">
-                <label className="text-14 font-medium">Data de conclusão</label>
+                <label className="text-14 font-medium">Ano de conclusão</label>
                 <input
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4 uppercase"
                   {...register("conclusionYear")}
                   type="date"
                   id="conclusionYear"
@@ -202,7 +206,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Email</label>
                 <input
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("email")}
                   type="text"
                   id="email"
@@ -213,7 +217,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Senha</label>
                 <input
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("password")}
                   type="password"
                   id="password"
@@ -225,7 +229,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Confirmar Senha</label>
                 <input
-                  className="h-10 border border-grey-text rounded-sm focus:outline-primary-active px-4"
+                  className="h-10 xsm:max-w-300 md:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("confirmation")}
                   type="password"
                   id="confirmation"
