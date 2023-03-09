@@ -59,7 +59,7 @@ const DepositionsPage = () => {
                   <div className="flex flex-col justify-center md:ml-4 xsm:my-2">
                     <label className="text-12 font-medium px-1">Depoimento</label>
                     <textarea
-                      className="xsm:h-20 md:h-10 rounded-sm focus:outline-primary-active p-1 text-grey-text text-13 bg-white resize xsm:max-w-300 md:max-w-500 lg:max-w-350 xsm:my-1"
+                      className="disabled:text-grey-text  xsm:h-20 md:h-10 rounded-sm focus:outline-primary-active p-1 text-grey-text text-13 bg-white resize xsm:max-w-300 md:max-w-500 lg:max-w-350 xsm:my-1"
                       value={user?.testimony}
                       id="testimony"
                       name="testimony"
@@ -121,7 +121,7 @@ const DepositionsPage = () => {
                 <div className="flex flex-col justify-center md:ml-4 xsm:my-2">
                   <label className="text-12 font-medium px-1">Depoimento</label>
                   <textarea
-                    className="xsm:h-20 md:h-10 rounded-sm focus:outline-primary-active p-1 text-grey-text text-13 bg-white resize xsm:max-w-300 md:max-w-500 lg:max-w-350 xsm:my-1"
+                    className="disabled:text-grey-text xsm:h-20 md:h-10 rounded-sm focus:outline-primary-active p-1 text-grey-text text-13 bg-white resize xsm:max-w-300 md:max-w-500 lg:max-w-350 xsm:my-1"
                     value={testimony?.userTestimony}
                     id="testimony"
                     name="testimony"
