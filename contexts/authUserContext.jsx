@@ -97,6 +97,7 @@ export function AuthUserProvider({ children }) {
       querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0] || null;
     if (userCurriculumDate) {
       setUserCurriculum(userCurriculumDate);
+      return userCurriculumDate;
     }
   };
 
@@ -439,18 +440,17 @@ export function AuthUserProvider({ children }) {
   };
 
   const deleteAccountUser = async (user) => {
-    getAuth()
-      .deleteUser(user.uid)
-      .then(async () => {
-        await deleteDoc(doc(db, "users", user.id));
-        await deleteDoc(doc(db, "userResume", where("userId", "==", user.id)));
-        getUsers();
-        toast.success("Usuário deletado com sucesso.");
-      })
-      .catch((error) => {
-        toast.error("Erro ao deletar usuário.");
-        console.log("Error deleting user:", error);
-      });
+    const userResume = userCurriculumAll.filter((resume) => resume.userId == user.id)[0];
+
+    try {
+      await deleteDoc(doc(db, "userResume", userResume.id));
+      await deleteDoc(doc(db, "users", user.id));
+      getUsers();
+      toast.success("Usuário deletado com sucesso.");
+    } catch (error) {
+      toast.error("Erro ao deletar usuário.");
+      console.log("Error deleting user:", error);
+    }
   };
 
   async function autenticationUser(email, createUser = false) {
