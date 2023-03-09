@@ -195,7 +195,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Data de conclusão</label>
                 <input
-                  className="h-10 xsm:max-w-350 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4 uppercase"
+                  className="h-10  xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4 uppercase"
                   {...register("conclusionYear")}
                   type="date"
                   id="conclusionYear"
