@@ -358,75 +358,71 @@ export function AuthUserProvider({ children }) {
     conclusionYear,
   }) {
     if (usersAll.every((userData) => userData.email != email && userData.cpf != cpf)) {
-      console.log(image);
-      console.log(image[0]);
-      console.log(image[0]);
-      console.log(image[0].name);
-      // const file = image[0];
-      // const metadata = {
-      //   contentType: "image/jpeg",
-      // };
+      const file = image[0];
+      const metadata = {
+        contentType: "image/jpeg",
+      };
 
-      // const storageRef = ref(storage, `images/users/${file?.name || name}`);
-      // const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-      // const createdIn = moment().format("YYYY-MM-DD");
-      // let imageURL = null;
+      const storageRef = ref(storage, `images/users/${file?.name || name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+      const createdIn = moment().format("YYYY-MM-DD");
+      let imageURL = null;
 
-      // const cadastroPromise = new Promise((resolve) => setTimeout(resolve, 3000));
-      // cadastroPromise.then(
-      //   uploadTask.on(
-      //     "state_changed",
-      //     (snapshot) => {
-      //       const progressImage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      //       setProgress(progressImage);
-      //     },
-      //     (error) => {
-      //       toast.error("Erro ao realizar upload de imagem.");
-      //       console.log(error);
-      //       alert(error);
-      //     },
-      //     async () => {
-      //       await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-      //         imageURL = url;
-      //       });
-      //       console.log(imageURL);
-      //       await addDoc(collection(db, "users"), {
-      //         name,
-      //         email,
-      //         cpf,
-      //         course,
-      //         level,
-      //         password,
-      //         imageURL,
-      //         conclusionYear,
-      //         createdIn,
-      //         type: "user",
-      //       });
-      //       await createUserWithEmailAndPassword(auth, email, password)
-      //         .then((userCredential) => {
-      //           // Signed in
-      //           const { accessToken, email } = userCredential.user;
-      //           setCookie(undefined, "next-egressos.token", accessToken, {
-      //             maxAge: 60 * 60 * 1, //1 hour
-      //           });
-      //           setCookie(undefined, "next-egressos.email", email, {
-      //             maxAge: 60 * 60 * 1, //1 hour
-      //           });
-      //           if (accessToken) {
-      //             autenticationUser(email, true);
-      //           }
-      //         })
-      //         .catch((error) => {
-      //           console.log(error);
-      //         });
-      //     }
-      //   )
-      // );
-      // toast.promise(cadastroPromise, {
-      //   pending: "Criando sua conta ...",
-      //   success: "Conta criada com sucesso👌",
-      //   error: "Erro ao criar sua conta 🤯",
-      // });
+      const cadastroPromise = new Promise((resolve) => setTimeout(resolve, 3000));
+      cadastroPromise.then(
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progressImage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            setProgress(progressImage);
+          },
+          (error) => {
+            toast.error("Erro ao realizar upload de imagem.");
+            console.log(error);
+            alert(error);
+          },
+          async () => {
+            await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+              imageURL = url;
+            });
+            console.log(imageURL);
+            await addDoc(collection(db, "users"), {
+              name,
+              email,
+              cpf,
+              course,
+              level,
+              password,
+              imageURL,
+              conclusionYear,
+              createdIn,
+              type: "user",
+            });
+            await createUserWithEmailAndPassword(auth, email, password)
+              .then((userCredential) => {
+                // Signed in
+                const { accessToken, email } = userCredential.user;
+                setCookie(undefined, "next-egressos.token", accessToken, {
+                  maxAge: 60 * 60 * 1, //1 hour
+                });
+                setCookie(undefined, "next-egressos.email", email, {
+                  maxAge: 60 * 60 * 1, //1 hour
+                });
+                if (accessToken) {
+                  autenticationUser(email, true);
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+        )
+      );
+      toast.promise(cadastroPromise, {
+        pending: "Criando sua conta ...",
+        success: "Conta criada com sucesso👌",
+        error: "Erro ao criar sua conta 🤯",
+      });
     } else {
       toast.warning("Usuário já cadastrado.");
     }
