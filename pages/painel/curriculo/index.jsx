@@ -4,6 +4,7 @@ import { SaveOutlined, CheckOutlined, UserOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
+import InputMask from "react-input-mask";
 
 const CurriculoPage = () => {
   const [alteration, setAlteration] = useState(false);
@@ -15,7 +16,7 @@ const CurriculoPage = () => {
     setValue("name", userCurriculum?.name);
     setValue("birthDate", userCurriculum?.birthDate);
     setValue("address", userCurriculum?.address);
-    setValue("phone", userCurriculum?.phone);
+    setValue("phone", userCurriculum?.phone || "");
     setValue("email", userCurriculum?.email);
     setValue("description", userCurriculum?.description);
     setValue("education", userCurriculum?.education);
@@ -23,7 +24,7 @@ const CurriculoPage = () => {
     setValue("extraCourses", userCurriculum?.extraCourses);
     setValue("professionalHistory", userCurriculum?.professionalHistory);
     setValue("publish", userCurriculum?.publish);
-  }, []);
+  });
 
   function handleCurriculum(data) {
     // console.log(data);
@@ -32,7 +33,10 @@ const CurriculoPage = () => {
   }
 
   return (
-    <form className="xsm:px-2 lg:pl-10 pb-20" onSubmit={handleSubmit(handleCurriculum)}>
+    <form
+      className="xsm:px-2 sm:pl-5 lg:pl-10 lg:min-w-700 pb-20"
+      onSubmit={handleSubmit(handleCurriculum)}
+    >
       <div className="flex flex-col max-w-1000 bg-white justify-center my-8 border rounded-sm px-5 py-2">
         <h2 className="text-base mb-5 font-medium">Informações curriculares</h2>
         <div className="flex xsm:flex-col md:flex-row xl:flex-row">
@@ -72,11 +76,12 @@ const CurriculoPage = () => {
             <div className="mt-2">
               <label className="text-sm font-medium">Data de nascimento:</label>
               <input
-                className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
+                className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm "
                 placeholder="Nada informado."
                 {...register("birthDate")}
-                type="date"
+                max={new Date().toISOString().split("T")[0]}
                 onChange={() => setAlteration(true)}
+                type="date"
                 required
               />
             </div>
@@ -93,11 +98,12 @@ const CurriculoPage = () => {
             </div>
             <div className="mt-2">
               <label className="text-sm font-medium">Telefone celular:</label>
-              <input
+              <InputMask
                 className="placeholder:text-14 xsm:text-sm md:text-15 mx-1 px-1 text-grey-text focus:outline-none focus:border-primary-active focus:ring-primary-active focus:ring-1 sm:text-sm"
                 placeholder="Nada informado."
                 {...register("phone")}
-                type="text"
+                mask="(99) 99999-9999"
+                type="tel"
                 onChange={() => setAlteration(true)}
                 required
               />
