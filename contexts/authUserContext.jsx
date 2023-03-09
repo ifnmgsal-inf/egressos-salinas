@@ -35,6 +35,7 @@ export function AuthUserProvider({ children }) {
   const [userGoogle, setUserGoogle] = useState(null);
   const [usersNumber, setUsersNumber] = useState(null);
   const [usersAll, setUsersAll] = useState(null);
+  const [usersAdm, setUsersAdm] = useState(null);
   const [newsAll, setNewsAll] = useState(null);
   const [faqsAll, setFaqsAll] = useState(null);
   const [testimonialsAll, setTestimonialsAll] = useState(null);
@@ -145,11 +146,15 @@ export function AuthUserProvider({ children }) {
 
   const getUsers = async () => {
     const data = await getDocs(usersCollectionRef);
-    const dataFilter = data.docs
+    const usersData = data.docs
       .map((doc) => ({ ...doc.data(), id: doc.id }))
       .filter((doc) => doc.type !== "adm");
-    setUsersNumber(dataFilter.length);
-    setUsersAll(dataFilter);
+    const admData = data.docs
+      .map((doc) => ({ ...doc.data(), id: doc.id }))
+      .filter((doc) => doc.type === "adm");
+    setUsersNumber(usersData.length);
+    setUsersAll(usersData);
+    setUsersAdm(admData);
   };
 
   const getNews = async () => {
@@ -358,7 +363,10 @@ export function AuthUserProvider({ children }) {
     image,
     conclusionYear,
   }) {
-    if (usersAll.every((userData) => userData.email != email && userData.cpf != cpf)) {
+    if (
+      usersAll.every((userData) => userData.email !== email && userData.cpf !== cpf) &&
+      usersAdm.every((admData) => admData.email !== email && admData.cpf !== cpf)
+    ) {
       const file = image[0];
       const metadata = {
         contentType: "image/jpeg",

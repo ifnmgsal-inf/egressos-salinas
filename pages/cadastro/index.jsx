@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 import Link from "next/link";
 import { ArrowLeftOutlined, UserOutlined } from "@ant-design/icons";
+import InputMask from "react-input-mask";
 
 const courseOptions = [
   {
@@ -69,8 +70,6 @@ const Registration = () => {
   const { registrationIn } = useContext(AuthUserContext);
 
   function handleRegister(data) {
-    // console.log(data);
-
     registrationIn(data);
   }
 
@@ -87,6 +86,17 @@ const Registration = () => {
     } else {
       password.setCustomValidity("Sua senha precisa ter pelo menos 8 caracteres.");
       confirmation.setCustomValidity("Sua senha precisa ter pelo menos 8 caracteres.");
+    }
+  }
+
+  function cpfConfirmation() {
+    const cpf = document.querySelector("input[name=cpf]");
+    const validCpf = cpf.value.match(/\d/g);
+
+    if (validCpf?.length == 11) {
+      cpf.setCustomValidity("");
+    } else {
+      cpf.setCustomValidity("CPF inválido.");
     }
   }
 
@@ -139,8 +149,9 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Nome Completo</label>
                 <input
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("name")}
+                  placeholder="Seu nome"
                   type="text"
                   id="name"
                   name="name"
@@ -150,9 +161,12 @@ const Registration = () => {
 
               <div className="flex flex-col">
                 <label className="text-14 font-medium">CPF</label>
-                <input
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                <InputMask
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("cpf")}
+                  mask="999.999.999-99"
+                  placeholder="000.000.000-00"
+                  onChange={cpfConfirmation}
                   type="cpf"
                   id="cpf"
                   name="cpf"
@@ -162,7 +176,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Curso</label>
                 <select
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
                   {...register("course")}
                   id="course"
                   name="course"
@@ -178,7 +192,7 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Nível</label>
                 <select
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-2"
                   {...register("level")}
                   id="level"
                   name="level"
@@ -195,9 +209,10 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Data de conclusão</label>
                 <input
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4 uppercase"
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4 uppercase"
                   {...register("conclusionYear")}
                   type="date"
+                  max={new Date().toISOString().split("T")[0]}
                   id="conclusionYear"
                   name="conclusionYear"
                   required
@@ -206,8 +221,9 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Email</label>
                 <input
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("email")}
+                  placeholder="exemplo@email.com"
                   type="text"
                   id="email"
                   name="email"
@@ -217,19 +233,19 @@ const Registration = () => {
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Senha</label>
                 <input
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("password")}
+                  onChange={passwordConfirmation}
                   type="password"
                   id="password"
                   name="password"
                   required
-                  onChange={passwordConfirmation}
                 />
               </div>
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Confirmar Senha</label>
                 <input
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm: px-1 md:px-2"
                   {...register("confirmation")}
                   type="password"
                   id="confirmation"

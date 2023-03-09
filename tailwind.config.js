@@ -123,7 +123,7 @@ module.exports = {
         title: "#1B1B1E",
         "bg-container": "#F5F5F5",
         "bg-grey": "#D9D9D9",
-        "grey-text": "#0C0C0C",
+        "grey-text": "#353535",
         "white-text": "#FFFFFF",
         "grey-border": "#D8D3D2",
         danger: "#d93026",
