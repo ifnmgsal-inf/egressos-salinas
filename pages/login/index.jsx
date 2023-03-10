@@ -24,7 +24,7 @@ const Login = () => {
             </a>
           </Link>
 
-          <h1 className="text-title font-bold text-28 mt-4">
+          <h1 className="text-title font-bold xsm:text-20 md:text-28 mt-4">
             Agora precisamos que você se
             <br /> identifique...{" "}
           </h1>
