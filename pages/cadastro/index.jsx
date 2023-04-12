@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
 
@@ -70,9 +70,12 @@ const Registration = () => {
 
   const { registrationIn, loading } = useContext(AuthUserContext);
 
-  function handleRegister(data) {
-    registrationIn(data);
-  }
+  const handleRegister = useCallback(
+    (data) => {
+      registrationIn(data, image);
+    },
+    [image, registrationIn]
+  );
   console.log(loading);
 
   function passwordConfirmation() {
