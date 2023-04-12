@@ -368,14 +368,14 @@ export function AuthUserProvider({ children }) {
       usersAll.every((userData) => userData.email !== email && userData.cpf !== cpf) &&
       usersAdm.every((admData) => admData.email !== email && admData.cpf !== cpf)
     ) {
-      const eventImage = image;
-      const file = image.target.files[0];
+      const file = image[0];
+      const imageString = JSON.stringify(file);
       const metadata = {
         contentType: "image/jpeg",
       };
 
-      const storageRef = ref(storage, `images/users/${file[0]?.name || name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file[0], metadata);
+      const storageRef = ref(storage, `images/users/${file?.name || name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
       const createdIn = moment().format("YYYY-MM-DD");
       let imageURL = null;
 
@@ -408,7 +408,7 @@ export function AuthUserProvider({ children }) {
               imageURL,
               conclusionYear,
               createdIn,
-              eventImage,
+              imageString,
               type: "user",
             });
             await createUserWithEmailAndPassword(auth, email, password)
