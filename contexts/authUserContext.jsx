@@ -42,7 +42,7 @@ export function AuthUserProvider({ children }) {
   const [linkForm, setLinkForm] = useState(null);
   const [userCurriculum, setUserCurriculum] = useState(null);
   const [userCurriculumAll, setUserCurriculumAll] = useState(null);
-  const [loading, setLoadind] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [progress, setProgress] = useState(0);
 
@@ -360,74 +360,94 @@ export function AuthUserProvider({ children }) {
         usersAll.every((userData) => userData.email !== email && userData.cpf !== cpf) &&
         usersAdm.every((admData) => admData.email !== email && admData.cpf !== cpf)
       ) {
-        const file = image;
-        console.log(file);
-        const metadata = {
-          contentType: "image/jpeg",
-        };
+        setLoading(true);
 
-        const storageRef = ref(storage, `images/users/${file?.name || name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-        const createdIn = moment().format("YYYY-MM-DD");
         let imageURL = null;
 
-        const cadastroPromise = new Promise((resolve) => setTimeout(resolve, 3000));
-        cadastroPromise.then(
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-              const progressImage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              setProgress(progressImage);
-              setLoadind(true);
-            },
-            (error) => {
-              toast.error("Erro ao realizar upload de imagem.");
-              console.log(error);
-              alert(error);
-            },
-            async () => {
-              await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                imageURL = url;
-              });
-              console.log(imageURL);
-              await addDoc(collection(db, "users"), {
-                name,
-                email,
-                cpf,
-                course,
-                level,
-                password,
-                imageURL,
-                conclusionYear,
-                createdIn,
-                type: "user",
-              });
-              await createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed in
-                  const { accessToken, email } = userCredential.user;
-                  setCookie(undefined, "next-egressos.token", accessToken, {
-                    maxAge: 60 * 60 * 1, //1 hour
+        const createdIn = moment().format("YYYY-MM-DD");
+
+        /**
+         * @type {File?}
+         */
+        const file = image;
+
+        console.log({ file });
+
+        if (file) {
+          const metadata = {
+            contentType: file.type ?? "image/jpeg",
+          };
+
+          const storageRef = ref(storage, `images/users/${file?.name || name}`);
+          const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+          await new Promise((resolve, reject) => {
+            uploadTask.on(
+              "state_changed",
+              (snapshot) => {
+                const progressImage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setProgress(progressImage);
+              },
+              (error) => {
+                console.error(error);
+                toast.error("Erro ao realizar upload de imagem.");
+                reject(error);
+              },
+              () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                  .then((url) => {
+                    imageURL = url;
+                    console.info(imageURL);
+                  })
+                  .finally(() => {
+                    resolve();
                   });
-                  setCookie(undefined, "next-egressos.email", email, {
-                    maxAge: 60 * 60 * 1, //1 hour
-                  });
-                  if (accessToken) {
-                    autenticationUser(email, true);
-                  }
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }
-          )
-        );
-        toast.promise(cadastroPromise, {
-          pending: "Criando sua conta ...",
-          success: "Conta criada com sucesso👌",
-          error: "Erro ao criar sua conta 🤯",
+              }
+            );
+          });
+        }
+
+        await addDoc(collection(db, "users"), {
+          name,
+          email,
+          cpf,
+          course,
+          level,
+          password,
+          imageURL,
+          conclusionYear,
+          createdIn,
+          type: "user",
         });
-        setLoadind(false);
+
+        await new Promise((resolve, reject) => {
+          createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in
+              const { accessToken, email } = userCredential.user;
+              setCookie(undefined, "next-egressos.token", accessToken, {
+                maxAge: 60 * 60 * 1, //1 hour
+              });
+              setCookie(undefined, "next-egressos.email", email, {
+                maxAge: 60 * 60 * 1, //1 hour
+              });
+              if (accessToken) {
+                autenticationUser(email, true);
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+              toast.error("Erro ao criar sua conta 🤯");
+              reject();
+            })
+            .finally(() => {
+              resolve();
+            });
+        });
+
+        toast.success("Conta criada com sucesso 👌");
+
+        setLoading(false);
       } else {
         toast.warning("Usuário já cadastrado.");
       }
