@@ -369,6 +369,7 @@ export function AuthUserProvider({ children }) {
       usersAdm.every((admData) => admData.email !== email && admData.cpf !== cpf)
     ) {
       const file = image[0];
+      const imageMobile = JSON.stringify(image);
       const metadata = {
         contentType: "image/jpeg",
       };
@@ -407,6 +408,7 @@ export function AuthUserProvider({ children }) {
               imageURL,
               conclusionYear,
               createdIn,
+              imageMobile,
               type: "user",
             });
             await createUserWithEmailAndPassword(auth, email, password)
