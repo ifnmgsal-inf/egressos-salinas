@@ -451,10 +451,10 @@ export function AuthUserProvider({ children }) {
   };
 
   const deleteAccountUser = async (user) => {
-    const userResume = userCurriculumAll.filter((resume) => resume.userId == user.id)[0];
+    const userResume = userCurriculumAll.filter((resume) => resume.userId == user.id)[0] || null;
 
     try {
-      await deleteDoc(doc(db, "userResume", userResume.id));
+      userResume && (await deleteDoc(doc(db, "userResume", userResume.id)));
       await deleteDoc(doc(db, "users", user.id));
       getUsers();
       toast.success("Usuário deletado com sucesso.");
