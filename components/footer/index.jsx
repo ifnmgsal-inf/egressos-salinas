@@ -15,7 +15,7 @@ const Footer = () => {
               ) : (
                 <>
                   <img src="/icon_if.png" alt="" width={40} />
-                  <span className="text-grey-text text-13">
+                  <span className="text-bg-grey text-13">
                     Fazenda Varginha Km 02 Rod. Salinas/
                     <br />
                     Taiobeiras Salinas/MG - CEP: 39.560-000
