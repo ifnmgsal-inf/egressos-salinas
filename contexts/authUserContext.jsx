@@ -369,13 +369,13 @@ export function AuthUserProvider({ children }) {
       usersAdm.every((admData) => admData.email !== email && admData.cpf !== cpf)
     ) {
       const file = image[0];
-      const imageMobile = JSON.stringify(image);
+      const imageMobile = JSON.stringify(image[0]);
       const metadata = {
         contentType: "image/jpeg",
       };
 
-      const storageRef = ref(storage, `images/users/${file[0]?.name || name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file[0], metadata);
+      const storageRef = ref(storage, `images/users/${file?.name || name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
       const createdIn = moment().format("YYYY-MM-DD");
       let imageURL = null;
 

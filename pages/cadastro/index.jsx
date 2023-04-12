@@ -142,7 +142,7 @@ const Registration = () => {
               {...register("image")}
               className="xsm:max-w-300 md:max-w-500 xsm:file:text-13 xsm:file:my-4 lg:file:my-8 file:text-primary-active file:border-solid file:border-primary-active file:border file:rounded-sm file:hover:border-primary file:hover:text-primary file:cursor-pointer lg:file:px-6 file:py-1.5 file:bg-white"
               type="file"
-              onChange={(e) => setImage(e.target.files)}
+              onChange={(e) => setImage(e.target.files[0])}
             />
           </div>
 
