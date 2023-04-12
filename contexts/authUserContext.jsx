@@ -34,8 +34,8 @@ export function AuthUserProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userGoogle, setUserGoogle] = useState(null);
   const [usersNumber, setUsersNumber] = useState(null);
-  const [usersAll, setUsersAll] = useState(null);
-  const [usersAdm, setUsersAdm] = useState(null);
+  const [usersAll, setUsersAll] = useState([]);
+  const [usersAdm, setUsersAdm] = useState([]);
   const [newsAll, setNewsAll] = useState(null);
   const [faqsAll, setFaqsAll] = useState(null);
   const [testimonialsAll, setTestimonialsAll] = useState(null);
