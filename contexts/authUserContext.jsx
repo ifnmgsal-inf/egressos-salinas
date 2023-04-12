@@ -368,7 +368,8 @@ export function AuthUserProvider({ children }) {
       usersAll.every((userData) => userData.email !== email && userData.cpf !== cpf) &&
       usersAdm.every((admData) => admData.email !== email && admData.cpf !== cpf)
     ) {
-      const file = image[0];
+      const eventImage = image;
+      const file = image.target.files[0][0];
       const metadata = {
         contentType: "image/jpeg",
       };
@@ -407,6 +408,7 @@ export function AuthUserProvider({ children }) {
               imageURL,
               conclusionYear,
               createdIn,
+              eventImage,
               type: "user",
             });
             await createUserWithEmailAndPassword(auth, email, password)
