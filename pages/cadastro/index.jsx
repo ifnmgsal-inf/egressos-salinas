@@ -264,7 +264,6 @@ const Registration = () => {
                 />
               </div>
             </div>
-
             <button
               className="flex items-center justify-center bg-primary-active text-15 text-disable h-10 mt-10 rounded-sm shadow hover:bg-primary "
               type="submit"
@@ -282,7 +281,7 @@ const Registration = () => {
                   ></path>
                 </svg>
               )}
-              <span className="ml-2">{loading ? "Aguarde ..." : "Cadastrar"}</span>
+              <span className="ml-2">{loading ? "Cadastrando ..." : "Cadastrar"}</span>
             </button>
             <Link href={"/login"}>
               <a className="flex items-center my-2 text-grey-text font-semibold text-14 cursor-pointer">

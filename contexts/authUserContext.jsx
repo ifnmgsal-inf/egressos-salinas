@@ -334,6 +334,7 @@ export function AuthUserProvider({ children }) {
   };
 
   function singIn({ email, password }) {
+    setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { accessToken, email } = userCredential.user;
@@ -347,6 +348,7 @@ export function AuthUserProvider({ children }) {
         if (accessToken) autenticationUser(email);
       })
       .catch((error) => {
+        setLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         toast.warning("Email ou senha inválidos, verifique os campos e tente novamente.");
@@ -490,12 +492,15 @@ export function AuthUserProvider({ children }) {
     if (user) {
       setUser(user);
       if (user.type === "adm") {
+        setLoading(false);
         router.push("/dashboard/cadastros");
       } else {
+        setLoading(false);
         createUser ? await createUserCurriculum(user) : await getUserCurriculum(user);
         router.push("/painel/curriculo");
       }
     }
+    setLoading(false);
   }
 
   return (
