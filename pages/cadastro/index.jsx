@@ -9,55 +9,56 @@ import InputMask from "react-input-mask";
 
 const courseOptions = [
   {
+    id: 1,
     value: "Técnico em Agroindústria - Integrado",
     label: "Técnico em Agroindústria - Integrado",
   },
-  { value: "Técnico em Agropecuária - Integrado", label: "Técnico em Agropecuária - Integrado" },
   {
+    id: 2,
     value: "Técnico em Agropecuária - Integrado",
     label: "Técnico em Agropecuária - Integrado",
   },
   {
+    id: 3,
+    value: "Técnico em Agropecuária - Integrado",
+    label: "Técnico em Agropecuária - Integrado",
+  },
+  {
+    id: 4,
     value: "Técnico em Informática - Integrado",
     label: "Técnico em Informática - Integrado",
   },
   {
+    id: 5,
     value: "Licenciatura em Ciências Biológicas",
     label: "Licenciatura em Ciências Biológicas",
   },
+  { id: 6, value: "Licenciatura em Matemática", label: "Licenciatura em Matemática" },
+  { id: 7, value: "Licenciatura em Química", label: "Licenciatura em Química" },
+  { id: 8, value: "Licenciatura em Física", label: "Licenciatura em Física" },
+  { id: 9, value: "Licenciatura em Pedagogia", label: "Licenciatura em Pedagogia" },
   {
-    value: "Licenciatura em Matemática",
-    label: "Licenciatura em Matemática",
-  },
-  {
-    value: "Licenciatura em Química",
-    label: "Licenciatura em Química",
-  },
-  {
-    value: "Licenciatura em Física",
-    label: "Licenciatura em Física",
-  },
-  {
-    value: "Licenciatura em Pedagogia",
-    label: "Licenciatura em Pedagogia",
-  },
-  {
+    id: 10,
     value: "Tecnologia em Produção de Cachaça",
     label: "Tecnologia em Produção de Cachaça",
   },
   {
+    id: 11,
     value: "Bacharelado em Medicina Veterinária",
     label: "Bacharelado em Medicina Veterinária",
   },
   {
+    id: 12,
     value: "Bacharelado em Engenharia Florestal",
     label: "Bacharelado em Engenharia Florestal",
   },
   {
+    id: 13,
     value: "Bacharelado em Engenharia de Alimentos",
     label: "Bacharelado em Engenharia de Alimentos",
   },
   {
+    id: 14,
     value: "Bacharelado em Sistemas de Informação",
     label: "Bacharelado em Sistemas de Informação",
   },
@@ -65,6 +66,7 @@ const courseOptions = [
 
 const Registration = () => {
   const [image, setImage] = useState(null);
+  const [level, setLevel] = useState("Técnico");
 
   const { register, handleSubmit } = useForm();
 
@@ -72,11 +74,12 @@ const Registration = () => {
 
   const handleRegister = useCallback(
     (data) => {
-      registrationIn(data, image);
+      // console.log(data, image, level);
+      registrationIn(data, image, level);
     },
-    [image, registrationIn]
+    [image, level, registrationIn]
   );
-  console.log(loading);
+  // console.log(loading);
 
   function passwordConfirmation() {
     const password = document.querySelector("input[name=password]");
@@ -185,6 +188,9 @@ const Registration = () => {
                   {...register("course")}
                   id="course"
                   name="course"
+                  onChange={(e) =>
+                    setLevel(e.target.value.includes("Técnico") ? "Técnico" : "Superior")
+                  }
                   required
                 >
                   {courseOptions.map(({ value, label }, index) => (
@@ -201,20 +207,18 @@ const Registration = () => {
                   {...register("level")}
                   id="level"
                   name="level"
+                  value={level}
+                  disabled
                   required
                 >
-                  <option className="xsm:text-13 md:text-15" value="Técnico">
-                    Técnico
-                  </option>
-                  <option className="xsm:text-13 md:text-15" value="Superior">
-                    Superior
-                  </option>
+                  <option className="xsm:text-13 md:text-15">Técnico</option>
+                  <option className="xsm:text-13 md:text-15">Superior</option>
                 </select>
               </div>
               <div className="flex flex-col">
                 <label className="text-14 font-medium">Data de conclusão</label>
                 <input
-                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4 uppercase"
+                  className="h-10 xsm:max-w-350 xsm:min-w-200 xsm:text-13 md:text-15 text-grey-text border border-grey-text rounded-sm focus:outline-primary-active xsm:px-1 md:px-4"
                   {...register("conclusionYear")}
                   type="date"
                   max={new Date().toISOString().split("T")[0]}

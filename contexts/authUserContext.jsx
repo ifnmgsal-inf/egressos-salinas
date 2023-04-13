@@ -355,7 +355,7 @@ export function AuthUserProvider({ children }) {
   }
 
   const registrationIn = useCallback(
-    async ({ name, email, cpf, course, level, password, conclusionYear }, image) => {
+    async ({ name, email, cpf, course, password, conclusionYear }, image, level) => {
       if (
         usersAll.every((userData) => userData.email !== email && userData.cpf !== cpf) &&
         usersAdm.every((admData) => admData.email !== email && admData.cpf !== cpf)
