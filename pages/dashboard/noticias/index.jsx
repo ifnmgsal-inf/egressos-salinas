@@ -10,11 +10,14 @@ import { useForm } from "react-hook-form";
 const NewsPage = () => {
   const [search, setSearch] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
   const [handleModalIsOpen, setHandleModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [image, setImage] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const [editNewsId, setEditNewsId] = useState(false);
+  const [currentNews, setCurrentNews] = useState(null);
+
   const { newsAll, createNewsUpload, deleteNews, updateNews, isMobile } =
     useContext(AuthUserContext);
 
@@ -30,6 +33,15 @@ const NewsPage = () => {
 
   function closeModal() {
     setModalIsOpen(false);
+    setModalData(null);
+  }
+  function openModalDelete(news) {
+    setCurrentNews(news);
+    setModalDeleteOpen(true);
+  }
+
+  function closeModalDelete() {
+    setModalDeleteOpen(false);
     setModalData(null);
   }
 
@@ -128,7 +140,7 @@ const NewsPage = () => {
                   />
                   <DeleteOutlined
                     className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-                    onClick={() => handleDeleteNews(news)}
+                    onClick={() => openModalDelete(news)}
                   />
                 </div>
               </div>
@@ -167,7 +179,7 @@ const NewsPage = () => {
                   />
                   <DeleteOutlined
                     className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-                    onClick={() => handleDeleteNews(news)}
+                    onClick={() => openModalDelete(news)}
                   />
                 </div>
               </div>
@@ -325,6 +337,61 @@ const NewsPage = () => {
                 </button>
               </div>
             </form>
+          </div>
+        </Modal>
+        <Modal
+          style={{
+            overlay: {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(255, 255, 255, 0.75)",
+            },
+            content: {
+              position: "absolute",
+              top: "10%",
+              left: "35%",
+              right: "50%",
+              bottom: "40px",
+              border: "1px solid #ccc",
+              background: "#fff",
+              overflow: "auto",
+              WebkitOverflowScrolling: "touch",
+              borderRadius: "4px",
+              outline: "none",
+              padding: "10px",
+              width: "400px",
+              maxHeight: "160px",
+            },
+          }}
+          isOpen={modalDeleteOpen}
+          onRequestClose={closeModalDelete}
+          contentLabel="Example Modal"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-lg font-medium">Atenção</p>
+            <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModalDelete} />
+          </div>
+          <hr />
+          <h2 className="py-4 Text-grey-text">Deseja realmente excluir essa Notícia?</h2>
+          <div className="flex items-end justify-end mt-2 gap-x-2">
+            <button
+              className="text-12 text-grey-text cursor-pointer bg-bg-container backdrop-opacity-5 px-2.5 py-1.5 rounded-sm"
+              onClick={() => closeModalDelete()}
+            >
+              Cancelar
+            </button>
+            <button
+              className="text-12 text-primary-green cursor-pointer bg-icon-bgGreen backdrop-opacity-5 px-6 py-1.5 rounded-sm"
+              onClick={() => {
+                handleDeleteNews(currentNews);
+                closeModal();
+              }}
+            >
+              Sim
+            </button>
           </div>
         </Modal>
       </div>

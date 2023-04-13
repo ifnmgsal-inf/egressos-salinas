@@ -1,9 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
-import { UserOutlined, DeleteOutlined, CheckOutlined } from "@ant-design/icons";
+import { UserOutlined, DeleteOutlined, CheckOutlined, CloseOutlined } from "@ant-design/icons";
+
+import Modal from "react-modal";
 
 const DepositionsPage = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentTestimonialId, setCurrentTestimonialId] = useState(null);
+
   const { usersAll, testimonialsAll, createPublishedTestimonials, deletePublishedTestimonials } =
     useContext(AuthUserContext);
 
@@ -11,6 +16,15 @@ const DepositionsPage = () => {
     // console.log(user);
     createPublishedTestimonials(user);
   };
+
+  function openModal(TestimonialId) {
+    setModalIsOpen(true);
+    setCurrentTestimonialId(TestimonialId);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
 
   return (
     <>
@@ -132,13 +146,68 @@ const DepositionsPage = () => {
               <div className="flex flex-row xsm:items-start md:items-center justify-end my-2">
                 <DeleteOutlined
                   className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-                  onClick={() => deletePublishedTestimonials(testimony.id)}
+                  onClick={() => openModal(testimony.id)}
                 />
               </div>
             </div>
           ))}
         </div>
       </div>
+      <Modal
+        style={{
+          overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.75)",
+          },
+          content: {
+            position: "absolute",
+            top: "10%",
+            left: "35%",
+            right: "50%",
+            bottom: "40px",
+            border: "1px solid #ccc",
+            background: "#fff",
+            overflow: "auto",
+            WebkitOverflowScrolling: "touch",
+            borderRadius: "4px",
+            outline: "none",
+            padding: "10px",
+            width: "400px",
+            maxHeight: "160px",
+          },
+        }}
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+      >
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-lg font-medium">Atenção</p>
+          <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
+        </div>
+        <hr />
+        <h2 className="py-4 Text-grey-text">Deseja realmente excluir o depoimento?</h2>
+        <div className="flex items-end justify-end mt-2 gap-x-2">
+          <button
+            className="text-12 text-grey-text cursor-pointer bg-bg-container backdrop-opacity-5 px-2.5 py-1.5 rounded-sm"
+            onClick={() => closeModal()}
+          >
+            Cancelar
+          </button>
+          <button
+            className="text-12 text-primary-green cursor-pointer bg-icon-bgGreen backdrop-opacity-5 px-6 py-1.5 rounded-sm"
+            onClick={() => {
+              deletePublishedTestimonials(currentTestimonialId);
+              closeModal();
+            }}
+          >
+            Sim
+          </button>
+        </div>
+      </Modal>
     </>
   );
 };

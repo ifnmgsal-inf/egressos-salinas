@@ -208,7 +208,7 @@ export default function CadastrosPage() {
           <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
         </div>
         <hr />
-        <h2 className="py-4 Text-grey-text">Deseja realmente excluir esse usuário?</h2>
+        <h2 className="py-4 Text-grey-text">Deseja realmente excluir o usuário?</h2>
         <div className="flex items-end justify-end mt-2 gap-x-2">
           <button
             className="text-12 text-grey-text cursor-pointer bg-bg-container backdrop-opacity-5 px-2.5 py-1.5 rounded-sm"
@@ -218,7 +218,10 @@ export default function CadastrosPage() {
           </button>
           <button
             className="text-12 text-primary-green cursor-pointer bg-icon-bgGreen backdrop-opacity-5 px-6 py-1.5 rounded-sm"
-            onClick={() => deleteAccountUser(currentUser)}
+            onClick={() => {
+              deleteAccountUser(currentUser);
+              closeModal();
+            }}
           >
             Sim
           </button>

@@ -8,8 +8,11 @@ import Accordion from "../../../components/accordion";
 
 const FaqPage = () => {
   const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [editFAQid, setEditFAQid] = useState(null);
+  const [currentFaqId, setCurrentFaqId] = useState(null);
+
   const { register, handleSubmit, setValue } = useForm();
 
   const { faqsAll, createFaqIn, getFAQs, deleteFAQ, updateFAQ } = useContext(AuthUserContext);
@@ -21,6 +24,16 @@ const FaqPage = () => {
   function closeModalCreate() {
     setCreateModalIsOpen(false);
   }
+
+  function openModalDelete(faqId) {
+    setCurrentFaqId(faqId);
+    setDeleteModalIsOpen(true);
+  }
+
+  function closeModalDelete() {
+    setDeleteModalIsOpen(false);
+  }
+
   function openModalEdit(id) {
     console.log(faqsAll.filter((faq) => faq.id === id));
     const item = faqsAll.filter((faq) => faq.id === id);
@@ -69,7 +82,7 @@ const FaqPage = () => {
               key={index}
               title={question}
               edit
-              onClickDelete={() => deleteFAQ(id)}
+              onClickDelete={() => openModalDelete(id)}
               onClickEdit={() => openModalEdit(id)}
             >
               {response}
@@ -223,6 +236,61 @@ const FaqPage = () => {
               </button>
             </div>
           </form>
+        </div>
+      </Modal>
+      <Modal
+        style={{
+          overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.75)",
+          },
+          content: {
+            position: "absolute",
+            top: "10%",
+            left: "35%",
+            right: "50%",
+            bottom: "40px",
+            border: "1px solid #ccc",
+            background: "#fff",
+            overflow: "auto",
+            WebkitOverflowScrolling: "touch",
+            borderRadius: "4px",
+            outline: "none",
+            padding: "10px",
+            width: "400px",
+            maxHeight: "160px",
+          },
+        }}
+        isOpen={deleteModalIsOpen}
+        onRequestClose={closeModalDelete}
+        contentLabel="Example Modal"
+      >
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-lg font-medium">Atenção</p>
+          <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModalDelete} />
+        </div>
+        <hr />
+        <h2 className="py-4 Text-grey-text">Deseja realmente excluir o item?</h2>
+        <div className="flex items-end justify-end mt-2 gap-x-2">
+          <button
+            className="text-12 text-grey-text cursor-pointer bg-bg-container backdrop-opacity-5 px-2.5 py-1.5 rounded-sm"
+            onClick={() => closeModalDelete()}
+          >
+            Cancelar
+          </button>
+          <button
+            className="text-12 text-primary-green cursor-pointer bg-icon-bgGreen backdrop-opacity-5 px-6 py-1.5 rounded-sm"
+            onClick={() => {
+              deleteFAQ(currentFaqId);
+              closeModalDelete();
+            }}
+          >
+            Sim
+          </button>
         </div>
       </Modal>
     </>
