@@ -1,12 +1,25 @@
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
-import { SearchOutlined, UserOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
 import { formatDate } from "../../../lib/utils";
 
 import { DeleteOutlined } from "@ant-design/icons";
+import Modal from "react-modal";
 
 export default function CadastrosPage() {
   const [search, setSearch] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  function openModal(user) {
+    setModalIsOpen(true);
+    setCurrentUser(user);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
   const { usersAll, deleteAccountUser } = useContext(AuthUserContext);
   console.log(usersAll);
 
@@ -98,7 +111,8 @@ export default function CadastrosPage() {
                   <td className="text-center py-4 px-6">
                     <DeleteOutlined
                       className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-                      onClick={() => deleteAccountUser(user)}
+                      // onClick={() => deleteAccountUser(user)}
+                      onClick={() => openModal(user)}
                     />
                   </td>
                 </tr>
@@ -150,13 +164,66 @@ export default function CadastrosPage() {
                   <td className="text-center py-4 px-6">
                     <DeleteOutlined
                       className="text-12 text-danger cursor-pointer bg-icon-bgRed backdrop-opacity-5 p-2.5 rounded-full"
-                      onClick={() => deleteAccountUser(user)}
+                      // onClick={() => deleteAccountUser(user)}
+                      onClick={() => openModal(user)}
                     />
                   </td>
                 </tr>
               ))}
         </tbody>
       </table>
+      <Modal
+        style={{
+          overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.75)",
+          },
+          content: {
+            position: "absolute",
+            top: "10%",
+            left: "35%",
+            right: "50%",
+            bottom: "40px",
+            border: "1px solid #ccc",
+            background: "#fff",
+            overflow: "auto",
+            WebkitOverflowScrolling: "touch",
+            borderRadius: "4px",
+            outline: "none",
+            padding: "10px",
+            width: "400px",
+            maxHeight: "160px",
+          },
+        }}
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+      >
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-lg font-medium">Atenção</p>
+          <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
+        </div>
+        <hr />
+        <h2 className="py-4 Text-grey-text">Deseja realmente excluir esse usuário?</h2>
+        <div className="flex items-end justify-end mt-2 gap-x-2">
+          <button
+            className="text-12 text-grey-text cursor-pointer bg-bg-container backdrop-opacity-5 px-2.5 py-1.5 rounded-sm"
+            onClick={() => closeModal()}
+          >
+            Cancelar
+          </button>
+          <button
+            className="text-12 text-primary-green cursor-pointer bg-icon-bgGreen backdrop-opacity-5 px-6 py-1.5 rounded-sm"
+            onClick={() => deleteAccountUser(currentUser)}
+          >
+            Sim
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }
