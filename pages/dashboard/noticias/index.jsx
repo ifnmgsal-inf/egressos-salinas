@@ -371,7 +371,7 @@ const NewsPage = () => {
           contentLabel="Example Modal"
         >
           <div className="flex items-center justify-between mb-2">
-            <p className="text-lg font-medium">Atenção</p>
+            <p className="text-lg font-medium">Excluir notícia</p>
             <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModalDelete} />
           </div>
           <hr />

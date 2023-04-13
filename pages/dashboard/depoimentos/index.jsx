@@ -185,7 +185,7 @@ const DepositionsPage = () => {
         contentLabel="Example Modal"
       >
         <div className="flex items-center justify-between mb-2">
-          <p className="text-lg font-medium">Atenção</p>
+          <p className="text-lg font-medium">Excluir depoimento</p>
           <CloseOutlined className="text-grey-text cursor-pointer" onClick={closeModal} />
         </div>
         <hr />
