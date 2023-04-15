@@ -5,6 +5,8 @@ import { UserOutlined, DeleteOutlined, CheckOutlined, CloseOutlined } from "@ant
 
 import Modal from "react-modal";
 
+import { isMobile } from "react-device-detect";
+
 const DepositionsPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentTestimonialId, setCurrentTestimonialId] = useState(null);
@@ -166,7 +168,7 @@ const DepositionsPage = () => {
           content: {
             position: "absolute",
             top: "10%",
-            left: "35%",
+            left: isMobile ? "5%" : "35%",
             right: "50%",
             bottom: "40px",
             border: "1px solid #ccc",
@@ -176,7 +178,7 @@ const DepositionsPage = () => {
             borderRadius: "4px",
             outline: "none",
             padding: "10px",
-            width: "400px",
+            width: isMobile ? "90%" : "400px",
             maxHeight: "160px",
           },
         }}

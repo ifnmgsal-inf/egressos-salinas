@@ -3,6 +3,7 @@ import { AuthUserContext } from "../../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
 import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import Modal from "react-modal";
+import { isMobile } from "react-device-detect";
 
 import Accordion from "../../../components/accordion";
 
@@ -251,7 +252,7 @@ const FaqPage = () => {
           content: {
             position: "absolute",
             top: "10%",
-            left: "35%",
+            left: isMobile ? "5%" : "35%",
             right: "50%",
             bottom: "40px",
             border: "1px solid #ccc",
@@ -261,7 +262,7 @@ const FaqPage = () => {
             borderRadius: "4px",
             outline: "none",
             padding: "10px",
-            width: "400px",
+            width: isMobile ? "90%" : "400px",
             maxHeight: "160px",
           },
         }}

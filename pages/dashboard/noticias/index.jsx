@@ -6,6 +6,7 @@ import { EditOutlined, DeleteOutlined, PlusOutlined, FileImageOutlined } from "@
 
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
+import { isMobile } from "react-device-detect";
 
 const NewsPage = () => {
   const [search, setSearch] = useState("");
@@ -352,7 +353,7 @@ const NewsPage = () => {
             content: {
               position: "absolute",
               top: "10%",
-              left: "35%",
+              left: isMobile ? "5%" : "35%",
               right: "50%",
               bottom: "40px",
               border: "1px solid #ccc",
@@ -362,7 +363,7 @@ const NewsPage = () => {
               borderRadius: "4px",
               outline: "none",
               padding: "10px",
-              width: "400px",
+              width: isMobile ? "90%" : "400px",
               maxHeight: "160px",
             },
           }}

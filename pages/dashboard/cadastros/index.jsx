@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthUserContext } from "../../../contexts/authUserContext";
-import { CloseOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined, UserOutlined, DeleteOutlined } from "@ant-design/icons";
 import { formatDate } from "../../../lib/utils";
+import { isMobile } from "react-device-detect";
 
-import { DeleteOutlined } from "@ant-design/icons";
 import Modal from "react-modal";
 
 export default function CadastrosPage() {
@@ -185,7 +185,7 @@ export default function CadastrosPage() {
           content: {
             position: "absolute",
             top: "10%",
-            left: "35%",
+            left: isMobile ? "5%" : "35%",
             right: "50%",
             bottom: "40px",
             border: "1px solid #ccc",
@@ -195,7 +195,7 @@ export default function CadastrosPage() {
             borderRadius: "4px",
             outline: "none",
             padding: "10px",
-            width: "400px",
+            width: isMobile ? "90%" : "400px",
             maxHeight: "160px",
           },
         }}
