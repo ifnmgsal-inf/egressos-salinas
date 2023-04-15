@@ -438,6 +438,7 @@ export function AuthUserProvider({ children }) {
               }
             })
             .catch((error) => {
+              setLoading(false);
               console.error(error);
               toast.error("Erro ao criar sua conta 🤯");
               reject();
