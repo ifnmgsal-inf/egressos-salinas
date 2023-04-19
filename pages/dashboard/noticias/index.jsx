@@ -388,7 +388,7 @@ const NewsPage = () => {
               className="text-12 text-primary-green cursor-pointer bg-icon-bgGreen backdrop-opacity-5 px-6 py-1.5 rounded-sm"
               onClick={() => {
                 handleDeleteNews(currentNews);
-                closeModal();
+                closeModalDelete();
               }}
             >
               Sim
