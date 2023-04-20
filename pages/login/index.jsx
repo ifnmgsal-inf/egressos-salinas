@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthUserContext } from "../../contexts/authUserContext";
 import { useForm } from "react-hook-form";
 
@@ -6,12 +6,13 @@ import Link from "next/link";
 import { ArrowLeftOutlined, DownloadOutlined } from "@ant-design/icons";
 
 const Login = () => {
+  const [userEmail, setUserEmail] = useState(null);
   const { register, handleSubmit } = useForm();
 
-  const { singIn, loading } = useContext(AuthUserContext);
+  const { singIn, loading, PasswordResetUser } = useContext(AuthUserContext);
 
   function handleSingIn(data) {
-    singIn(data);
+    singIn(data, userEmail);
   }
 
   return (
@@ -33,6 +34,7 @@ const Login = () => {
             <input
               className="h-12 border border-grey-text rounded-sm mb-4 focus:outline-primary-active px-4"
               {...register("email")}
+              onChange={(e) => setUserEmail(e.target.value)}
               type="text"
               id="email"
               name="email"
@@ -47,6 +49,12 @@ const Login = () => {
               name="password"
               required
             />
+            <span
+              className="text-12 underline font-ligth text-primary mt-1 cursor-pointer hover:font-medium"
+              onClick={() => PasswordResetUser(userEmail)}
+            >
+              Esqueci minha senha
+            </span>
             <button
               className="flex items-center justify-center bg-primary-active text-15 text-disable h-10 mt-10 rounded-sm shadow hover:bg-primary "
               type="submit"

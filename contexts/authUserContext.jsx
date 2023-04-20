@@ -22,6 +22,7 @@ import {
   signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 import moment from "moment/moment";
@@ -333,9 +334,9 @@ export function AuthUserProvider({ children }) {
     }
   };
 
-  function singIn({ email, password }) {
+  function singIn({ password }, userEmail) {
     setLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, userEmail, password)
       .then((userCredential) => {
         const { accessToken, email } = userCredential.user;
 
@@ -459,7 +460,7 @@ export function AuthUserProvider({ children }) {
   );
 
   const signOutUser = () => {
-    const auth = getAuth();
+    // const auth = getAuth();
     signOut(auth)
       .then(() => {
         destroyCookie(undefined, "next-egressos.token");
@@ -504,6 +505,22 @@ export function AuthUserProvider({ children }) {
     setLoading(false);
   }
 
+  const PasswordResetUser = (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+        toast.success("Email de redefinição enviado com sucesso.");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        toast.error("Erro ao enviar Email.");
+        console.log("Error reset password:", error);
+      });
+  };
+
   return (
     <AuthUserContext.Provider
       value={{
@@ -521,6 +538,7 @@ export function AuthUserProvider({ children }) {
         userGoogle,
         setUserGoogle,
         autenticationUser,
+        PasswordResetUser,
         isMobile,
         newsAll,
         createNewsUpload,
