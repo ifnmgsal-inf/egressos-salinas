@@ -193,7 +193,7 @@ const CurriculoPage = () => {
         <button
           type="submit"
           disabled={!alteration}
-          className="flex items-center px-8 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-sm"
+          className="flex items-center px-8 py-2 text-13 font-medium text-primary cursor-pointer bg-icon-bgGreen backdrop-opacity-5 p-2.5 rounded-sm hover:bg-primary hover:text-white"
         >
           <CheckOutlined className="mr-1.5 text-14" /> Salvar
         </button>
