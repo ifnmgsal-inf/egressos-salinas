@@ -374,8 +374,6 @@ export function AuthUserProvider({ children }) {
          */
         const file = image;
 
-        console.log({ file });
-
         if (file) {
           const metadata = {
             contentType: file.type ?? "image/jpeg",
@@ -400,7 +398,6 @@ export function AuthUserProvider({ children }) {
                 getDownloadURL(uploadTask.snapshot.ref)
                   .then((url) => {
                     imageURL = url;
-                    console.info(imageURL);
                   })
                   .finally(() => {
                     resolve();
