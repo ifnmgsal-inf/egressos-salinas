@@ -1,0 +1,43 @@
+
+PÁGINAS INICIAIS DO SISNTEMA
+
+1 - Página Inicial: Página de apresentação do acompanhamento do egresso, onde são dispostas as
+    informações, notícias, depoimentos e benefícios da ferramenta.
+
+2 - Página Sobre: Página que apresenta uma breve descrição sobre o egresso, como o que ele é e quais os benefícios
+    de se colaborar com a pesquisa. Também fornece a disponibilização de um questionário que pode ser preenchido pelo usuário.
+
+3 - Página Notícias: Página que contem todas as publicações de notícias publicadas no sistema, obtendo assim um histórico
+    de notícias e que contem um input de pesquisa.
+
+4 - Página Nossos Egressos: Página que disponibiliza uma tabela que contem todos os egressos cadastrados no sistema. essa listagem contem 
+    informações como nome, email, curso e uma opção de divulgação de um currículo do egresso.
+
+5 - Página de Login: Página com o formulário de login para acesso da parte interna do usuário, sendo ele administrador ou não.
+    Nessa tela contem uma flag "Esqueci minha senha" por onde é possivel realizar a troca da senha caso tenha esquecido.
+
+6 - Página de Cadastro: Paga com formulário de cadastro do usuário no sistema. Nele é possivel realizar um cadastro mais personalizado
+    com uma foto que é tulizadas dentro do sistema.
+
+
+PÁGINAS INTERNAS DE USUÁRIO E ADMINISTRADOR DO SISTEMA
+
+7 - Página interna inicial do usuário: Essa tela apresenta o formulário de cadastro e edição do currículo do usuário,
+    com a opção de compartilhamento deste currículo na listagem de egressos da página inicial.
+
+8 - Página interna de depoimento do usuário: Nessa página o usuário pode realizar o envio e edição de um depoimento que 
+    pode serr divulgado na página inicial do sistema, após ser filtrado pelo administrador.
+
+9 - Página interna inicial do administrador: Essa página apresenta uma tabela que lista todos os cadastros feitos no sistema,
+    nessa tabela é possivel realizar pesquisa e exclusão de usuário caso necessário.
+
+10 - Página interna de nóticias do administrador: Página onde são listadas todas aas notícias criadas e publicadas no sistema, onde
+     também é possivel realizar a criação de uma nova notícia.
+
+11 - Pagina interna de depoimentos do administrador: Página que contem as listagem de novos depoimentos a serem analisados
+     e possivelmente publicados e uma listagem dos depoimentos já publicados, com opção de exclusão caso necessario.
+
+12 - Página interna de configurações do administrador: Página onde contem o link para o questinario presente na página sobre.
+
+13 - Página interna de FAQ: Página que contem a listagem do FAQ, ou seja, as pergutas e respostas, e onde é possivel a criação
+     de um novo FAQ ou a edição e exclusão dos existentes.
