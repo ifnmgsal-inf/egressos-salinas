@@ -413,7 +413,6 @@ export function AuthUserProvider({ children }) {
           cpf,
           course,
           level,
-          password,
           imageURL,
           conclusionYear,
           createdIn,
